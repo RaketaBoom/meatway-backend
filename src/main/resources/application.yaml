@@ -1,1 +1,12 @@
-spring.application.name=meatway-backend
+spring:
+  application:
+    name: app
+
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true

@@ -1,0 +1,1990 @@
+openapi: 3.1.0
+info:
+  title: Meatway API
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+tags:
+- name: retail-order-controller
+  description: API Заказов
+- name: pork-controller
+  description: API Объявлений свинины
+- name: user-controller
+  description: API Профилей пользователей
+- name: bird-controller
+  description: API Объявлений птицы
+- name: ad-controller
+  description: API Объявлений
+- name: specialmeat-controller
+  description: API Объявлений специального мяса
+- name: beef-controller
+  description: API Объявлений говядины
+- name: sheepmeat-controller
+  description: API Объявлений баранины
+- name: opt-order-controller
+  description: API Оптовых заказов
+paths:
+  /api/v1/users:
+    get:
+      tags:
+      - user-controller
+      summary: Получить всех пользователей
+      operationId: findAllUsers
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserProfilesResponse"
+    post:
+      tags:
+      - user-controller
+      summary: Создать пользователя по id
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserCreateRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CreatedUserResponse"
+  /api/v1/specialmeats/{id}:
+    get:
+      tags:
+      - specialmeat-controller
+      summary: Вывести информацию объявления cо специальным мясом
+      operationId: findById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/SpecialmeatAdResponse"
+    post:
+      tags:
+      - specialmeat-controller
+      summary: Создать объявление cо специальным мясом
+      operationId: createById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SpecialmeatAdSaveRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/SpecialmeatAdResponse"
+    delete:
+      tags:
+      - specialmeat-controller
+      summary: Удалить объявление cо специальным мясом
+      operationId: deleteById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - specialmeat-controller
+      summary: Редактировать объявление cо специальным мясом
+      operationId: editById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SpecialmeatAdSaveRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/SpecialmeatAdResponse"
+  /api/v1/sheepmeats/{id}:
+    get:
+      tags:
+      - sheepmeat-controller
+      summary: Вывести информацию объявления c бараниной
+      operationId: findById_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/SheepmeatAdResponse"
+    post:
+      tags:
+      - sheepmeat-controller
+      summary: Создать объявление c бараниной
+      operationId: createById_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SheepmeatAdSaveRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/SheepmeatAdResponse"
+    delete:
+      tags:
+      - sheepmeat-controller
+      summary: Удалить объявление c бараниной
+      operationId: deleteById_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - sheepmeat-controller
+      summary: Редактировать объявление c бараниной
+      operationId: editById_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SheepmeatAdSaveRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/SheepmeatAdResponse"
+  /api/v1/porks/{id}:
+    get:
+      tags:
+      - pork-controller
+      summary: Вывести информацию объявления cо свининой
+      operationId: findById_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PorkAdResponse"
+    post:
+      tags:
+      - pork-controller
+      summary: Создать объявление cо свининой
+      operationId: createById_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PorkAdSaveRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PorkAdResponse"
+    delete:
+      tags:
+      - pork-controller
+      summary: Удалить объявление cо свининой
+      operationId: deleteById_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - pork-controller
+      summary: Редактировать объявление cо свининой
+      operationId: editById_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PorkAdSaveRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PorkAdResponse"
+  /api/v1/orders/retail:
+    post:
+      tags:
+      - retail-order-controller
+      summary: Создать вразвес заказ
+      operationId: createOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RetailOrderCreateRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RetailOrderCreateResponse"
+  /api/v1/orders/opt:
+    post:
+      tags:
+      - opt-order-controller
+      summary: Создать оптовый заказ
+      operationId: createOrder_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OptOrderCreateRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OptOrderCreateResponse"
+  /api/v1/birds/{id}:
+    get:
+      tags:
+      - bird-controller
+      summary: Вывести информацию объявления c птицей
+      operationId: findById_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BirdAdResponse"
+    post:
+      tags:
+      - bird-controller
+      summary: Создать объявление c птицей
+      operationId: createById_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BirdAdSaveRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BirdAdResponse"
+    delete:
+      tags:
+      - bird-controller
+      summary: Удалить объявление c птицей
+      operationId: deleteById_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - bird-controller
+      summary: Редактировать объявление c птицей
+      operationId: editById_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BirdAdSaveRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BirdAdResponse"
+  /api/v1/beefs/{id}:
+    get:
+      tags:
+      - beef-controller
+      summary: Вывести информацию объявления c говядиной
+      operationId: findById_4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BeefAdResponse"
+    post:
+      tags:
+      - beef-controller
+      summary: Создать объявление c говядиной
+      operationId: createById_4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BeefAdSaveRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BeefAdResponse"
+    delete:
+      tags:
+      - beef-controller
+      summary: Удалить объявление c говядиной
+      operationId: deleteById_4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - beef-controller
+      summary: Редактировать объявление c говядиной
+      operationId: editById_4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BeefAdSaveRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BeefAdResponse"
+  /api/v1/users/{id}:
+    get:
+      tags:
+      - user-controller
+      summary: Получить пользователя по id
+      operationId: findUserById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserProfileResponse"
+    delete:
+      tags:
+      - user-controller
+      summary: Внести изменения в профиль пользователя
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - user-controller
+      summary: Внести изменения в профиль пользователя
+      operationId: updateUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserEditRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserProfileResponse"
+  /api/v1/orders/retail/unconfirm/{id}:
+    patch:
+      tags:
+      - retail-order-controller
+      summary: Отменить вразвес заказ
+      operationId: unconfirmOrder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RetailOrderCreateResponse"
+  /api/v1/orders/retail/deactivate/{id}:
+    patch:
+      tags:
+      - retail-order-controller
+      summary: Деактиваровать вразвес заказ
+      operationId: deactivateOrder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RetailOrderCreateResponse"
+  /api/v1/orders/retail/confirm/{id}:
+    patch:
+      tags:
+      - retail-order-controller
+      summary: Подтвердить вразвес заказ
+      operationId: confirmOrder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RetailOrderCreateResponse"
+  /api/v1/orders/retail/activate/{id}:
+    patch:
+      tags:
+      - retail-order-controller
+      summary: Активировать вразвес заказ
+      operationId: activateOrder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RetailOrderCreateResponse"
+  /api/v1/orders/opt/unconfirm/{id}:
+    patch:
+      tags:
+      - opt-order-controller
+      summary: Отменить оптовый заказ
+      operationId: unconfirmOrder_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OptOrderCreateResponse"
+  /api/v1/orders/opt/deactivate/{id}:
+    patch:
+      tags:
+      - opt-order-controller
+      summary: Деактиваровать оптовый заказ
+      operationId: deactivateOrder_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OptOrderCreateResponse"
+  /api/v1/orders/opt/confirm/{id}:
+    patch:
+      tags:
+      - opt-order-controller
+      summary: Подтвердить оптовый заказ
+      operationId: confirmOrder_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OptOrderCreateResponse"
+  /api/v1/orders/opt/activate/{id}:
+    patch:
+      tags:
+      - opt-order-controller
+      summary: Активировать оптовый заказ
+      operationId: activateOrder_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OptOrderCreateResponse"
+  /api/v1/specialmeats:
+    get:
+      tags:
+      - specialmeat-controller
+      summary: Вывести краткую информацию об объявлениях cо специальным мясом
+      operationId: findAll
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: sort
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SpecialmeatAdsRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ShortAdsResponse"
+  /api/v1/sheepmeats:
+    get:
+      tags:
+      - sheepmeat-controller
+      summary: Вывести краткую информацию об объявлениях c бараниной
+      operationId: findAll_1
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: sort
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SheepmeatAdsRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ShortAdsResponse"
+  /api/v1/porks:
+    get:
+      tags:
+      - pork-controller
+      summary: Вывести краткую информацию об объявлениях cо свининой
+      operationId: findAll_2
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: sort
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PorkAdsRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ShortAdsResponse"
+  /api/v1/orders/retail/{id}:
+    get:
+      tags:
+      - retail-order-controller
+      summary: Получить вразвес заказ
+      operationId: findOrderById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RetailOrderResponse"
+    delete:
+      tags:
+      - retail-order-controller
+      summary: Удалить вразвес заказ
+      operationId: deleteOrder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/v1/orders/retail/buyer/{buyerId}:
+    get:
+      tags:
+      - retail-order-controller
+      summary: Получить вразвес заказы по id покупателя
+      operationId: findOrdersByBuyer
+      parameters:
+      - name: buyerId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RetailOrdersResponse"
+  /api/v1/orders/retail/ad/{adId}:
+    get:
+      tags:
+      - retail-order-controller
+      summary: Получить вразвес заказы по id объявления
+      operationId: findOrdersByAd
+      parameters:
+      - name: adId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RetailOrdersResponse"
+  /api/v1/orders/opt/{id}:
+    get:
+      tags:
+      - opt-order-controller
+      summary: Получить оптовый заказ
+      operationId: findOrderById_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OptOrderResponse"
+    delete:
+      tags:
+      - opt-order-controller
+      summary: Удалить оптовый заказ
+      operationId: deleteOrder_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/v1/orders/opt/buyer/{buyerId}:
+    get:
+      tags:
+      - opt-order-controller
+      summary: Получить оптовый заказы по id покупателя
+      operationId: findOrdersByBuyer_1
+      parameters:
+      - name: buyerId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OptOrdersResponse"
+  /api/v1/orders/opt/ad/{adId}:
+    get:
+      tags:
+      - opt-order-controller
+      summary: Получить оптовый заказы по id объявления
+      operationId: findOrdersByAd_1
+      parameters:
+      - name: adId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OptOrdersResponse"
+  /api/v1/birds:
+    get:
+      tags:
+      - bird-controller
+      summary: Вывести краткую информацию об объявлениях c птицей
+      operationId: findAll_3
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: sort
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BirdAdsRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ShortAdsResponse"
+  /api/v1/beefs:
+    get:
+      tags:
+      - beef-controller
+      summary: Вывести краткую информацию об объявлениях c говядиной
+      operationId: findAll_4
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: sort
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BeefAdsRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ShortAdsResponse"
+  /api/v1/ads:
+    get:
+      tags:
+      - ad-controller
+      summary: Вывести краткую информацию об объявлениях
+      operationId: findAll_5
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: sort
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdsRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ShortAdsResponse"
+components:
+  schemas:
+    UserCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        email:
+          type: string
+    CreatedUserResponse:
+      type: object
+    SpecialmeatAdSaveRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        breed:
+          type: string
+        monthsAge:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        location:
+          type: string
+        isFrozen:
+          type: boolean
+        isRetail:
+          type: boolean
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        killDate:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        hasMedicalCertificate:
+          type: boolean
+    SpecialmeatAdResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        breed:
+          type: string
+        monthsAge:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        location:
+          type: string
+        isFrozen:
+          type: boolean
+        isRetail:
+          type: boolean
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        killDate:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        hasMedicalCertificate:
+          type: boolean
+        isActive:
+          type: boolean
+        creationDate:
+          type: string
+          format: date-time
+    SheepmeatAdSaveRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        breed:
+          type: string
+        monthsAge:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        location:
+          type: string
+        isFrozen:
+          type: boolean
+        isRetail:
+          type: boolean
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        killDate:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        hasMedicalCertificate:
+          type: boolean
+    SheepmeatAdResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        breed:
+          type: string
+        monthsAge:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        location:
+          type: string
+        isFrozen:
+          type: boolean
+        isRetail:
+          type: boolean
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        killDate:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        hasMedicalCertificate:
+          type: boolean
+        isActive:
+          type: boolean
+        creationDate:
+          type: string
+          format: date-time
+    PorkAdSaveRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        breed:
+          type: string
+        monthsAge:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        location:
+          type: string
+        isFrozen:
+          type: boolean
+        isRetail:
+          type: boolean
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        killDate:
+          type: string
+          format: date-time
+        hasMedicalCertificate:
+          type: boolean
+    PorkAdResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        breed:
+          type: string
+        monthsAge:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        location:
+          type: string
+        isFrozen:
+          type: boolean
+        isRetail:
+          type: boolean
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        killDate:
+          type: string
+          format: date-time
+        hasMedicalCertificate:
+          type: boolean
+        isActive:
+          type: boolean
+        creationDate:
+          type: string
+          format: date-time
+    RetailOrderCreateRequest:
+      type: object
+      properties:
+        advertisementId:
+          type: integer
+          format: int64
+        buyerUserId:
+          type: integer
+          format: int64
+        weight:
+          type: number
+          format: double
+    RetailOrderCreateResponse:
+      type: object
+    OptOrderCreateRequest:
+      type: object
+      properties:
+        advertisementId:
+          type: integer
+          format: int64
+        buyerUserId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+        kill_date:
+          type: string
+          format: date-time
+    OptOrderCreateResponse:
+      type: object
+    BirdAdSaveRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        breed:
+          type: string
+        monthsAge:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        location:
+          type: string
+        isFrozen:
+          type: boolean
+        isRetail:
+          type: boolean
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        killDate:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        birdType:
+          type: string
+        hasMedicalCertificate:
+          type: boolean
+    BirdAdResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        breed:
+          type: string
+        monthsAge:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        location:
+          type: string
+        isFrozen:
+          type: boolean
+        isRetail:
+          type: boolean
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        killDate:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        birdType:
+          type: string
+        hasMedicalCertificate:
+          type: boolean
+        isActive:
+          type: boolean
+        creationDate:
+          type: string
+          format: date-time
+    BeefAdSaveRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        breed:
+          type: string
+        monthsAge:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        location:
+          type: string
+        isFrozen:
+          type: boolean
+        isRetail:
+          type: boolean
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        killDate:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        isMramor:
+          type: boolean
+        hasMedicalCertificate:
+          type: boolean
+    BeefAdResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        breed:
+          type: string
+        monthsAge:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        location:
+          type: string
+        isFrozen:
+          type: boolean
+        isRetail:
+          type: boolean
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        killDate:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        isMramor:
+          type: boolean
+        hasMedicalCertificate:
+          type: boolean
+        isActive:
+          type: boolean
+        creationDate:
+          type: string
+          format: date-time
+    UserEditRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        city:
+          type: string
+        phone_number:
+          type: string
+    UserProfileResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        city:
+          type: string
+        phone_number:
+          type: string
+        email:
+          type: string
+    UserProfilesResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserProfileResponse"
+        size:
+          type: integer
+          format: int32
+    SpecialmeatAdsRequest:
+      type: object
+      properties:
+        isRetail:
+          type: boolean
+        medicalCertificate:
+          type: boolean
+        isFrozen:
+          type: boolean
+        priceFrom:
+          type: number
+          format: double
+        priceTo:
+          type: number
+          format: double
+        weightFrom:
+          type: number
+          format: double
+        weightTo:
+          type: number
+          format: double
+        quantityFrom:
+          type: integer
+          format: int32
+        quantityTo:
+          type: integer
+          format: int32
+        monthsAgeFrom:
+          type: integer
+          format: int32
+        monthsAgeTo:
+          type: integer
+          format: int32
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        animalType:
+          type: string
+    ShortAdResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        price:
+          type: number
+        animalType:
+          type: string
+        breed:
+          type: string
+        monthsAge:
+          type: integer
+          format: int32
+        weight:
+          type: number
+          format: double
+        quantity:
+          type: integer
+          format: int32
+        location:
+          type: string
+        username:
+          type: string
+        stars:
+          type: number
+          format: double
+        isFrozen:
+          type: boolean
+        isRetail:
+          type: boolean
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        killDate:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        isMramor:
+          type: boolean
+        isPremium:
+          type: boolean
+        hasMedicalCertificate:
+          type: boolean
+        birdType:
+          type: string
+    ShortAdsResponse:
+      type: object
+      properties:
+        ads:
+          type: array
+          items:
+            $ref: "#/components/schemas/ShortAdResponse"
+        size:
+          type: integer
+          format: int32
+    SheepmeatAdsRequest:
+      type: object
+      properties:
+        isRetail:
+          type: boolean
+        medicalCertificate:
+          type: boolean
+        isFrozen:
+          type: boolean
+        priceFrom:
+          type: number
+          format: double
+        priceTo:
+          type: number
+          format: double
+        weightFrom:
+          type: number
+          format: double
+        weightTo:
+          type: number
+          format: double
+        quantityFrom:
+          type: integer
+          format: int32
+        quantityTo:
+          type: integer
+          format: int32
+        monthsAgeFrom:
+          type: integer
+          format: int32
+        monthsAgeTo:
+          type: integer
+          format: int32
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+    PorkAdsRequest:
+      type: object
+      properties:
+        isRetail:
+          type: boolean
+        medicalCertificate:
+          type: boolean
+        isFrozen:
+          type: boolean
+        priceFrom:
+          type: number
+          format: double
+        priceTo:
+          type: number
+          format: double
+        weightFrom:
+          type: number
+          format: double
+        weightTo:
+          type: number
+          format: double
+        quantityFrom:
+          type: integer
+          format: int32
+        quantityTo:
+          type: integer
+          format: int32
+        monthsAgeFrom:
+          type: integer
+          format: int32
+        monthsAgeTo:
+          type: integer
+          format: int32
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        fatContent:
+          type: string
+        processingType:
+          type: string
+    RetailOrderResponse:
+      type: object
+      properties:
+        advertisementId:
+          type: integer
+          format: int64
+        buyerUserId:
+          type: integer
+          format: int64
+        weight:
+          type: number
+          format: double
+        isConfirmed:
+          type: boolean
+        isActive:
+          type: boolean
+    RetailOrdersResponse:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: "#/components/schemas/RetailOrderResponse"
+        size:
+          type: integer
+          format: int64
+    OptOrderResponse:
+      type: object
+    OptOrdersResponse:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: "#/components/schemas/OptOrdersResponse"
+        size:
+          type: integer
+          format: int64
+    BirdAdsRequest:
+      type: object
+      properties:
+        isRetail:
+          type: boolean
+        medicalCertificate:
+          type: boolean
+        isFrozen:
+          type: boolean
+        priceFrom:
+          type: number
+          format: double
+        priceTo:
+          type: number
+          format: double
+        weightFrom:
+          type: number
+          format: double
+        weightTo:
+          type: number
+          format: double
+        quantityFrom:
+          type: integer
+          format: int32
+        quantityTo:
+          type: integer
+          format: int32
+        monthsAgeFrom:
+          type: integer
+          format: int32
+        monthsAgeTo:
+          type: integer
+          format: int32
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        birdType:
+          type: string
+    BeefAdsRequest:
+      type: object
+      properties:
+        isRetail:
+          type: boolean
+        medicalCertificate:
+          type: boolean
+        isFrozen:
+          type: boolean
+        priceFrom:
+          type: number
+          format: double
+        priceTo:
+          type: number
+          format: double
+        weightFrom:
+          type: number
+          format: double
+        weightTo:
+          type: number
+          format: double
+        quantityFrom:
+          type: integer
+          format: int32
+        quantityTo:
+          type: integer
+          format: int32
+        monthsAgeFrom:
+          type: integer
+          format: int32
+        monthsAgeTo:
+          type: integer
+          format: int32
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
+        isHalal:
+          type: boolean
+        isMramor:
+          type: boolean
+    AdsRequest:
+      type: object
+      properties:
+        isRetail:
+          type: boolean
+        medicalCertificate:
+          type: boolean
+        isFrozen:
+          type: boolean
+        priceFrom:
+          type: number
+          format: double
+        priceTo:
+          type: number
+          format: double
+        weightFrom:
+          type: number
+          format: double
+        weightTo:
+          type: number
+          format: double
+        quantityFrom:
+          type: integer
+          format: int32
+        quantityTo:
+          type: integer
+          format: int32
+        monthsAgeFrom:
+          type: integer
+          format: int32
+        monthsAgeTo:
+          type: integer
+          format: int32
+        dateBegin:
+          type: string
+          format: date-time
+        dateEnd:
+          type: string
+          format: date-time
