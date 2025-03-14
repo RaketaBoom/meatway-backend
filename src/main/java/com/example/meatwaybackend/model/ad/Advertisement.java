@@ -4,6 +4,7 @@ import com.example.meatwaybackend.model.User;
 import com.example.meatwaybackend.model.order.OptOrder;
 import com.example.meatwaybackend.model.order.RetailOrder;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="ad_type",
         discriminatorType = DiscriminatorType.STRING)
+@Getter
 public class Advertisement {
     @Id
     private Long id;
