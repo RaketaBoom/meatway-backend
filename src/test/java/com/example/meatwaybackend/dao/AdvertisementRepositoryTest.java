@@ -1,5 +1,6 @@
 package com.example.meatwaybackend.dao;
 
+import com.example.meatwaybackend.dao.ad.AdvertisementRepository;
 import com.example.meatwaybackend.model.ad.Advertisement;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("specialmeat")
-public class SpecialMeat extends Advertisement {
+public class Specialmeat extends Advertisement {
     private String animalType;
 
     private Boolean halal;

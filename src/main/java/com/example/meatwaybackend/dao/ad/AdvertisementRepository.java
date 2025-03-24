@@ -1,4 +1,4 @@
-package com.example.meatwaybackend.dao;
+package com.example.meatwaybackend.dao.ad;
 
 import com.example.meatwaybackend.model.ad.Advertisement;
 import org.springframework.data.jpa.repository.JpaRepository;
