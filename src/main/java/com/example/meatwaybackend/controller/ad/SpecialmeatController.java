@@ -4,8 +4,10 @@ import com.example.meatwaybackend.dto.ad.ShortAdsResponse;
 import com.example.meatwaybackend.dto.ad.specialmeat.SpecialmeatAdResponse;
 import com.example.meatwaybackend.dto.ad.specialmeat.SpecialmeatAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.specialmeat.SpecialmeatAdsRequest;
+import com.example.meatwaybackend.service.ad.SpecialmeatService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,11 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = SpecialmeatController.CONTROLLER, description = "API Объявлений специального мяса")
 @RequestMapping(SpecialmeatController.API_AD)
+@RequiredArgsConstructor
 public class SpecialmeatController {
     public static final String CONTROLLER = "specialmeat-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
     public static final String API_AD = API_PREFIX + "/specialmeats";
+
+    private final SpecialmeatService specialmeatService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -41,8 +46,7 @@ public class SpecialmeatController {
             @RequestParam String sort,
             @RequestBody SpecialmeatAdsRequest request
     ) {
-        //TODO
-        return null;
+        return specialmeatService.findAll(page, size, sort, request);
     }
 
     @GetMapping("/{id}")
@@ -52,22 +56,19 @@ public class SpecialmeatController {
             tags = {CONTROLLER}
     )
     public SpecialmeatAdResponse findById(@PathVariable int id) {
-        //TODO
-        return null;
+        return specialmeatService.findById(id);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(
             summary = "Создать объявление cо специальным мясом",
             tags = {CONTROLLER}
     )
     public SpecialmeatAdResponse createById(
-            @PathVariable int id,
             @RequestBody SpecialmeatAdSaveRequest request
     ) {
-        //TODO
-        return null;
+        return specialmeatService.createSpecialmeatAd(request);
     }
 
     @PatchMapping("/{id}")
@@ -77,11 +78,10 @@ public class SpecialmeatController {
             tags = {CONTROLLER}
     )
     public SpecialmeatAdResponse editById(
-            @PathVariable int id,
+            @PathVariable long id,
             @RequestBody SpecialmeatAdSaveRequest request
     ) {
-        //TODO
-        return null;
+        return specialmeatService.patchById(id, request);
     }
 
     @DeleteMapping("/{id}")
@@ -91,8 +91,8 @@ public class SpecialmeatController {
             tags = {CONTROLLER}
     )
     public void deleteById(
-            @PathVariable int id
+            @PathVariable long id
     ) {
-        //TODO
+        specialmeatService.deleteById(id);
     }
 }

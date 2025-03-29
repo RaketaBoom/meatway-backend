@@ -10,7 +10,6 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
@@ -24,7 +23,7 @@ public interface UserMapper {
     CreatedUserResponse userToCreatedUserResponse(User user);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateUserFromUserEditRequest(@MappingTarget User user, UserEditRequest userEditRequest);
+    User updateUserFromUserEditRequest(@MappingTarget User user, UserEditRequest userEditRequest);
 
     User userProfileResponseToUser(UserProfileResponse userProfileResponse);
 }

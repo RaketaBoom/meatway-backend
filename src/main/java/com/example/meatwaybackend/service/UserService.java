@@ -6,10 +6,9 @@ import com.example.meatwaybackend.dto.user.UserCreateRequest;
 import com.example.meatwaybackend.dto.user.UserEditRequest;
 import com.example.meatwaybackend.dto.user.UserProfileResponse;
 import com.example.meatwaybackend.dto.user.UserProfilesResponse;
-import com.example.meatwaybackend.handler.exception.user.UserNotFoundException;
+import com.example.meatwaybackend.handler.exception.user.NotFoundException;
 import com.example.meatwaybackend.mapper.UserMapper;
 import com.example.meatwaybackend.model.User;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,16 +32,16 @@ public class UserService {
     }
 
     public UserProfileResponse findById(long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException(User.class, id));
 
         return userMapper.userToUserProfileResponse(user);
     }
 
     public CreatedUserResponse createUser(UserCreateRequest userCreateRequest) {
         //TODO обернуть в try catch вернуть saveUserException с 500 ошибкой
-       User user = userRepository.save(userMapper.userCreateRequestToUser(userCreateRequest));
+        User user = userRepository.save(userMapper.userCreateRequestToUser(userCreateRequest));
 
-       return userMapper.userToCreatedUserResponse(user);
+        return userMapper.userToCreatedUserResponse(user);
     }
 
     public UserProfileResponse patchUser(long id, UserEditRequest updateRequest) {
@@ -53,7 +52,7 @@ public class UserService {
     }
 
     public void removeUser(long id) {
-        userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        userRepository.findById(id).orElseThrow(() -> new NotFoundException(User.class, id));
         userRepository.deleteById(id);
     }
 }

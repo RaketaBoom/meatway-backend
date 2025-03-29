@@ -9,14 +9,17 @@ import lombok.Getter;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import lombok.Setter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="ad_type",
         discriminatorType = DiscriminatorType.STRING)
 @Getter
+@Setter
 public class Advertisement {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;

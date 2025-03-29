@@ -1,12 +1,14 @@
-package com.example.meatwaybackend.controller;
+package com.example.meatwaybackend.controller.order;
 
 
 import com.example.meatwaybackend.dto.order.opt.OptOrderCreateRequest;
 import com.example.meatwaybackend.dto.order.opt.OptOrderCreateResponse;
 import com.example.meatwaybackend.dto.order.opt.OptOrderResponse;
 import com.example.meatwaybackend.dto.order.opt.OptOrdersResponse;
+import com.example.meatwaybackend.service.order.OptOrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,11 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = OptOrderController.OPT_ORDER_CONTROLLER, description = "API Оптовых заказов")
 @RequestMapping(OptOrderController.API_ORDER)
+@RequiredArgsConstructor
 public class OptOrderController {
     public static final String OPT_ORDER_CONTROLLER = "opt-order-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
     public static final String API_ORDER = API_PREFIX + "/orders/opt";
+
+    private final OptOrderService optOrderService;
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -36,8 +41,7 @@ public class OptOrderController {
             tags = {OPT_ORDER_CONTROLLER}
     )
     public OptOrderResponse findOrderById(@PathVariable Long id) {
-        //TODO
-        return null;
+        return optOrderService.findById(id);
     }
 
     @GetMapping("/ad/{adId}")
@@ -47,8 +51,7 @@ public class OptOrderController {
             tags = {OPT_ORDER_CONTROLLER}
     )
     public OptOrdersResponse findOrdersByAd(@PathVariable long adId) {
-        //TODO
-        return null;
+        return optOrderService.findByAdId(adId);
     }
 
     @GetMapping("/buyer/{buyerId}")
@@ -58,8 +61,7 @@ public class OptOrderController {
             tags = {OPT_ORDER_CONTROLLER}
     )
     public OptOrdersResponse findOrdersByBuyer(@PathVariable long buyerId) {
-        //TODO
-        return null;
+        return optOrderService.findByBuyerId(buyerId);
     }
 
     @PostMapping()
@@ -69,8 +71,7 @@ public class OptOrderController {
             tags = {OPT_ORDER_CONTROLLER}
     )
     public OptOrderCreateResponse createOrder(@RequestBody OptOrderCreateRequest request) {
-        //TODO
-        return null;
+        return optOrderService.createOrder(request);
     }
 
     @PatchMapping("/confirm/{id}")
@@ -80,8 +81,7 @@ public class OptOrderController {
             tags = {OPT_ORDER_CONTROLLER}
     )
     public OptOrderCreateResponse confirmOrder(@PathVariable long id) {
-        //TODO
-        return null;
+        return optOrderService.confirmOrder(id);
     }
 
     @PatchMapping("/unconfirm/{id}")
@@ -91,8 +91,7 @@ public class OptOrderController {
             tags = {OPT_ORDER_CONTROLLER}
     )
     public OptOrderCreateResponse unconfirmOrder(@PathVariable long id) {
-        //TODO
-        return null;
+        return optOrderService.unconfirmOrder(id);
     }
 
     @PatchMapping("/activate/{id}")
@@ -102,8 +101,7 @@ public class OptOrderController {
             tags = {OPT_ORDER_CONTROLLER}
     )
     public OptOrderCreateResponse activateOrder(@PathVariable long id) {
-        //TODO
-        return null;
+        return optOrderService.activateOrder(id);
     }
 
     @PatchMapping("/deactivate/{id}")
@@ -113,8 +111,7 @@ public class OptOrderController {
             tags = {OPT_ORDER_CONTROLLER}
     )
     public OptOrderCreateResponse deactivateOrder(@PathVariable long id) {
-        //TODO
-        return null;
+        return optOrderService.deactivateOrder(id);
     }
 
     @DeleteMapping("/{id}")
@@ -124,6 +121,6 @@ public class OptOrderController {
             tags = {OPT_ORDER_CONTROLLER}
     )
     public void deleteOrder(@PathVariable long id) {
-        //TODO
+        optOrderService.removeOrder(id);
     }
 }
