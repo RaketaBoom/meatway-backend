@@ -4,6 +4,6 @@ import java.util.List;
 
 public record ShortAdsResponse(
         List<ShortAdResponse> ads,
-        int size
+        Long size
 ){
 };

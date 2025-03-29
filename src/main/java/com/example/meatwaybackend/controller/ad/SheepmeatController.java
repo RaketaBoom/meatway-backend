@@ -4,8 +4,10 @@ import com.example.meatwaybackend.dto.ad.ShortAdsResponse;
 import com.example.meatwaybackend.dto.ad.sheepmeat.SheepmeatAdResponse;
 import com.example.meatwaybackend.dto.ad.sheepmeat.SheepmeatAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.sheepmeat.SheepmeatAdsRequest;
+import com.example.meatwaybackend.service.ad.SheepmeatService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,11 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = SheepmeatController.SHEEPMEAT_CONTROLLER, description = "API Объявлений баранины")
 @RequestMapping(SheepmeatController.API_AD)
+@RequiredArgsConstructor
 public class SheepmeatController {
     public static final String SHEEPMEAT_CONTROLLER = "sheepmeat-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
     public static final String API_AD = API_PREFIX + "/sheepmeats";
+
+    private final SheepmeatService sheepmeatService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -41,8 +46,7 @@ public class SheepmeatController {
             @RequestParam String sort,
             @RequestBody SheepmeatAdsRequest request
     ) {
-        //TODO
-        return null;
+        return sheepmeatService.findAll(page, size, sort, request);
     }
 
     @GetMapping("/{id}")
@@ -52,22 +56,19 @@ public class SheepmeatController {
             tags = {SHEEPMEAT_CONTROLLER}
     )
     public SheepmeatAdResponse findById(@PathVariable int id) {
-        //TODO
-        return null;
+        return sheepmeatService.findById(id);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(
             summary = "Создать объявление c бараниной",
             tags = {SHEEPMEAT_CONTROLLER}
     )
     public SheepmeatAdResponse createById(
-            @PathVariable int id,
             @RequestBody SheepmeatAdSaveRequest request
     ) {
-        //TODO
-        return null;
+        return sheepmeatService.createSheepmeatAd(request);
     }
 
     @PatchMapping("/{id}")
@@ -80,8 +81,7 @@ public class SheepmeatController {
             @PathVariable int id,
             @RequestBody SheepmeatAdSaveRequest request
     ) {
-        //TODO
-        return null;
+        return sheepmeatService.patchById(id, request);
     }
 
     @DeleteMapping("/{id}")
@@ -93,6 +93,6 @@ public class SheepmeatController {
     public void deleteById(
             @PathVariable int id
     ) {
-        //TODO
+        sheepmeatService.deleteById(id);
     }
 }

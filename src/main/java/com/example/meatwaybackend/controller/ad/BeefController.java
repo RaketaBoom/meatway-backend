@@ -4,8 +4,10 @@ import com.example.meatwaybackend.dto.ad.ShortAdsResponse;
 import com.example.meatwaybackend.dto.ad.beef.BeefAdResponse;
 import com.example.meatwaybackend.dto.ad.beef.BeefAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.beef.BeefAdsRequest;
+import com.example.meatwaybackend.service.ad.BeefService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,11 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = BeefController.BEEF_CONTROLLER, description = "API Объявлений говядины")
 @RequestMapping(BeefController.API_AD)
+@RequiredArgsConstructor
 public class BeefController {
     public static final String BEEF_CONTROLLER = "beef-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
     public static final String API_AD = API_PREFIX + "/beefs";
+
+    private final BeefService beefService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -41,8 +46,7 @@ public class BeefController {
             @RequestParam String sort,
             @RequestBody BeefAdsRequest request
     ) {
-        //TODO
-        return null;
+        return beefService.findAll(page, size, sort, request);
     }
 
     @GetMapping("/{id}")
@@ -52,22 +56,19 @@ public class BeefController {
             tags = {BEEF_CONTROLLER}
     )
     public BeefAdResponse findById(@PathVariable int id) {
-        //TODO
-        return null;
+        return beefService.findById(id);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(
             summary = "Создать объявление c говядиной",
             tags = {BEEF_CONTROLLER}
     )
-    public BeefAdResponse createById(
-            @PathVariable int id,
+    public BeefAdResponse createBeef(
             @RequestBody BeefAdSaveRequest request
     ) {
-        //TODO
-        return null;
+        return beefService.createBeefAd(request);
     }
 
     @PatchMapping("/{id}")
@@ -80,8 +81,7 @@ public class BeefController {
             @PathVariable int id,
             @RequestBody BeefAdSaveRequest request
     ) {
-        //TODO
-        return null;
+        return beefService.patchById(id, request);
     }
 
     @DeleteMapping("/{id}")
@@ -93,6 +93,6 @@ public class BeefController {
     public void deleteById(
             @PathVariable int id
     ) {
-        //TODO
+        beefService.deleteById(id);
     }
 }
