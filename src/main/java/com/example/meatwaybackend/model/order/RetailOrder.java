@@ -23,11 +23,11 @@ public class RetailOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "advertisement_id")
     private Advertisement advertisement;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "buyer_user_id")
     private User buyerUser;
 

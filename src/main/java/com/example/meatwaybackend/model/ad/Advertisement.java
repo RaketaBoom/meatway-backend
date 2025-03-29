@@ -54,11 +54,13 @@ public class Advertisement {
 
     private Date creationDate;
 
-    @OneToMany
-    @JoinColumn(name = "advertisement_id")
+    @ManyToOne
+    @JoinColumn(name = "seller_user_id")
+    private User sellerUser;
+
+    @OneToMany(mappedBy = "advertisement")
     private List<RetailOrder> retailOrders;
 
-    @OneToMany
-    @JoinColumn(name = "advertisement_id")
+    @OneToMany(mappedBy = "advertisement")
     private List<OptOrder> optOrders;
 }

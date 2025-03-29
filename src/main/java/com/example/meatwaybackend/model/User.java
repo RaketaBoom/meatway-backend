@@ -22,13 +22,10 @@ public class User {
     private String city;
     private String phoneNumber;
     private String email;
-    @OneToMany
-    @JoinColumn(name = "seller_user_id")
+    @OneToMany(mappedBy = "sellerUser")
     private List<Advertisement> advertisements;
-    @OneToMany
-    @JoinColumn(name = "buyer_user_id")
+    @OneToMany(mappedBy = "buyerUser")
     private List<RetailOrder> retailOrders;
-    @OneToMany
-    @JoinColumn(name = "buyer_user_id")
+    @OneToMany(mappedBy = "buyerUser")
     private List<OptOrder> optOrders;
 }

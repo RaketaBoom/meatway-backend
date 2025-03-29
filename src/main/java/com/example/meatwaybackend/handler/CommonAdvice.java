@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class UserAdvice {
+public class CommonAdvice {
 
     @ExceptionHandler(HttpCodeException.class)
     public ResponseEntity<ErrorResponse> handleHttpCodeException(HttpCodeException e) {
