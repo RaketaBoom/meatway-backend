@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AdvertisementController {
     public static final String AD_CONTROLLER = "ad-controller";
-    static final String API_VERSION = "v1";
+    static final String API_VERSION = "v3";
     static final String API_PREFIX = "/api/" + API_VERSION;
     public static final String API_AD = API_PREFIX + "/ads";
 
@@ -35,10 +35,10 @@ public class AdvertisementController {
             tags = {AD_CONTROLLER}
     )
     public ShortAdsResponse findAll(
-            @RequestParam int page,
-            @RequestParam int size,
-            @RequestParam String sort,
-            @RequestBody AdsRequest request
+            @RequestParam(required = false) int page,
+            @RequestParam(required = false) int size,
+            @RequestParam(required = false) String sort,
+            @RequestBody(required = false) AdsRequest request
     ) {
         return adService.findAll(page, size, sort, request);
     }

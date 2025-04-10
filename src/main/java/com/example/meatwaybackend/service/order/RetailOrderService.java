@@ -49,11 +49,20 @@ public class RetailOrderService {
     }
 
     public RetailOrderCreateResponse createOrder(RetailOrderCreateRequest request) {
-        RetailOrder retailOrder = orderMapper.toRetailOrder(request);
+        Advertisement advertisement = advertisementRepository.findById(request.advertisementId())
+                .orElseThrow(() -> new NotFoundException(Advertisement.class, request.advertisementId()));
+        User buyer = userRepository.findById(request.buyerUserId())
+                .orElseThrow(() -> new NotFoundException(User.class, request.buyerUserId()));
+        RetailOrder retailOrder = retailOrderRepository.save(
+                RetailOrder
+                .builder()
+                .advertisement(advertisement)
+                .buyerUser(buyer)
+                .weight(request.weight())
+                .build()
+        );
 
-        RetailOrder retailOrder1 = retailOrderRepository.save(retailOrder);
-
-        return orderMapper.RetailOrderToRetailOrderCreateResponse(retailOrder1);
+        return orderMapper.RetailOrderToRetailOrderCreateResponse(retailOrder);
     }
 
     public RetailOrderCreateResponse confirmOrder(long id) {

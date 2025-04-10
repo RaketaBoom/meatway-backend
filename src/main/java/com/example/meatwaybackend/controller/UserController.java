@@ -8,9 +8,11 @@ import com.example.meatwaybackend.dto.user.UserProfilesResponse;
 import com.example.meatwaybackend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -26,10 +28,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = UserController.USER_CONTROLLER, description = "API Профилей пользователей")
 @RequestMapping(UserController.API_USER)
+@Validated
 @RequiredArgsConstructor
 public class UserController {
     static final String USER_CONTROLLER = "user-controller";
-    static final String API_VERSION = "v1";
+    static final String API_VERSION = "v3";
     static final String API_PREFIX = "/api/" + API_VERSION;
     static final String API_USER = API_PREFIX + "/users";
 
@@ -41,7 +44,7 @@ public class UserController {
             summary = "Получить всех пользователей",
             tags = {USER_CONTROLLER}
     )
-    public UserProfilesResponse findAllUsers(@RequestParam int page, @RequestParam int size) {
+    public UserProfilesResponse findAllUsers(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size) {
         return userService.findAll(page, size);
     }
 
@@ -61,7 +64,7 @@ public class UserController {
             summary = "Создать пользователя по id",
             tags = {USER_CONTROLLER}
     )
-    public CreatedUserResponse createUser(@RequestBody UserCreateRequest userCreateRequest) {
+    public CreatedUserResponse createUser(@RequestBody @Valid UserCreateRequest userCreateRequest) {
         return userService.createUser(userCreateRequest);
     }
 
@@ -71,7 +74,7 @@ public class UserController {
             summary = "Внести изменения в профиль пользователя",
             tags = {USER_CONTROLLER}
     )
-    public UserProfileResponse updateUser(@PathVariable long id, @RequestBody UserEditRequest updateRequest) {
+    public UserProfileResponse updateUser(@PathVariable long id, @RequestBody @Valid UserEditRequest updateRequest) {
         return userService.patchUser(id, updateRequest);
     }
 

@@ -7,5 +7,5 @@ public record UserProfileResponse(
         String city,
         String phone_number,
         String email
-){
+) {
 }

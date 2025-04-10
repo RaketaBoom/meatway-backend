@@ -53,9 +53,21 @@ public class OptOrderService {
 
 
     public OptOrderCreateResponse createOrder(OptOrderCreateRequest request) {
-        OptOrder optOrder = orderMapper.toOptOrder(request);
+        Advertisement advertisement = advertisementRepository.findById(request.advertisementId())
+                .orElseThrow(() -> new NotFoundException(Advertisement.class, request.advertisementId()));
+        User buyer = userRepository.findById(request.buyerUserId())
+                .orElseThrow(() -> new NotFoundException(User.class, request.buyerUserId()));
+        OptOrder optOrder = optOrderRepository.save(
+                OptOrder
+                        .builder()
+                        .advertisement(advertisement)
+                        .buyerUser(buyer)
+                        .quantity(request.quantity())
+                        .killDate(request.killDate())
+                        .build()
+        );
 
-        return orderMapper.OptOrderToOptOrderCreateResponse(optOrderRepository.save(optOrder));
+        return orderMapper.OptOrderToOptOrderCreateResponse(optOrder);
     }
 
     public OptOrderCreateResponse confirmOrder(long id) {

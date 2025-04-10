@@ -1,5 +1,7 @@
 package com.example.meatwaybackend.mapper;
 
+import com.example.meatwaybackend.dto.register.UserCreateDTO;
+import com.example.meatwaybackend.dto.register.UserDTO;
 import com.example.meatwaybackend.dto.user.CreatedUserResponse;
 import com.example.meatwaybackend.dto.user.UserCreateRequest;
 import com.example.meatwaybackend.dto.user.UserEditRequest;
@@ -11,6 +13,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
@@ -26,4 +29,8 @@ public interface UserMapper {
     User updateUserFromUserEditRequest(@MappingTarget User user, UserEditRequest userEditRequest);
 
     User userProfileResponseToUser(UserProfileResponse userProfileResponse);
+
+    User toUser(UserCreateDTO userCreateDTO);
+
+    UserDTO toUserDto(User savedUser);
 }

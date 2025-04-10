@@ -17,16 +17,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.WARN)
 public interface OrderMapper {
     OptOrderResponse OptOrderToOptOrderResponse(OptOrder optOrder);
 
-    List<OptOrdersResponse> toListOptOrdersResponse(List<OptOrder> optOrders);
-
-    OptOrder toOptOrder(OptOrderCreateRequest optOrderCreateRequest);
-
-    OptOrder toOptOrder(OptOrderResponse optOrderResponse);
+    List<OptOrderResponse> toListOptOrdersResponse(List<OptOrder> optOrders);
 
     OptOrderCreateResponse OptOrderToOptOrderCreateResponse(OptOrder save);
 
@@ -36,10 +33,6 @@ public interface OrderMapper {
     RetailOrderResponse RetailOrderToRetailOrderResponse(RetailOrder retailOrder);
 
     List<RetailOrderResponse> toListRetailOrdersResponse(List<RetailOrder> retailOrders);
-
-    RetailOrder toRetailOrder(RetailOrderCreateRequest request);
-
-    RetailOrder toRetailOrder(RetailOrderResponse response);
 
     RetailOrderCreateResponse RetailOrderToRetailOrderCreateResponse(RetailOrder save);
 

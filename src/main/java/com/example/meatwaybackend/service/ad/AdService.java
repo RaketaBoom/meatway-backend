@@ -5,6 +5,7 @@ import com.example.meatwaybackend.dto.ad.AdsRequest;
 import com.example.meatwaybackend.dto.ad.ShortAdsResponse;
 import com.example.meatwaybackend.mapper.AdMapper;
 import com.example.meatwaybackend.model.ad.Advertisement;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +17,9 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AdService {
+    private final static int DEFAULT_PAGE = 0;
+    private final static int DEFAULT_SIZE = 10;
+
     private final AdvertisementRepository advertisementRepository;
     private final AdMapper adMapper;
 
@@ -23,7 +27,11 @@ public class AdService {
     public ShortAdsResponse findAll(int page, int size, String sort, AdsRequest request) {
         Specification<Advertisement> spec = getAdvertisementSpecification(request);
 
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+        Pageable pageable = PageRequest.of(
+                Optional.ofNullable(page).orElse(DEFAULT_PAGE),
+                Optional.ofNullable(size).orElse(DEFAULT_SIZE),
+                Sort.by(sort)
+        );
 
         Page<Advertisement> pageResult = advertisementRepository.findAll(spec, pageable);
 
