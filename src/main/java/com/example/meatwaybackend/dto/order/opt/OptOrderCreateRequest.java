@@ -6,6 +6,6 @@ public record OptOrderCreateRequest(
         Long advertisementId,
         Long buyerUserId,
         Integer quantity,
-        Date kill_date
+        Date killDate
 ) {
 }

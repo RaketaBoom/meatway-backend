@@ -1,4 +1,6 @@
 package com.example.meatwaybackend.dto.user;
 
-public record CreatedUserResponse() {
+public record CreatedUserResponse(
+        Long id
+) {
 }

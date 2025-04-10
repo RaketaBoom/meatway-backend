@@ -9,14 +9,17 @@ import lombok.Getter;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import lombok.Setter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="ad_type",
         discriminatorType = DiscriminatorType.STRING)
 @Getter
+@Setter
 public class Advertisement {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
@@ -51,11 +54,13 @@ public class Advertisement {
 
     private Date creationDate;
 
-    @OneToMany
-    @JoinColumn(name = "advertisement_id")
+    @ManyToOne
+    @JoinColumn(name = "seller_user_id")
+    private User sellerUser;
+
+    @OneToMany(mappedBy = "advertisement")
     private List<RetailOrder> retailOrders;
 
-    @OneToMany
-    @JoinColumn(name = "advertisement_id")
+    @OneToMany(mappedBy = "advertisement")
     private List<OptOrder> optOrders;
 }

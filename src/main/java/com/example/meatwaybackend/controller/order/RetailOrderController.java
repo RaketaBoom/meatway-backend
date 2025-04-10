@@ -1,11 +1,13 @@
-package com.example.meatwaybackend.controller;
+package com.example.meatwaybackend.controller.order;
 
 import com.example.meatwaybackend.dto.order.retail.RetailOrderCreateRequest;
 import com.example.meatwaybackend.dto.order.retail.RetailOrderCreateResponse;
 import com.example.meatwaybackend.dto.order.retail.RetailOrderResponse;
 import com.example.meatwaybackend.dto.order.retail.RetailOrdersResponse;
+import com.example.meatwaybackend.service.order.RetailOrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,11 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = RetailOrderController.RETAIL_ORDER_CONTROLLER, description = "API Заказов")
 @RequestMapping(RetailOrderController.API_ORDER)
+@RequiredArgsConstructor
 public class RetailOrderController {
     public static final String RETAIL_ORDER_CONTROLLER = "retail-order-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
     public static final String API_ORDER = API_PREFIX + "/orders/retail";
+
+    private final RetailOrderService retailOrderService;
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -35,8 +40,7 @@ public class RetailOrderController {
             tags = {RETAIL_ORDER_CONTROLLER}
     )
     public RetailOrderResponse findOrderById(@PathVariable Long id) {
-        //TODO
-        return null;
+        return retailOrderService.findById(id);
     }
 
     @GetMapping("/ad/{adId}")
@@ -46,8 +50,7 @@ public class RetailOrderController {
             tags = {RETAIL_ORDER_CONTROLLER}
     )
     public RetailOrdersResponse findOrdersByAd(@PathVariable long adId) {
-        //TODO
-        return null;
+        return retailOrderService.findByAdId(adId);
     }
 
     @GetMapping("/buyer/{buyerId}")
@@ -57,8 +60,7 @@ public class RetailOrderController {
             tags = {RETAIL_ORDER_CONTROLLER}
     )
     public RetailOrdersResponse findOrdersByBuyer(@PathVariable long buyerId) {
-        //TODO
-        return null;
+        return retailOrderService.findByBuyerId(buyerId);
     }
 
     @PostMapping()
@@ -68,8 +70,7 @@ public class RetailOrderController {
             tags = {RETAIL_ORDER_CONTROLLER}
     )
     public RetailOrderCreateResponse createOrder(@RequestBody RetailOrderCreateRequest request) {
-        //TODO
-        return null;
+        return retailOrderService.createOrder(request);
     }
 
     @PatchMapping("/confirm/{id}")
@@ -79,8 +80,7 @@ public class RetailOrderController {
             tags = {RETAIL_ORDER_CONTROLLER}
     )
     public RetailOrderCreateResponse confirmOrder(@PathVariable long id) {
-        //TODO
-        return null;
+        return retailOrderService.confirmOrder(id);
     }
 
     @PatchMapping("/unconfirm/{id}")
@@ -90,8 +90,7 @@ public class RetailOrderController {
             tags = {RETAIL_ORDER_CONTROLLER}
     )
     public RetailOrderCreateResponse unconfirmOrder(@PathVariable long id) {
-        //TODO
-        return null;
+        return retailOrderService.unconfirmOrder(id);
     }
 
     @PatchMapping("/activate/{id}")
@@ -101,8 +100,7 @@ public class RetailOrderController {
             tags = {RETAIL_ORDER_CONTROLLER}
     )
     public RetailOrderCreateResponse activateOrder(@PathVariable long id) {
-        //TODO
-        return null;
+        return retailOrderService.activateOrder(id);
     }
 
     @PatchMapping("/deactivate/{id}")
@@ -112,8 +110,7 @@ public class RetailOrderController {
             tags = {RETAIL_ORDER_CONTROLLER}
     )
     public RetailOrderCreateResponse deactivateOrder(@PathVariable long id) {
-        //TODO
-        return null;
+        return retailOrderService.deactivateOrder(id);
     }
 
     @DeleteMapping("/{id}")
@@ -123,6 +120,6 @@ public class RetailOrderController {
             tags = {RETAIL_ORDER_CONTROLLER}
     )
     public void deleteOrder(@PathVariable long id) {
-        //TODO
+        retailOrderService.removeOrder(id);
     }
 }

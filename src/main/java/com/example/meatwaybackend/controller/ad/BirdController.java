@@ -4,8 +4,10 @@ import com.example.meatwaybackend.dto.ad.ShortAdsResponse;
 import com.example.meatwaybackend.dto.ad.bird.BirdAdResponse;
 import com.example.meatwaybackend.dto.ad.bird.BirdAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.bird.BirdAdsRequest;
+import com.example.meatwaybackend.service.ad.BirdService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,11 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = BirdController.BIRD_CONTROLLER, description = "API Объявлений птицы")
 @RequestMapping(BirdController.API_AD)
+@RequiredArgsConstructor
 public class BirdController {
     public static final String BIRD_CONTROLLER = "bird-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
     public static final String API_AD = API_PREFIX + "/birds";
+
+    private final BirdService birdService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -41,8 +46,7 @@ public class BirdController {
             @RequestParam String sort,
             @RequestBody BirdAdsRequest request
     ) {
-        //TODO
-        return null;
+        return birdService.findAll(page, size, sort, request);
     }
 
     @GetMapping("/{id}")
@@ -52,8 +56,7 @@ public class BirdController {
             tags = {BIRD_CONTROLLER}
     )
     public BirdAdResponse findById(@PathVariable int id) {
-        //TODO
-        return null;
+        return birdService.findById(id);
     }
 
     @PostMapping("/{id}")
@@ -62,12 +65,10 @@ public class BirdController {
             summary = "Создать объявление c птицей",
             tags = {BIRD_CONTROLLER}
     )
-    public BirdAdResponse createById(
-            @PathVariable int id,
+    public BirdAdResponse createBird(
             @RequestBody BirdAdSaveRequest request
     ) {
-        //TODO
-        return null;
+        return birdService.createBirdAd(request);
     }
 
     @PatchMapping("/{id}")
@@ -80,8 +81,7 @@ public class BirdController {
             @PathVariable int id,
             @RequestBody BirdAdSaveRequest request
     ) {
-        //TODO
-        return null;
+        return birdService.patchById(id, request);
     }
 
     @DeleteMapping("/{id}")
@@ -91,8 +91,8 @@ public class BirdController {
             tags = {BIRD_CONTROLLER}
     )
     public void deleteById(
-            @PathVariable int id
+            @PathVariable long id
     ) {
-        //TODO
+        birdService.deleteById(id);
     }
 }

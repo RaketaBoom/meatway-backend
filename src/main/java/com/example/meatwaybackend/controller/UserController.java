@@ -5,10 +5,14 @@ import com.example.meatwaybackend.dto.user.UserCreateRequest;
 import com.example.meatwaybackend.dto.user.UserEditRequest;
 import com.example.meatwaybackend.dto.user.UserProfileResponse;
 import com.example.meatwaybackend.dto.user.UserProfilesResponse;
+import com.example.meatwaybackend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -24,11 +28,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = UserController.USER_CONTROLLER, description = "API Профилей пользователей")
 @RequestMapping(UserController.API_USER)
+@Validated
+@RequiredArgsConstructor
 public class UserController {
     static final String USER_CONTROLLER = "user-controller";
-    static final String API_VERSION = "v1";
+    static final String API_VERSION = "v3";
     static final String API_PREFIX = "/api/" + API_VERSION;
     static final String API_USER = API_PREFIX + "/users";
+
+    private final UserService userService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -36,9 +44,8 @@ public class UserController {
             summary = "Получить всех пользователей",
             tags = {USER_CONTROLLER}
     )
-    public UserProfilesResponse findAllUsers(@RequestParam int page, @RequestParam int size) {
-        //TODO business logic
-        return null;
+    public UserProfilesResponse findAllUsers(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size) {
+        return userService.findAll(page, size);
     }
 
     @GetMapping("/{id}")
@@ -48,8 +55,7 @@ public class UserController {
             tags = {USER_CONTROLLER}
     )
     public UserProfileResponse findUserById(@PathVariable long id) {
-        //TODO business logic
-        return null;
+        return userService.findById(id);
     }
 
     @PostMapping
@@ -58,9 +64,8 @@ public class UserController {
             summary = "Создать пользователя по id",
             tags = {USER_CONTROLLER}
     )
-    public CreatedUserResponse createUser(@RequestBody UserCreateRequest userCreateRequest) {
-        //TODO business
-        return null;
+    public CreatedUserResponse createUser(@RequestBody @Valid UserCreateRequest userCreateRequest) {
+        return userService.createUser(userCreateRequest);
     }
 
     @PatchMapping("/{id}")
@@ -69,9 +74,8 @@ public class UserController {
             summary = "Внести изменения в профиль пользователя",
             tags = {USER_CONTROLLER}
     )
-    public UserProfileResponse updateUser(@PathVariable long id, @RequestBody UserEditRequest updateRequest) {
-        //TODO business
-        return null;
+    public UserProfileResponse updateUser(@PathVariable long id, @RequestBody @Valid UserEditRequest updateRequest) {
+        return userService.patchUser(id, updateRequest);
     }
 
     @DeleteMapping("/{id}")
@@ -81,6 +85,6 @@ public class UserController {
             tags = {USER_CONTROLLER}
     )
     public void deleteUser(@PathVariable long id) {
-        //TODO business
+        userService.removeUser(id);
     }
 }
