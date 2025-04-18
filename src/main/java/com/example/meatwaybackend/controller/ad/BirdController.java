@@ -30,7 +30,7 @@ public class BirdController {
     public static final String BIRD_CONTROLLER = "bird-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
-    public static final String API_AD = API_PREFIX + "/birds";
+    public static final String API_AD = API_PREFIX + AdvertisementController.ADS_PREFIX + "/birds";
 
     private final BirdService birdService;
 

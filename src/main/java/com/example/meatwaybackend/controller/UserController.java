@@ -1,17 +1,23 @@
 package com.example.meatwaybackend.controller;
 
+import com.example.meatwaybackend.dto.register.UserDTO;
 import com.example.meatwaybackend.dto.user.CreatedUserResponse;
+import com.example.meatwaybackend.dto.user.UpdatePasswordRequest;
 import com.example.meatwaybackend.dto.user.UserCreateRequest;
 import com.example.meatwaybackend.dto.user.UserEditRequest;
 import com.example.meatwaybackend.dto.user.UserProfileResponse;
 import com.example.meatwaybackend.dto.user.UserProfilesResponse;
 import com.example.meatwaybackend.service.UserService;
+import com.example.meatwaybackend.utils.JWTUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,11 +38,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
     static final String USER_CONTROLLER = "user-controller";
-    static final String API_VERSION = "v3";
+    static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
     static final String API_USER = API_PREFIX + "/users";
 
     private final UserService userService;
+    private final JWTUtils jwtUtils;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -68,23 +75,33 @@ public class UserController {
         return userService.createUser(userCreateRequest);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/password")
     @ResponseStatus(HttpStatus.OK)
     @Operation(
-            summary = "Внести изменения в профиль пользователя",
+            summary = "Изменить пароль",
             tags = {USER_CONTROLLER}
     )
-    public UserProfileResponse updateUser(@PathVariable long id, @RequestBody @Valid UserEditRequest updateRequest) {
-        return userService.patchUser(id, updateRequest);
+    public UserDTO updatePassword(@RequestBody @Valid UpdatePasswordRequest updateRequest, @AuthenticationPrincipal Jwt jwt) {
+        return userService.updatePassword(jwtUtils.extractUsername(jwt.getTokenValue()), updateRequest);
     }
 
-    @DeleteMapping("/{id}")
+    @PatchMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(
             summary = "Внести изменения в профиль пользователя",
             tags = {USER_CONTROLLER}
     )
-    public void deleteUser(@PathVariable long id) {
-        userService.removeUser(id);
+    public UserProfileResponse updateUser(@RequestBody @Valid UserEditRequest updateRequest, @AuthenticationPrincipal Jwt jwt) {
+        return userService.patchUser(jwtUtils.extractUsername(jwt.getTokenValue()), updateRequest);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(
+            summary = "Внести изменения в профиль пользователя",
+            tags = {USER_CONTROLLER}
+    )
+    public void deleteUser(@AuthenticationPrincipal UserDetails userDetails) {
+        userService.removeUser(userDetails.getUsername());
     }
 }

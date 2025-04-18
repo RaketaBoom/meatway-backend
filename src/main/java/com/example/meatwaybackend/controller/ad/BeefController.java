@@ -30,7 +30,7 @@ public class BeefController {
     public static final String BEEF_CONTROLLER = "beef-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
-    public static final String API_AD = API_PREFIX + "/beefs";
+    public static final String API_AD = API_PREFIX + AdvertisementController.ADS_PREFIX + "/beefs";
 
     private final BeefService beefService;
 

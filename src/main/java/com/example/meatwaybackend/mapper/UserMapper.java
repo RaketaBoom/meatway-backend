@@ -3,6 +3,7 @@ package com.example.meatwaybackend.mapper;
 import com.example.meatwaybackend.dto.register.UserCreateDTO;
 import com.example.meatwaybackend.dto.register.UserDTO;
 import com.example.meatwaybackend.dto.user.CreatedUserResponse;
+import com.example.meatwaybackend.dto.user.UpdatePasswordRequest;
 import com.example.meatwaybackend.dto.user.UserCreateRequest;
 import com.example.meatwaybackend.dto.user.UserEditRequest;
 import com.example.meatwaybackend.dto.user.UserProfileResponse;

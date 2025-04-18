@@ -30,7 +30,7 @@ public class PorkController {
     public static final String CONTROLLER = "pork-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
-    public static final String API_AD = API_PREFIX + "/porks";
+    public static final String API_AD = API_PREFIX + AdvertisementController.ADS_PREFIX + "/porks";
 
     private final PorkService porkService;
 

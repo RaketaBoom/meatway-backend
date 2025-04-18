@@ -27,13 +27,13 @@ public class JWTUtils {
     private final JwtDecoder decoder;
 
     /**
-     * Генерирует новый JWT для указанного пользователя.
+     * Генерирует новый access JWT для указанного пользователя.
      *
      * @param username email пользователя, для которого создается токен
      * @return строковое представление сгенерированного JWT
      * @throws IllegalArgumentException если {@code username} пустой или null
      */
-    public String generateToken(String username) {
+    public String generateAccessToken(String username) {
 
         if (username == null || username.isBlank()) {
             throw new IllegalArgumentException("Username cannot be empty or null.");
@@ -41,10 +41,40 @@ public class JWTUtils {
 
         Instant now = Instant.now();
         JwtClaimsSet claims = JwtClaimsSet.builder()
-                .issuer("sovaed.ru")
+                .issuer("meatway.ru")
+                .issuedAt(now)
+                .expiresAt(now.plus(5, ChronoUnit.HOURS))
+                .subject(username)
+                .claim("token_type", "access")
+                .build();
+
+        String token = this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+
+        log.debug("Token created for user: {}", username);
+
+        return token;
+    }
+
+    /**
+     * Генерирует новый JWT для указанного пользователя.
+     *
+     * @param username email пользователя, для которого создается токен
+     * @return строковое представление сгенерированного JWT
+     * @throws IllegalArgumentException если {@code username} пустой или null
+     */
+    public String generateRefreshToken(String username) {
+
+        if (username == null || username.isBlank()) {
+            throw new IllegalArgumentException("Username cannot be empty or null.");
+        }
+
+        Instant now = Instant.now();
+        JwtClaimsSet claims = JwtClaimsSet.builder()
+                .issuer("meatway.ru")
                 .issuedAt(now)
                 .expiresAt(now.plus(14, ChronoUnit.DAYS))
                 .subject(username)
+                .claim("token_type", "refresh")
                 .build();
 
         String token = this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();

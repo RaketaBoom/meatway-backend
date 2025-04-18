@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Size;
  * Класс, представляющий собой DTO (Data Transfer Object) для создания нового пользователя.
  * Содержит информацию о пользователе.
  */
-public record UserCreateDTO(
+public record UserCreateDTO( //TODO Убрать confirmPassword
 
         @Email
         @NotBlank

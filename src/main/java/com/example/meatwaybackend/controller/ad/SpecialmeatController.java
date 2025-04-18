@@ -30,7 +30,7 @@ public class SpecialmeatController {
     public static final String CONTROLLER = "specialmeat-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
-    public static final String API_AD = API_PREFIX + "/specialmeats";
+    public static final String API_AD = API_PREFIX + AdvertisementController.ADS_PREFIX + "/specialmeats";
 
     private final SpecialmeatService specialmeatService;
 

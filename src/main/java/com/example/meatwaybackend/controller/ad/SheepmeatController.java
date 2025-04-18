@@ -30,7 +30,7 @@ public class SheepmeatController {
     public static final String SHEEPMEAT_CONTROLLER = "sheepmeat-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
-    public static final String API_AD = API_PREFIX + "/sheepmeats";
+    public static final String API_AD = API_PREFIX + AdvertisementController.ADS_PREFIX + "/sheepmeats";
 
     private final SheepmeatService sheepmeatService;
 
