@@ -17,11 +17,10 @@ public class  RegistrationController {
 
     private final RegistrationService registrationService;
 
-    @PostMapping("/api/v3/register")
+    @PostMapping("/api/v1/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO create(@RequestBody @Valid UserCreateDTO userCreateDTO) {
 
         return registrationService.create(userCreateDTO);
-
     }
 }

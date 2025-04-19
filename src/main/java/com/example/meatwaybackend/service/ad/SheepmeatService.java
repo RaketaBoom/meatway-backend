@@ -1,13 +1,17 @@
 package com.example.meatwaybackend.service.ad;
 
+import com.example.meatwaybackend.dao.UserRepository;
 import com.example.meatwaybackend.dao.ad.AdvertisementRepository;
 import com.example.meatwaybackend.dao.ad.SheepmeatRepository;
 import com.example.meatwaybackend.dto.ad.ShortAdsResponse;
 import com.example.meatwaybackend.dto.ad.sheepmeat.SheepmeatAdResponse;
 import com.example.meatwaybackend.dto.ad.sheepmeat.SheepmeatAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.sheepmeat.SheepmeatAdsRequest;
+import com.example.meatwaybackend.handler.exception.InternalServerErrorException;
+import com.example.meatwaybackend.handler.exception.auth.ForbiddenAccessException;
 import com.example.meatwaybackend.handler.exception.user.NotFoundException;
 import com.example.meatwaybackend.mapper.AdMapper;
+import com.example.meatwaybackend.model.ad.Beef;
 import com.example.meatwaybackend.model.ad.Sheepmeat;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,7 +26,7 @@ import org.springframework.stereotype.Service;
 public class SheepmeatService {
     private final SheepmeatRepository sheepmeatRepository;
     private final AdMapper adMapper;
-    private final AdvertisementRepository advertisementRepository;
+    private final UserRepository userRepository;
 
     public ShortAdsResponse findAll(int page, int size, String sort, SheepmeatAdsRequest request) {
         Specification<Sheepmeat> spec = getSheepmeatSpecification(request);
@@ -85,20 +89,35 @@ public class SheepmeatService {
         return adMapper.toSheepmeatAdResponse(sheepmeat);
     }
 
-    public SheepmeatAdResponse createSheepmeatAd(SheepmeatAdSaveRequest request) {
-        Sheepmeat sheepmeat = sheepmeatRepository.save(adMapper.toSheepmeat(request));
+    public SheepmeatAdResponse createSheepmeatAd(SheepmeatAdSaveRequest request, String email) {
+        Sheepmeat newSheepmeat = adMapper.toSheepmeat(request);
+        newSheepmeat.setSellerUser(userRepository.findByEmail(email).orElseThrow(
+                () -> new InternalServerErrorException("Несущестующий пользователь пытается создать объявление")
+        ));
+        Sheepmeat sheepmeat = sheepmeatRepository.save(newSheepmeat);
+
         return adMapper.toSheepmeatAdResponse(sheepmeat);
     }
 
-    public SheepmeatAdResponse patchById(long id, SheepmeatAdSaveRequest request) {
+    public SheepmeatAdResponse patchById(long id, SheepmeatAdSaveRequest request, String email) {
         Sheepmeat sheepmeat = sheepmeatRepository.findById(id).orElseThrow(() -> new NotFoundException(Sheepmeat.class, id));
+        validateSheepmeatAdOwner(email, sheepmeat);
         adMapper.updateSheepmeatFromSheepmeatAdSaveRequest(sheepmeat, request);
 
         return adMapper.toSheepmeatAdResponse(sheepmeat);
     }
 
-    public void deleteById(long id) {
-        advertisementRepository.findById(id).orElseThrow(() -> new NotFoundException(Sheepmeat.class, id));
-        advertisementRepository.deleteById(id);
+    public void deleteById(long id, String email) {
+        Sheepmeat sheepmeat = sheepmeatRepository.findById(id).orElseThrow(() -> new NotFoundException(Sheepmeat.class, id));
+        validateSheepmeatAdOwner(email, sheepmeat);
+        sheepmeatRepository.deleteById(id);
+    }
+
+    private void validateSheepmeatAdOwner(String email, Sheepmeat sheepmeat) {
+        var sellerUser = sheepmeat.getSellerUser();
+
+        if (!sellerUser.getEmail().equals(email)) {
+            throw new ForbiddenAccessException(email);
+        }
     }
 }

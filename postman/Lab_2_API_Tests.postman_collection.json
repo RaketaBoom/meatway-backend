@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f8bb513b-fb7b-4610-a7f1-cff57b3deffc",
+		"_postman_id": "34351e83-7164-4b6c-8ea1-91138641fa9a",
 		"name": "Lab_2_API_Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "43569970"
+		"_exporter_id": "33852317"
 	},
 	"item": [
 		{
@@ -36,6 +36,18 @@
 								"api",
 								"v1",
 								"users"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "10",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -105,7 +117,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"John\",\r\n  \"surname\": \"Covalski\",\r\n  \"city\": \"Moscow\",\r\n  \"phone_number\": \"+79999999999\",\r\n  \"email\": \"john@example.com\",\r\n  \"encrypted_password\": \"123456\"\r\n}",
+							"raw": "{\r\n  \"name\": \"John\",\r\n  \"surname\": \"Covalski\",\r\n  \"email\": \"john@example.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -163,6 +175,65 @@
 								"{{user_id}}"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register new user",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Auth user",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Update password",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ0NDY0OTg0LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ0NDQ2OTg0fQ.ZKjBba-yAJUj8GTGPRcOkD_3XiSG2wTcj5GWVoXybb67lrMfr0wDakXYUCb1FPbMpgwLrdCALAdBW3YZ9wk9rtVfbW8Gj8YgD0ic-spMVwYBlX1roZzh3ejYJUoSk0nSQEzuZU4-jgOzrHUCb4NuzGQ1AgW1GxMSeA3lONbIQi1QrrPF5XX03Y_pAHflHaykjzZNtOjKSLYUn6GFHpXD3VAU-LnVNsbAiwFRlhV4axqmZmnBFCyVOBOi_46W3fCapaR-H-c_GRghePBIUW0jA3j69LkXXdKKQ1LSjxGj8i1Q17CkLBdCUuqT6P5miqQZe8IhRtF3EKHVtTyaxW-z2w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"87654321\",\r\n    \"confirmPassword\": \"87654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}

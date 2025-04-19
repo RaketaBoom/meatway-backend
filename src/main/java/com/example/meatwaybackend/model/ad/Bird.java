@@ -12,5 +12,5 @@ import lombok.Setter;
 public class Bird extends Advertisement {
     private String birdType;
 
-    private Boolean halal;
+    private String breed;
 }

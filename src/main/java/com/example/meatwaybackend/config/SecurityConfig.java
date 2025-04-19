@@ -43,19 +43,22 @@ public class SecurityConfig {
                 .headers(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                // Swagger UI
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-resources/**",
                                 "/webjars/**",
 
-                                // Ваши публичные API
-                                "/api/v1/welcome",
-                                "/api/v3/auth/**",
-                                "/api/v3/register",
+                                "/api/v1/auth/**",
+                                "/api/v1/register",
                                 "/api/v1/actuator/**"
                         ).permitAll()
+                        .requestMatchers(HttpMethod.GET,
+                                "/api/v1/ads",
+                                "/api/v1/ads/**",
+                                "/api/v1/orders/**"
+                        ).permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

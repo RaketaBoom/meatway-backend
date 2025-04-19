@@ -5,11 +5,14 @@ import com.example.meatwaybackend.dto.ad.sheepmeat.SheepmeatAdResponse;
 import com.example.meatwaybackend.dto.ad.sheepmeat.SheepmeatAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.sheepmeat.SheepmeatAdsRequest;
 import com.example.meatwaybackend.service.ad.SheepmeatService;
+import com.example.meatwaybackend.utils.JWTUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -30,9 +33,10 @@ public class SheepmeatController {
     public static final String SHEEPMEAT_CONTROLLER = "sheepmeat-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
-    public static final String API_AD = API_PREFIX + "/sheepmeats";
+    public static final String API_AD = API_PREFIX + AdvertisementController.ADS_PREFIX + "/sheepmeats";
 
     private final SheepmeatService sheepmeatService;
+    private final JWTUtils jwtUtils;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -66,9 +70,10 @@ public class SheepmeatController {
             tags = {SHEEPMEAT_CONTROLLER}
     )
     public SheepmeatAdResponse createById(
-            @RequestBody SheepmeatAdSaveRequest request
+            @RequestBody SheepmeatAdSaveRequest request,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        return sheepmeatService.createSheepmeatAd(request);
+        return sheepmeatService.createSheepmeatAd(request, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @PatchMapping("/{id}")
@@ -79,9 +84,10 @@ public class SheepmeatController {
     )
     public SheepmeatAdResponse editById(
             @PathVariable int id,
-            @RequestBody SheepmeatAdSaveRequest request
+            @RequestBody SheepmeatAdSaveRequest request,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        return sheepmeatService.patchById(id, request);
+        return sheepmeatService.patchById(id, request, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @DeleteMapping("/{id}")
@@ -91,8 +97,9 @@ public class SheepmeatController {
             tags = {SHEEPMEAT_CONTROLLER}
     )
     public void deleteById(
-            @PathVariable int id
+            @PathVariable int id,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        sheepmeatService.deleteById(id);
+        sheepmeatService.deleteById(id, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 }

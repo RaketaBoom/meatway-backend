@@ -2,7 +2,9 @@ package com.example.meatwaybackend.service;
 
 import com.example.meatwaybackend.dto.auth.AuthRequest;
 import com.example.meatwaybackend.dto.auth.AuthResponse;
+import com.example.meatwaybackend.dto.auth.RefreshTokenRequest;
 import com.example.meatwaybackend.utils.JWTUtils;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -32,8 +34,15 @@ public class AuthenticationService {
             throw new IllegalArgumentException("Authentication error");
         }
 
-        String jwtToken = jwtUtils.generateToken(authRequest.email());
+        String jwtAccessToken = jwtUtils.generateAccessToken(authRequest.email());
+        String jwtRefreshToken = jwtUtils.generateRefreshToken(authRequest.email());
 
-        return new AuthResponse(jwtToken);
+        return new AuthResponse(jwtAccessToken, jwtRefreshToken);
+    }
+
+    public AuthResponse refreshToken(@Valid RefreshTokenRequest refreshTokenRequest) {
+        String jwtAccessToken = jwtUtils.generateAccessToken(jwtUtils.extractUsername(refreshTokenRequest.token()));
+
+        return new AuthResponse(jwtAccessToken, refreshTokenRequest.token());
     }
 }

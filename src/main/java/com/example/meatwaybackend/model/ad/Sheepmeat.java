@@ -11,4 +11,6 @@ import lombok.Setter;
 @Setter
 public class Sheepmeat extends Advertisement {
     private Boolean halal;
+    private String feedingType;
+    private String cuttingType;
 }

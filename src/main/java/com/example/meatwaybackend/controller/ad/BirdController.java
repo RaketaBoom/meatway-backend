@@ -5,11 +5,14 @@ import com.example.meatwaybackend.dto.ad.bird.BirdAdResponse;
 import com.example.meatwaybackend.dto.ad.bird.BirdAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.bird.BirdAdsRequest;
 import com.example.meatwaybackend.service.ad.BirdService;
+import com.example.meatwaybackend.utils.JWTUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -30,9 +33,10 @@ public class BirdController {
     public static final String BIRD_CONTROLLER = "bird-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
-    public static final String API_AD = API_PREFIX + "/birds";
+    public static final String API_AD = API_PREFIX + AdvertisementController.ADS_PREFIX + "/birds";
 
     private final BirdService birdService;
+    private final JWTUtils jwtUtils;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -66,9 +70,10 @@ public class BirdController {
             tags = {BIRD_CONTROLLER}
     )
     public BirdAdResponse createBird(
-            @RequestBody BirdAdSaveRequest request
+            @RequestBody BirdAdSaveRequest request,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        return birdService.createBirdAd(request);
+        return birdService.createBirdAd(request, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @PatchMapping("/{id}")
@@ -79,9 +84,10 @@ public class BirdController {
     )
     public BirdAdResponse editById(
             @PathVariable int id,
-            @RequestBody BirdAdSaveRequest request
+            @RequestBody BirdAdSaveRequest request,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        return birdService.patchById(id, request);
+        return birdService.patchById(id, request, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @DeleteMapping("/{id}")
@@ -91,8 +97,9 @@ public class BirdController {
             tags = {BIRD_CONTROLLER}
     )
     public void deleteById(
-            @PathVariable long id
+            @PathVariable long id,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        birdService.deleteById(id);
+        birdService.deleteById(id, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 }
