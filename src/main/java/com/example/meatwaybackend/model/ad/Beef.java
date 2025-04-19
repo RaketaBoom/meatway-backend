@@ -13,4 +13,5 @@ public class Beef extends Advertisement {
     private Boolean halal;
     private Boolean isMramor;
     private String feedingType;
+    private String cuttingType;
 }

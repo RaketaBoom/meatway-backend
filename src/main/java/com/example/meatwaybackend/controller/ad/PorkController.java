@@ -5,11 +5,14 @@ import com.example.meatwaybackend.dto.ad.pork.PorkAdResponse;
 import com.example.meatwaybackend.dto.ad.pork.PorkAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.pork.PorkAdsRequest;
 import com.example.meatwaybackend.service.ad.PorkService;
+import com.example.meatwaybackend.utils.JWTUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -33,6 +36,7 @@ public class PorkController {
     public static final String API_AD = API_PREFIX + AdvertisementController.ADS_PREFIX + "/porks";
 
     private final PorkService porkService;
+    private final JWTUtils jwtUtils;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -66,9 +70,10 @@ public class PorkController {
             tags = {CONTROLLER}
     )
     public PorkAdResponse createPork(
-            @RequestBody PorkAdSaveRequest request
+            @RequestBody PorkAdSaveRequest request,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        return porkService.createPorkAd(request);
+        return porkService.createPorkAd(request, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @PatchMapping("/{id}")
@@ -79,9 +84,10 @@ public class PorkController {
     )
     public PorkAdResponse editById(
             @PathVariable int id,
-            @RequestBody PorkAdSaveRequest request
+            @RequestBody PorkAdSaveRequest request,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        return porkService.patchById(id, request);
+        return porkService.patchById(id, request, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @DeleteMapping("/{id}")
@@ -91,8 +97,9 @@ public class PorkController {
             tags = {CONTROLLER}
     )
     public void deleteById(
-            @PathVariable int id
+            @PathVariable int id,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        porkService.deleteById(id);
+        porkService.deleteById(id, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 }

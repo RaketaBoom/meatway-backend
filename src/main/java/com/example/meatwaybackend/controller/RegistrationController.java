@@ -22,6 +22,5 @@ public class  RegistrationController {
     public UserDTO create(@RequestBody @Valid UserCreateDTO userCreateDTO) {
 
         return registrationService.create(userCreateDTO);
-
     }
 }
