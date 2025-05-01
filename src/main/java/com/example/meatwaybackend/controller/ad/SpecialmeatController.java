@@ -5,11 +5,14 @@ import com.example.meatwaybackend.dto.ad.specialmeat.SpecialmeatAdResponse;
 import com.example.meatwaybackend.dto.ad.specialmeat.SpecialmeatAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.specialmeat.SpecialmeatAdsRequest;
 import com.example.meatwaybackend.service.ad.SpecialmeatService;
+import com.example.meatwaybackend.utils.JWTUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -30,9 +33,10 @@ public class SpecialmeatController {
     public static final String CONTROLLER = "specialmeat-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
-    public static final String API_AD = API_PREFIX + "/specialmeats";
+    public static final String API_AD = API_PREFIX + AdvertisementController.ADS_PREFIX + "/specialmeats";
 
     private final SpecialmeatService specialmeatService;
+    private final JWTUtils jwtUtils;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -66,9 +70,10 @@ public class SpecialmeatController {
             tags = {CONTROLLER}
     )
     public SpecialmeatAdResponse createById(
-            @RequestBody SpecialmeatAdSaveRequest request
+            @RequestBody SpecialmeatAdSaveRequest request,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        return specialmeatService.createSpecialmeatAd(request);
+        return specialmeatService.createSpecialmeatAd(request, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @PatchMapping("/{id}")
@@ -79,9 +84,10 @@ public class SpecialmeatController {
     )
     public SpecialmeatAdResponse editById(
             @PathVariable long id,
-            @RequestBody SpecialmeatAdSaveRequest request
+            @RequestBody SpecialmeatAdSaveRequest request,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        return specialmeatService.patchById(id, request);
+        return specialmeatService.patchById(id, request, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @DeleteMapping("/{id}")
@@ -91,8 +97,9 @@ public class SpecialmeatController {
             tags = {CONTROLLER}
     )
     public void deleteById(
-            @PathVariable long id
+            @PathVariable long id,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        specialmeatService.deleteById(id);
+        specialmeatService.deleteById(id, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 }

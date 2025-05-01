@@ -22,13 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AdvertisementController {
     public static final String AD_CONTROLLER = "ad-controller";
-    static final String API_VERSION = "v3";
+    public static final String ADS_PREFIX = "/ads";
+    static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
-    public static final String API_AD = API_PREFIX + "/ads";
+    public static final String API_AD = API_PREFIX + ADS_PREFIX;
 
     private final AdService adService;
 
-    @GetMapping()
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(
             summary = "Вывести краткую информацию об объявлениях",

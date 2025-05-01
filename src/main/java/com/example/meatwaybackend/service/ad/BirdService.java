@@ -1,11 +1,13 @@
 package com.example.meatwaybackend.service.ad;
 
-import com.example.meatwaybackend.dao.ad.AdvertisementRepository;
+import com.example.meatwaybackend.dao.UserRepository;
 import com.example.meatwaybackend.dao.ad.BirdRepository;
 import com.example.meatwaybackend.dto.ad.ShortAdsResponse;
 import com.example.meatwaybackend.dto.ad.bird.BirdAdResponse;
 import com.example.meatwaybackend.dto.ad.bird.BirdAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.bird.BirdAdsRequest;
+import com.example.meatwaybackend.handler.exception.InternalServerErrorException;
+import com.example.meatwaybackend.handler.exception.auth.ForbiddenAccessException;
 import com.example.meatwaybackend.handler.exception.user.NotFoundException;
 import com.example.meatwaybackend.mapper.AdMapper;
 import com.example.meatwaybackend.model.ad.Bird;
@@ -22,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class BirdService {
     private final BirdRepository birdRepository;
     private final AdMapper adMapper;
-    private final AdvertisementRepository advertisementRepository;
+    private final UserRepository userRepository;
 
     public ShortAdsResponse findAll(int page, int size, String sort, BirdAdsRequest request) {
         Specification<Bird> spec = getBirdSpecification(request);
@@ -85,19 +87,33 @@ public class BirdService {
         return adMapper.toBirdAdResponse(bird);
     }
 
-    public BirdAdResponse createBirdAd(BirdAdSaveRequest request) {
-        Bird bird = birdRepository.save(adMapper.toBird(request));
+    public BirdAdResponse createBirdAd(BirdAdSaveRequest request, String email) {
+        Bird newBird = adMapper.toBird(request);
+        newBird.setSellerUser(userRepository.findByEmail(email).orElseThrow(() -> new InternalServerErrorException("Несущестующий пользователь пытается создать объявление")));
+        Bird bird = birdRepository.save(newBird);
+
         return adMapper.toBirdAdResponse(bird);
     }
 
-    public BirdAdResponse patchById(long id, BirdAdSaveRequest request) {
+    public BirdAdResponse patchById(long id, BirdAdSaveRequest request, String email) {
         Bird bird = birdRepository.findById(id).orElseThrow(() -> new NotFoundException(Bird.class, id));
+        validateBirdAdOwner(email, bird);
         adMapper.updateBirdFromBirdAdSaveRequest(bird, request);
+
         return adMapper.toBirdAdResponse(bird);
     }
 
-    public void deleteById(long id) {
-        advertisementRepository.findById(id).orElseThrow(() -> new NotFoundException(Bird.class, id));
-        advertisementRepository.deleteById(id);
+    public void deleteById(long id, String email) {
+        Bird bird = birdRepository.findById(id).orElseThrow(() -> new NotFoundException(Bird.class, id));
+        validateBirdAdOwner(email, bird);
+        birdRepository.deleteById(id);
+    }
+
+    private void validateBirdAdOwner(String email, Bird bird) {
+        var sellerUser = bird.getSellerUser();
+
+        if (!sellerUser.getEmail().equals(email)) {
+            throw new ForbiddenAccessException(email);
+        }
     }
 }

@@ -1,11 +1,13 @@
 package com.example.meatwaybackend.service.ad;
 
-import com.example.meatwaybackend.dao.ad.AdvertisementRepository;
+import com.example.meatwaybackend.dao.UserRepository;
 import com.example.meatwaybackend.dao.ad.BeefRepository;
 import com.example.meatwaybackend.dto.ad.ShortAdsResponse;
 import com.example.meatwaybackend.dto.ad.beef.BeefAdResponse;
 import com.example.meatwaybackend.dto.ad.beef.BeefAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.beef.BeefAdsRequest;
+import com.example.meatwaybackend.handler.exception.InternalServerErrorException;
+import com.example.meatwaybackend.handler.exception.auth.ForbiddenAccessException;
 import com.example.meatwaybackend.handler.exception.user.NotFoundException;
 import com.example.meatwaybackend.mapper.AdMapper;
 import com.example.meatwaybackend.model.ad.Beef;
@@ -22,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class BeefService {
     private final BeefRepository beefRepository;
     private final AdMapper adMapper;
-    private final AdvertisementRepository advertisementRepository;
+    private final UserRepository userRepository;
 
     public ShortAdsResponse findAll(int page, int size, String sort, BeefAdsRequest request) {
         Specification<Beef> spec = getBeefSpecification(request);
@@ -89,21 +91,35 @@ public class BeefService {
         return adMapper.toBeefAdResponse(beef);
     }
 
-    public BeefAdResponse createBeefAd(BeefAdSaveRequest request) {
-        Beef beef = beefRepository.save(adMapper.toBeef(request));
+    public BeefAdResponse createBeefAd(BeefAdSaveRequest request, String email) {
+        Beef newBeef = adMapper.toBeef(request);
+        newBeef.setSellerUser(userRepository.findByEmail(email).orElseThrow(
+                () -> new InternalServerErrorException("Несущестующий пользователь пытается создать объявление")
+        ));
+        Beef beef = beefRepository.save(newBeef);
 
         return adMapper.toBeefAdResponse(beef);
     }
 
-    public BeefAdResponse patchById(long id, BeefAdSaveRequest request) {
+    public BeefAdResponse patchById(long id, BeefAdSaveRequest request, String email) {
         Beef beef = beefRepository.findById(id).orElseThrow(() -> new NotFoundException(Beef.class, id));
+        validateBeefAdOwner(email, beef);
         adMapper.updateBeefFromBeefAdSaveRequest(beef, request);
 
         return adMapper.toBeefAdResponse(beef);
     }
 
-    public void deleteById(long id) {
-        advertisementRepository.findById(id).orElseThrow(() -> new NotFoundException(Beef.class, id));
-        advertisementRepository.deleteById(id);
+    public void deleteById(long id, String email) {
+        Beef beef = beefRepository.findById(id).orElseThrow(() -> new NotFoundException(Beef.class, id));
+        validateBeefAdOwner(email, beef);
+        beefRepository.deleteById(id);
+    }
+
+    private void validateBeefAdOwner(String email, Beef beef) {
+        var sellerUser = beef.getSellerUser();
+
+        if (!sellerUser.getEmail().equals(email)) {
+            throw new ForbiddenAccessException(email);
+        }
     }
 }

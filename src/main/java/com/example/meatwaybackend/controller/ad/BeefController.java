@@ -5,11 +5,14 @@ import com.example.meatwaybackend.dto.ad.beef.BeefAdResponse;
 import com.example.meatwaybackend.dto.ad.beef.BeefAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.beef.BeefAdsRequest;
 import com.example.meatwaybackend.service.ad.BeefService;
+import com.example.meatwaybackend.utils.JWTUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -30,9 +33,10 @@ public class BeefController {
     public static final String BEEF_CONTROLLER = "beef-controller";
     static final String API_VERSION = "v1";
     static final String API_PREFIX = "/api/" + API_VERSION;
-    public static final String API_AD = API_PREFIX + "/beefs";
+    public static final String API_AD = API_PREFIX + AdvertisementController.ADS_PREFIX + "/beefs";
 
     private final BeefService beefService;
+    private final JWTUtils jwtUtils;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -66,9 +70,10 @@ public class BeefController {
             tags = {BEEF_CONTROLLER}
     )
     public BeefAdResponse createBeef(
-            @RequestBody BeefAdSaveRequest request
+            @RequestBody BeefAdSaveRequest request,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        return beefService.createBeefAd(request);
+        return beefService.createBeefAd(request, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @PatchMapping("/{id}")
@@ -79,9 +84,10 @@ public class BeefController {
     )
     public BeefAdResponse editById(
             @PathVariable int id,
-            @RequestBody BeefAdSaveRequest request
+            @RequestBody BeefAdSaveRequest request,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        return beefService.patchById(id, request);
+        return beefService.patchById(id, request, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @DeleteMapping("/{id}")
@@ -91,8 +97,9 @@ public class BeefController {
             tags = {BEEF_CONTROLLER}
     )
     public void deleteById(
-            @PathVariable int id
+            @PathVariable int id,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        beefService.deleteById(id);
+        beefService.deleteById(id, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 }

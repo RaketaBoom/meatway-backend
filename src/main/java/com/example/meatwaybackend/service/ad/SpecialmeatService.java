@@ -1,11 +1,14 @@
 package com.example.meatwaybackend.service.ad;
 
+import com.example.meatwaybackend.dao.UserRepository;
 import com.example.meatwaybackend.dao.ad.AdvertisementRepository;
 import com.example.meatwaybackend.dao.ad.SpecialmeatRepository;
 import com.example.meatwaybackend.dto.ad.ShortAdsResponse;
 import com.example.meatwaybackend.dto.ad.specialmeat.SpecialmeatAdResponse;
 import com.example.meatwaybackend.dto.ad.specialmeat.SpecialmeatAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.specialmeat.SpecialmeatAdsRequest;
+import com.example.meatwaybackend.handler.exception.InternalServerErrorException;
+import com.example.meatwaybackend.handler.exception.auth.ForbiddenAccessException;
 import com.example.meatwaybackend.handler.exception.user.NotFoundException;
 import com.example.meatwaybackend.mapper.AdMapper;
 import com.example.meatwaybackend.model.ad.Specialmeat;
@@ -22,7 +25,7 @@ import org.springframework.stereotype.Service;
 public class SpecialmeatService {
     private final SpecialmeatRepository specialmeatRepository;
     private final AdMapper adMapper;
-    private final AdvertisementRepository advertisementRepository;
+    private final UserRepository userRepository;
 
     public ShortAdsResponse findAll(int page, int size, String sort, SpecialmeatAdsRequest request) {
         Specification<Specialmeat> spec = getSpecialmeatSpecification(request);
@@ -85,19 +88,34 @@ public class SpecialmeatService {
         return adMapper.toSpecialmeatAdResponse(specialmeat);
     }
 
-    public SpecialmeatAdResponse createSpecialmeatAd(SpecialmeatAdSaveRequest request) {
-        Specialmeat specialmeat = specialmeatRepository.save(adMapper.toSpecialmeat(request));
+    public SpecialmeatAdResponse createSpecialmeatAd(SpecialmeatAdSaveRequest request, String email) {
+        Specialmeat newSpecialmeat = adMapper.toSpecialmeat(request);
+        newSpecialmeat.setSellerUser(userRepository.findByEmail(email).orElseThrow(
+                () -> new InternalServerErrorException("Несущестующий пользователь пытается создать объявление")
+        ));
+        Specialmeat specialmeat = specialmeatRepository.save(newSpecialmeat);
+
         return adMapper.toSpecialmeatAdResponse(specialmeat);
     }
 
-    public SpecialmeatAdResponse patchById(Long id, SpecialmeatAdSaveRequest request) {
+    public SpecialmeatAdResponse patchById(Long id, SpecialmeatAdSaveRequest request, String email) {
         Specialmeat specialmeat = specialmeatRepository.findById(id).orElseThrow(() -> new NotFoundException(Specialmeat.class, id));
+        validateSpecialmeatAdOwner(email, specialmeat);
         adMapper.updateSpecialmeatFromSpecialmeatAdSaveRequest(specialmeat, request);
         return adMapper.toSpecialmeatAdResponse(specialmeat);
     }
 
-    public void deleteById(long id) {
-        advertisementRepository.findById(id).orElseThrow(() -> new NotFoundException(Specialmeat.class, id));
-        advertisementRepository.deleteById(id);
+    public void deleteById(long id, String email) {
+        Specialmeat specialmeat = specialmeatRepository.findById(id).orElseThrow(() -> new NotFoundException(Specialmeat.class, id));
+        validateSpecialmeatAdOwner(email, specialmeat);
+        specialmeatRepository.deleteById(id);
+    }
+
+    private void validateSpecialmeatAdOwner(String email, Specialmeat specialmeat) {
+        var sellerUser = specialmeat.getSellerUser();
+
+        if (!sellerUser.getEmail().equals(email)) {
+            throw new ForbiddenAccessException(email);
+        }
     }
 }
