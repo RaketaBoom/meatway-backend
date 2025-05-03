@@ -21,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -77,6 +78,7 @@ public class UserService implements UserDetailsManager {
         return userMapper.toUserDto(savedUser);
     }
 
+    @Transactional
     public void removeUser(String email) {
         userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException(User.class, 100));
         userRepository.deleteByEmail(email);

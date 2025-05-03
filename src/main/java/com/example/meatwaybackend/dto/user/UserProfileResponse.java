@@ -7,7 +7,7 @@ public record UserProfileResponse(
         String name,
         String surname,
         String city,
-        String phone_number,
+        String phoneNumber,
         String email,
         SaveRequestFileDto photo
 ) {

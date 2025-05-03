@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -101,7 +100,7 @@ public class UserController {
             summary = "Удалить профиль пользователя",
             tags = {USER_CONTROLLER}
     )
-    public void deleteUser(@AuthenticationPrincipal UserDetails userDetails) {
-        userService.removeUser(userDetails.getUsername());
+    public void deleteUser(@AuthenticationPrincipal Jwt jwt) {
+        userService.removeUser(jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 }
