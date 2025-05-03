@@ -13,14 +13,7 @@
 					"name": "GET All Users",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ2MzA0NDM3LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2Mjg2NDM3fQ.TTDsDZSoMw8NOMuhdCaiIsc8-i9bQM2Kzjgy-2LHnZCpUXrqCSWn4tGNzdtRM6atUPphatg9bKIndzEpgXSO_W4JJ48HVyi8ok3f4PkPEB17zGp7YNwpOYNoQjb6-quuAo7tRbzkg3r9EJiAP3UmnBglAslD3Z2I3o-vuhwB3ei9irSaD7L-jXz6jvUw4-G6cjY9VwyozGmomEw2ofSXoLWRX9znKcETo903KQUhCd8NkAzaYWWek2So9Yv4B1qmOLWkiFjXGRl9l0a1sqqEjaoPBNR9tR0YWePWuaylL0V-4kTXfRchJ7H3mqQD3yCyYwB_nd4b2dMe4xd4AmqbQw",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [
@@ -71,12 +64,14 @@
 							{
 								"key": "Accept",
 								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							},
 							{
 								"key": "Authorization",
 								"value": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzb3ZhZWQucnUiLCJzdWIiOiJyYXN1bEBnbWFpbC5jb20iLCJleHAiOjE3NDU2NDQyMzEsImlhdCI6MTc0NDQzNDYzMX0.V59PQuSo4v7AaRhB5d8np2CDfOPwWs5VFYNcsSSobRXnFo5LaBoiGkdoEytL3ikg0fKnS3mtD1k0kBIotQqxy9RsGwYCqmRDdoPjz7S_xKg0AzhgU--b_vGmlg3tPv4yfHVqdQMQz31-c5GU2nJB3IIjhPn_CtcN2-TTAHAn44DzLjQt1cHQ2yonSExhCJSSYieqhbm9Ojvwan1DbSnNnBXT6WcMT6YBFDWHn1QXboGb-ALRlF12hdelT9cyUMnnyjMf97jc4QbdVMfrnN2-dMJJ_Rx3RuqeUf-f0TS6XdjHox8Fm4ZPNDn-J7Tc2m5CkuzsmJwoNsGqKJ3W7rIDqA",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -283,7 +278,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Refresh token",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -319,6 +314,16 @@
 				{
 					"name": "POST Create Retail Order",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ2MzA0NDM3LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2Mjg2NDM3fQ.TTDsDZSoMw8NOMuhdCaiIsc8-i9bQM2Kzjgy-2LHnZCpUXrqCSWn4tGNzdtRM6atUPphatg9bKIndzEpgXSO_W4JJ48HVyi8ok3f4PkPEB17zGp7YNwpOYNoQjb6-quuAo7tRbzkg3r9EJiAP3UmnBglAslD3Z2I3o-vuhwB3ei9irSaD7L-jXz6jvUw4-G6cjY9VwyozGmomEw2ofSXoLWRX9znKcETo903KQUhCd8NkAzaYWWek2So9Yv4B1qmOLWkiFjXGRl9l0a1sqqEjaoPBNR9tR0YWePWuaylL0V-4kTXfRchJ7H3mqQD3yCyYwB_nd4b2dMe4xd4AmqbQw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -492,13 +497,7 @@
 					"name": "GET Retail Order",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/v1/orders/retail/{{retail_order_id}}",
 							"host": [
@@ -881,6 +880,9 @@
 				{
 					"name": "GET Advertisements",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -1050,6 +1052,9 @@
 				{
 					"name": "GET Pork Ads",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -1081,6 +1086,16 @@
 				{
 					"name": "GET Beef Ad by Id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoicmFzdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ0NDY2MjA0LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ0NDQ4MjA0fQ.Oe1Nu4FboWdWqDPFqkLNz1cbOpN__7Up5T3UazyzDUBOYxJd1Zdh5vcgRNMf2DYek0OlbbH4m9VHmQmaSG2RVaPe_ZWFS5z9LFt892dlcG4VlGXF7piBzYgqbAU_J5ZnL-l_5YJ8x06i6fQry6CCleKVjAf27czgU9ARp9zeq_6S02hRM5ye1XuiEMm4p4jW8QcMmwHTaQHwFAuLJMopRkp7kW4h_knJoUHl0Tpcpa1SM7ZHRrhfkqJ97nhd9EmBGSHOs3QTbiRLkJGctk4M1uFgAtsQ8Co7O1JDU-YZZ9BgKCnLqho1UgfNLz-jjLtN6Sh4sJqEJfaR5QNj-RMDTw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -1090,15 +1105,16 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/beefs/{{ad_beef_id}}",
+							"raw": "{{base_url}}/api/v1/ads/beefs/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"beefs",
-								"{{ad_beef_id}}"
+								"1"
 							]
 						}
 					},
@@ -1248,13 +1264,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/beefs",
+							"raw": "{{base_url}}/api/v1/ads/beefs",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"beefs"
 							]
 						}
