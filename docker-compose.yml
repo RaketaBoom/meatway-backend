@@ -1,6 +1,9 @@
 version: '3.8'
 services:
   db:
+    profiles:
+      - dev
+      - debug
     image: postgres:17
     container_name: meatway-db
     restart: unless-stopped
@@ -16,18 +19,22 @@ services:
       interval: 3s
       timeout: 5s
     volumes:
-      - /var/lib/postgresql/data
+      - ./src/main/resources/schema_init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     networks:
       - internal
 
   meatway-api:
+    profiles:
+      - dev
     build:
       context: .
       dockerfile: Dockerfile
     container_name: meatway-api
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
+      SPRING_PROFILES_ACTIVE: dev
       DB_URL: ${DB_URL}
       DB_USERNAME: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}

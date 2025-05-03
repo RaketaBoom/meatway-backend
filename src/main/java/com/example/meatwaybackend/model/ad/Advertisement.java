@@ -1,5 +1,6 @@
 package com.example.meatwaybackend.model.ad;
 
+import com.example.meatwaybackend.model.File;
 import com.example.meatwaybackend.model.User;
 import com.example.meatwaybackend.model.order.OptOrder;
 import com.example.meatwaybackend.model.order.RetailOrder;
@@ -63,4 +64,7 @@ public class Advertisement {
 
     @OneToMany(mappedBy = "advertisement")
     private List<OptOrder> optOrders;
+
+    @OneToMany
+    private List<File> files;
 }

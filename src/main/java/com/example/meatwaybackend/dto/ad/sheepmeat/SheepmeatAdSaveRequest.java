@@ -1,7 +1,9 @@
 package com.example.meatwaybackend.dto.ad.sheepmeat;
 
+import com.example.meatwaybackend.dto.SaveRequestFileDto;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public record SheepmeatAdSaveRequest(
         String title,
@@ -18,6 +20,7 @@ public record SheepmeatAdSaveRequest(
         Date dateEnd,
         Date killDate,
         boolean isHalal,
-        boolean hasMedicalCertificate
+        boolean hasMedicalCertificate,
+        List<SaveRequestFileDto> files
 ) {
 }

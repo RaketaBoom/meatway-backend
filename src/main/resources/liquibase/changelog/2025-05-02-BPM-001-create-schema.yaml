@@ -1,0 +1,214 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-tables
+      author: your_name
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: created_at
+                  type: timestamp(6)
+              - column:
+                  name: updated_at
+                  type: timestamp(6)
+              - column:
+                  name: photo_id
+                  type: bigint
+              - column:
+                  name: city
+                  type: varchar(255)
+              - column:
+                  name: email
+                  type: varchar(255)
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: password_digest
+                  type: varchar(255)
+              - column:
+                  name: phone_number
+                  type: varchar(255)
+              - column:
+                  name: surname
+                  type: varchar(255)
+
+        - createTable:
+            tableName: file
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: created_at
+                  type: timestamp(6)
+              - column:
+                  name: path
+                  type: varchar(255)
+
+        - createTable:
+            tableName: advertisement
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: creation_date
+                  type: timestamp(6)
+              - column:
+                  name: kill_begin
+                  type: timestamp(6)
+              - column:
+                  name: kill_date
+                  type: timestamp(6)
+              - column:
+                  name: kill_end
+                  type: timestamp(6)
+              - column:
+                  name: seller_user_id
+                  type: bigint
+              - column:
+                  name: halal
+                  type: boolean
+              - column:
+                  name: has_medical_certificate
+                  type: boolean
+              - column:
+                  name: is_active
+                  type: boolean
+              - column:
+                  name: is_frozen
+                  type: boolean
+              - column:
+                  name: is_mramor
+                  type: boolean
+              - column:
+                  name: is_retail
+                  type: boolean
+              - column:
+                  name: months_age
+                  type: integer
+              - column:
+                  name: price
+                  type: numeric(38,2)
+              - column:
+                  name: quantity
+                  type: integer
+              - column:
+                  name: weight
+                  type: float(53)
+              - column:
+                  name: ad_type
+                  type: varchar(31)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: animal_type
+                  type: varchar(255)
+              - column:
+                  name: bird_type
+                  type: varchar(255)
+              - column:
+                  name: breed
+                  type: varchar(255)
+              - column:
+                  name: cutting_type
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: fat_content
+                  type: varchar(255)
+              - column:
+                  name: feeding_type
+                  type: varchar(255)
+              - column:
+                  name: location
+                  type: varchar(255)
+              - column:
+                  name: processing_type
+                  type: varchar(255)
+              - column:
+                  name: title
+                  type: varchar(255)
+
+        - createTable:
+            tableName: advertisement_files
+            columns:
+              - column:
+                  name: advertisement_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: files_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    unique: true
+
+        - createTable:
+            tableName: opt_order
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: kill_date
+                  type: timestamp(6)
+              - column:
+                  name: advertisement_id
+                  type: bigint
+              - column:
+                  name: buyer_user_id
+                  type: bigint
+              - column:
+                  name: is_active
+                  type: boolean
+              - column:
+                  name: is_confirmed
+                  type: boolean
+              - column:
+                  name: quantity
+                  type: integer
+
+        - createTable:
+            tableName: retail_order
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: advertisement_id
+                  type: bigint
+              - column:
+                  name: buyer_user_id
+                  type: bigint
+              - column:
+                  name: is_active
+                  type: boolean
+              - column:
+                  name: is_confirmed
+                  type: boolean
+              - column:
+                  name: weight
+                  type: float(53)

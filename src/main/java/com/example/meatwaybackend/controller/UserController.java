@@ -98,7 +98,7 @@ public class UserController {
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(
-            summary = "Внести изменения в профиль пользователя",
+            summary = "Удалить профиль пользователя",
             tags = {USER_CONTROLLER}
     )
     public void deleteUser(@AuthenticationPrincipal UserDetails userDetails) {

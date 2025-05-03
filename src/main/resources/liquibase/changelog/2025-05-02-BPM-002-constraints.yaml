@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-add-foreign-keys
+      author: your_name
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: advertisement
+            baseColumnNames: seller_user_id
+            constraintName: fk_advertisement_seller_user
+            referencedTableName: users
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: advertisement_files
+            baseColumnNames: files_id
+            constraintName: fk_advertisement_files_file
+            referencedTableName: file
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: advertisement_files
+            baseColumnNames: advertisement_id
+            constraintName: fk_advertisement_files_advertisement
+            referencedTableName: advertisement
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: opt_order
+            baseColumnNames: advertisement_id
+            constraintName: fk_opt_order_advertisement
+            referencedTableName: advertisement
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: opt_order
+            baseColumnNames: buyer_user_id
+            constraintName: fk_opt_order_buyer_user
+            referencedTableName: users
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: retail_order
+            baseColumnNames: advertisement_id
+            constraintName: fk_retail_order_advertisement
+            referencedTableName: advertisement
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: retail_order
+            baseColumnNames: buyer_user_id
+            constraintName: fk_retail_order_buyer_user
+            referencedTableName: users
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: users
+            baseColumnNames: photo_id
+            constraintName: fk_user_photo
+            referencedTableName: file
+            referencedColumnNames: id

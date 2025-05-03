@@ -2,6 +2,10 @@ spring:
   application:
     name: app
 
+  liquibase:
+    default-schema: business
+    change-log: classpath:liquibase/master.xml
+
 logging:
   level:
     org.flywaydb: DEBUG

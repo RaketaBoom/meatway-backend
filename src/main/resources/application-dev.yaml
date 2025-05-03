@@ -1,12 +1,11 @@
 spring:
   jpa:
-    hibernate:
-      ddl-auto: create
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+
   datasource:
-    url: jdbc:postgresql://localhost:5433/meatway
-    username: postgres
-    password: 1
+    url: ${DB_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
