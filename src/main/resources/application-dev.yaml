@@ -7,5 +7,5 @@ spring:
 
   datasource:
     url: ${DB_URL}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}

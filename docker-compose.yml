@@ -29,6 +29,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+
     container_name: meatway-api
     depends_on:
       db:
