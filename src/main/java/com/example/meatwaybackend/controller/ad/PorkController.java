@@ -38,17 +38,17 @@ public class PorkController {
     private final PorkService porkService;
     private final JWTUtils jwtUtils;
 
-    @GetMapping()
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(
             summary = "Вывести краткую информацию об объявлениях cо свининой",
             tags = {CONTROLLER}
     )
     public ShortAdsResponse findAll(
-            @RequestParam int page,
-            @RequestParam int size,
-            @RequestParam String sort,
-            @RequestBody PorkAdsRequest request
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size,
+            @RequestParam(required = false) String sort,
+            @RequestBody(required = false) PorkAdsRequest request
     ) {
         return porkService.findAll(page, size, sort, request);
     }

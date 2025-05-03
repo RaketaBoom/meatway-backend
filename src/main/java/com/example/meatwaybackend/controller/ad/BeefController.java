@@ -45,10 +45,10 @@ public class BeefController {
             tags = {BEEF_CONTROLLER}
     )
     public ShortAdsResponse findAll(
-            @RequestParam int page,
-            @RequestParam int size,
-            @RequestParam String sort,
-            @RequestBody BeefAdsRequest request
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size,
+            @RequestParam(required = false) String sort,
+            @RequestBody(required = false) BeefAdsRequest request
     ) {
         return beefService.findAll(page, size, sort, request);
     }

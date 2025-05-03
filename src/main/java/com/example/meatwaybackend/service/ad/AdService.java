@@ -19,13 +19,18 @@ import org.springframework.stereotype.Service;
 public class AdService {
     private final static int DEFAULT_PAGE = 0;
     private final static int DEFAULT_SIZE = 10;
+    private final static String DEFAULT_SORT = "id";
 
     private final AdvertisementRepository advertisementRepository;
     private final AdMapper adMapper;
 
 
-    public ShortAdsResponse findAll(int page, int size, String sort, AdsRequest request) {
+    public ShortAdsResponse findAll(Integer page, Integer size, String sort, AdsRequest request) {
         Specification<Advertisement> spec = getAdvertisementSpecification(request);
+
+        if (sort == null || sort.isBlank()) {
+            sort = DEFAULT_SORT;
+        }
 
         Pageable pageable = PageRequest.of(
                 Optional.ofNullable(page).orElse(DEFAULT_PAGE),
@@ -43,6 +48,10 @@ public class AdService {
 
     private static Specification<Advertisement> getAdvertisementSpecification(AdsRequest request) {
         Specification<Advertisement> spec = Specification.where(null);
+
+        if (request == null) {
+            return spec;
+        }
 
         if (request.isRetail() != null) {
             spec = spec.and((root, query, cb) -> cb.equal(root.get("isRetail"), request.isRetail()));

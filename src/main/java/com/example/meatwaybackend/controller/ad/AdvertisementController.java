@@ -36,8 +36,8 @@ public class AdvertisementController {
             tags = {AD_CONTROLLER}
     )
     public ShortAdsResponse findAll(
-            @RequestParam(required = false) int page,
-            @RequestParam(required = false) int size,
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size,
             @RequestParam(required = false) String sort,
             @RequestBody(required = false) AdsRequest request
     ) {

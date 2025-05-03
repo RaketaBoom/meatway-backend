@@ -12,6 +12,16 @@
 				{
 					"name": "GET All Users",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ2MzA0NDM3LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2Mjg2NDM3fQ.TTDsDZSoMw8NOMuhdCaiIsc8-i9bQM2Kzjgy-2LHnZCpUXrqCSWn4tGNzdtRM6atUPphatg9bKIndzEpgXSO_W4JJ48HVyi8ok3f4PkPEB17zGp7YNwpOYNoQjb6-quuAo7tRbzkg3r9EJiAP3UmnBglAslD3Z2I3o-vuhwB3ei9irSaD7L-jXz6jvUw4-G6cjY9VwyozGmomEw2ofSXoLWRX9znKcETo903KQUhCd8NkAzaYWWek2So9Yv4B1qmOLWkiFjXGRl9l0a1sqqEjaoPBNR9tR0YWePWuaylL0V-4kTXfRchJ7H3mqQD3yCyYwB_nd4b2dMe4xd4AmqbQw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -62,10 +72,15 @@
 								"key": "Accept",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzb3ZhZWQucnUiLCJzdWIiOiJyYXN1bEBnbWFpbC5jb20iLCJleHAiOjE3NDU2NDQyMzEsImlhdCI6MTc0NDQzNDYzMX0.V59PQuSo4v7AaRhB5d8np2CDfOPwWs5VFYNcsSSobRXnFo5LaBoiGkdoEytL3ikg0fKnS3mtD1k0kBIotQqxy9RsGwYCqmRDdoPjz7S_xKg0AzhgU--b_vGmlg3tPv4yfHVqdQMQz31-c5GU2nJB3IIjhPn_CtcN2-TTAHAn44DzLjQt1cHQ2yonSExhCJSSYieqhbm9Ojvwan1DbSnNnBXT6WcMT6YBFDWHn1QXboGb-ALRlF12hdelT9cyUMnnyjMf97jc4QbdVMfrnN2-dMJJ_Rx3RuqeUf-f0TS6XdjHox8Fm4ZPNDn-J7Tc2m5CkuzsmJwoNsGqKJ3W7rIDqA",
+								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/users/{{user_id}}",
+							"raw": "{{base_url}}/api/v1/users/2",
 							"host": [
 								"{{base_url}}"
 							],
@@ -73,7 +88,7 @@
 								"api",
 								"v1",
 								"users",
-								"{{user_id}}"
+								"2"
 							]
 						}
 					},
@@ -82,27 +97,46 @@
 				{
 					"name": "DELETE User",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ2MzA0MDI5LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2Mjg2MDI5fQ.SaM50AkPcZpoyZR3UhOBAxjI75uk6gAZv1kmhPqO5epFoFQhtsi74-BQW1UXz_IZy3KIae4BkdYOinaaemMWYknr9cesC1PtAcjyIgs4JE4J7ujH6ihRYrcKSYjtH4Ap-6uGqpn7o94oGKrg1UNWsEFEq_0hHu-pRG6xUnogyXOqWMDRbqzWV56qA6Q2a2A0-rcW7WekfSUwRwlxd92rYIKnDG5jh9ceOJXNKZI2-WTz4LyJcsbRFlIzw2ntWqBhtdSnEpViQHVGSQRQKZyQn5uid9AI2l-0tmbkG8enAzjtIhH8uUjQ6RQ_m-Sl6u6QdWX7aZiXldpucoMYLwaWvA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v1/users/{{user_id}}",
+							"raw": "{{base_url}}/api/v1/users",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"users",
-								"{{user_id}}"
+								"users"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "POST Create User",
+					"name": "PATCH Update User",
 					"request": {
-						"method": "POST",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ2MzA0NDM3LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2Mjg2NDM3fQ.TTDsDZSoMw8NOMuhdCaiIsc8-i9bQM2Kzjgy-2LHnZCpUXrqCSWn4tGNzdtRM6atUPphatg9bKIndzEpgXSO_W4JJ48HVyi8ok3f4PkPEB17zGp7YNwpOYNoQjb6-quuAo7tRbzkg3r9EJiAP3UmnBglAslD3Z2I3o-vuhwB3ei9irSaD7L-jXz6jvUw4-G6cjY9VwyozGmomEw2ofSXoLWRX9znKcETo903KQUhCd8NkAzaYWWek2So9Yv4B1qmOLWkiFjXGRl9l0a1sqqEjaoPBNR9tR0YWePWuaylL0V-4kTXfRchJ7H3mqQD3yCyYwB_nd4b2dMe4xd4AmqbQw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -113,11 +147,16 @@
 								"key": "Accept",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ0NDQ1MTk3LCJpYXQiOjE3NDQ0NDUxOTJ9.T8v6Ai9DuLY_VzUyGtk8CcKsbyHn0ewto1tcDDZ4mE8w2zkRhW2mYns13hxElfnVYLliY5VUpbqOc9SJF-JvlSc0FZx78aGS9o2cdoiGymbMpSanTMYlz6JVMjO1tgkPnYYFf-vGEWKKdSBSrMlKgB8pQD14CoAOBpWwGb2rPRsuJocegLJSo_7aqeYgrPEmCtOST0UZTzBFi9DTDneNTvYCm7vFpWXlt9NAPjt9GiW9E-KsMPA0eY_XyKCTtaWc35jsy9_j6UhAgUui9Nqz0wTm_u9TMIL8RvHfpBK8mioo5f7ULtLT7nMGMtwxpDQo8zs1Q-R178vefoZdzHNyfg",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"John\",\r\n  \"surname\": \"Covalski\",\r\n  \"email\": \"john@example.com\"\r\n}",
+							"raw": "{\r\n  \"name\": \"New Name\",\r\n  \"surname\": \"New Surname\",\r\n  \"city\": \"City\",\r\n  \"phoneNumber\": \"+788005553535\",\r\n  \"photo\": {\r\n    \"path\": \"profiles/photo/id234.jpg\"    \r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -139,24 +178,19 @@
 					"response": []
 				},
 				{
-					"name": "PATCH Update User",
+					"name": "Register new user",
 					"request": {
-						"method": "PATCH",
+						"method": "POST",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
+								"key": "Authorization",
+								"value": "",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"New Name\"\r\n}",
+							"raw": "{\r\n    \"email\": \"artem@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"confirmPassword\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -164,33 +198,52 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/users/{{user_id}}",
+							"raw": "{{base_url}}/api/v1/register",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"users",
-								"{{user_id}}"
+								"register"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Register new user",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
 					"name": "Auth user",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzb3ZhZWQucnUiLCJzdWIiOiJyYXN1bEBnbWFpbC5jb20iLCJleHAiOjE3NDU2MDY0ODAsImlhdCI6MTc0NDM5Njg4MH0.o0qEw5hgpuIYe5cqbVIwmtAE9QsvnEYt3Mmagc-8RPCDkWbDxfiE14zmYZZVcie7MwXz1RG7gI6ThvytTTutDvz7Y-nq30S7Cy4Ok9qihnqSu_DHeO6Q2EHx--gGXbwnA6Ee6xvZDDSIuz3_D6yVgLvIFCG_lWGbvPIYLs_3DEkLPNqNPTH2pJJ0rJJeEV_rSF7U8AUPsMAG4PafvULnTalnpU2OYKOxhy4TKGi5ls9RvwgsEITqyBMIKqViMEXdQuWMZpbEOWrUL7VhM3o6dVoWMWEXwWYIOc3qj8jFTpZ5f4BLrsFJT8P5KDsIRU8ZnqA1hovA8La-3VlQd8HZsA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"artem@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
 					},
 					"response": []
 				},
@@ -232,8 +285,29 @@
 				{
 					"name": "New Request",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\":\"eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ1NjU2NTY2LCJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImlhdCI6MTc0NDQ0Njk2Nn0.Zgh7CqbDSXLfNC2AI4KkWNvkuS1QjkaKMQ8odXBepv4e1Ur9Kv6NbG8otrnXs7-MowwPl6VrV_9zvNh6mjp6L93pkGmHWQ0wJDrsRo0ks7IUplyJBMIXA39i24NXPMm2z0lJvOgjAt_RKjiTv6i6Hdsqbe1R8UIjkWcK7hCdl7cJGfs7Fe2WV_hfm20ZkEMmONl5YQ7yvVxifkiru7-w6_iaaA2wNMr8QKWcI-lHopAgkwjRIRhJlm5RGUcKt--Jb67GH6z6jy4oFi6bzA9QnPiJ80xRw4Hdwqj7vPTkdDR7D2dEStRrHS6KHqSHkc9tRYa1F0ny86TrbU6VFqnj3A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refresh"
+							]
+						}
 					},
 					"response": []
 				}
@@ -846,15 +920,16 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/porks/{{ad_pork_id}}",
+							"raw": "{{base_url}}/api/v1/ads/porks/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"porks",
-								"{{ad_pork_id}}"
+								"1"
 							]
 						}
 					},
@@ -863,6 +938,16 @@
 				{
 					"name": "POST Create Pork Ad",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoicmFzdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ0NDY2MjA0LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ0NDQ4MjA0fQ.Oe1Nu4FboWdWqDPFqkLNz1cbOpN__7Up5T3UazyzDUBOYxJd1Zdh5vcgRNMf2DYek0OlbbH4m9VHmQmaSG2RVaPe_ZWFS5z9LFt892dlcG4VlGXF7piBzYgqbAU_J5ZnL-l_5YJ8x06i6fQry6CCleKVjAf27czgU9ARp9zeq_6S02hRM5ye1XuiEMm4p4jW8QcMmwHTaQHwFAuLJMopRkp7kW4h_knJoUHl0Tpcpa1SM7ZHRrhfkqJ97nhd9EmBGSHOs3QTbiRLkJGctk4M1uFgAtsQ8Co7O1JDU-YZZ9BgKCnLqho1UgfNLz-jjLtN6Sh4sJqEJfaR5QNj-RMDTw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -886,15 +971,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/porks/{{ad_pork_id}}",
+							"raw": "{{base_url}}/api/v1/ads/porks",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"porks",
-								"{{ad_pork_id}}"
+								"ads",
+								"porks"
 							]
 						}
 					},
@@ -906,15 +991,16 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v1/porks/{{ad_pork_id}}",
+							"raw": "{{base_url}}/api/v1/ads/porks/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"porks",
-								"{{ad_pork_id}}"
+								"1"
 							]
 						}
 					},
@@ -946,15 +1032,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/porks/{{ad_pork_id}}",
+							"raw": "{{base_url}}/api/v1/ads/porks/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"porks",
-								"{{ad_pork_id}}"
+								"1"
 							]
 						}
 					},
@@ -972,13 +1059,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/porks",
+							"raw": "{{base_url}}/api/v1/ads/porks",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"porks"
 							]
 						}
@@ -1019,6 +1107,16 @@
 				{
 					"name": "POST Create Beef Ad",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoicmFzdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ1MTAyNDI2LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ1MDg0NDI2fQ.tmqbQXAfU2SwwxqaoakM30Mz2oMAWEmzikbAUhd3L_2flaZ1NUsyQGYJKhtvOGZWZnKBePzm6Kr7rZChGR4AZyTdM33n_5g4FuLx6JnqfNE-FSyeDbHjq4Swgq9wRTPpvT4D9DKOHRD_1RixwJP0zoEuhTz47cJI5wHHrwS4bhQM_R0I_CveaRz9YCm82d2he8mndczGicPLft4CNI3cairdmgms7GerX3CSJzPhWAJd01ihv5IVxlfISwFe6VD1Oo8URAxKYBwXvp23k_lMMBmxxk1TG4RLsf_taUsJmcZtKcWA8uL4XrAI9Dx_NHEMap8QWg9TOLyl-WUUr4NtbA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -1034,7 +1132,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"halal\": true,\r\n    \"is_mramor\": false,\r\n    \"feeding_type\": \"seno\"\r\n}",
+							"raw": "{\r\n    \"title\": \"bik\",\r\n    \"isHalal\": true,\r\n    \"isMramor\": false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1042,15 +1140,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/beefs/{{ad_beef_id}}",
+							"raw": "{{base_url}}/api/v1/ads/beefs",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"beefs",
-								"{{ad_beef_id}}"
+								"ads",
+								"beefs"
 							]
 						}
 					},
@@ -1059,16 +1157,27 @@
 				{
 					"name": "DELETE Beef Ad",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoicmFzdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ1MTAyNDI2LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ1MDg0NDI2fQ.tmqbQXAfU2SwwxqaoakM30Mz2oMAWEmzikbAUhd3L_2flaZ1NUsyQGYJKhtvOGZWZnKBePzm6Kr7rZChGR4AZyTdM33n_5g4FuLx6JnqfNE-FSyeDbHjq4Swgq9wRTPpvT4D9DKOHRD_1RixwJP0zoEuhTz47cJI5wHHrwS4bhQM_R0I_CveaRz9YCm82d2he8mndczGicPLft4CNI3cairdmgms7GerX3CSJzPhWAJd01ihv5IVxlfISwFe6VD1Oo8URAxKYBwXvp23k_lMMBmxxk1TG4RLsf_taUsJmcZtKcWA8uL4XrAI9Dx_NHEMap8QWg9TOLyl-WUUr4NtbA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v1/beefs/{{ad_beef_id}}",
+							"raw": "{{base_url}}/api/v1/ads/beefs/{{ad_beef_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"beefs",
 								"{{ad_beef_id}}"
 							]
@@ -1079,6 +1188,16 @@
 				{
 					"name": "PATCH Update Beef Ad",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ1MTAyNDc4LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ1MDg0NDc4fQ.HRYbXhN2PRt8oPtd276AK0G0kJHmYiVKgbjTAwgfm83mym3CaHcq-hUmXJVf0TnqRVmZ_zwLP50OtdJeypxTECrNlZvYSFw0ubG1uKi6sKeppNpy1OHfPINSq-rOSHq8JXqWxULTuyYUQaCbVOFxIWk1f-S87wSlFyu7BsLl_Y_ETeUx0-gwMJpldQyosDA9mQZ_RiDg_dDUNOlmzl1c7RkMWJhSx1pxQcwTsEmUh97W2pNmSwfB9H93uinu2Eny44I1SnWPrXh0l4Unx3Igw1sEYNf-A0qz36puSKy8V3K-Vu6baXty9I_2Rny2OqvyhPBqDjOQYjtzYW8_leQFFg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [
 							{
@@ -1094,7 +1213,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"halal\": false\r\n}",
+							"raw": "{\r\n  \"title\": \"jnin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1102,15 +1221,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/beefs/{{ad_beef_id}}",
+							"raw": "{{base_url}}/api/v1/ads/beefs/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"beefs",
-								"{{ad_beef_id}}"
+								"1"
 							]
 						}
 					},
@@ -1138,6 +1258,22 @@
 								"beefs"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}

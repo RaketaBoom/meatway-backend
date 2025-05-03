@@ -11,6 +11,7 @@ import com.example.meatwaybackend.handler.exception.auth.ForbiddenAccessExceptio
 import com.example.meatwaybackend.handler.exception.user.NotFoundException;
 import com.example.meatwaybackend.mapper.AdMapper;
 import com.example.meatwaybackend.model.ad.Pork;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,13 +23,25 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class PorkService {
+    private final static int DEFAULT_PAGE = 0;
+    private final static int DEFAULT_SIZE = 10;
+    private final static String DEFAULT_SORT = "id";
+
     private final PorkRepository porkRepository;
     private final AdMapper adMapper;
     private final UserRepository userRepository;
 
-    public ShortAdsResponse findAll(int page, int size, String sort, PorkAdsRequest request) {
+    public ShortAdsResponse findAll(Integer page, Integer size, String sort, PorkAdsRequest request) {
         Specification<Pork> spec = getPorkSpecification(request);
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+        if (sort == null || sort.isBlank()) {
+            sort = DEFAULT_SORT;
+        }
+
+        Pageable pageable = PageRequest.of(
+                Optional.ofNullable(page).orElse(DEFAULT_PAGE),
+                Optional.ofNullable(size).orElse(DEFAULT_SIZE),
+                Sort.by(sort)
+        );;
         Page<Pork> pageResult = porkRepository.findAll(spec, pageable);
 
         return new ShortAdsResponse(
@@ -39,6 +52,10 @@ public class PorkService {
 
     private static Specification<Pork> getPorkSpecification(PorkAdsRequest request) {
         Specification<Pork> spec = Specification.where(null);
+
+        if (request == null) {
+            return spec;
+        }
 
         if (request.isRetail() != null) {
             spec = spec.and((root, query, cb) -> cb.equal(root.get("isRetail"), request.isRetail()));

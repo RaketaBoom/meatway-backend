@@ -64,16 +64,6 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @Operation(
-            summary = "Создать пользователя по id",
-            tags = {USER_CONTROLLER}
-    )
-    public CreatedUserResponse createUser(@RequestBody @Valid UserCreateRequest userCreateRequest) {
-        return userService.createUser(userCreateRequest);
-    }
-
     @PatchMapping("/password")
     @ResponseStatus(HttpStatus.OK)
     @Operation(

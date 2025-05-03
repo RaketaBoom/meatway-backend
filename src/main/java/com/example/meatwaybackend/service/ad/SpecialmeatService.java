@@ -12,6 +12,7 @@ import com.example.meatwaybackend.handler.exception.auth.ForbiddenAccessExceptio
 import com.example.meatwaybackend.handler.exception.user.NotFoundException;
 import com.example.meatwaybackend.mapper.AdMapper;
 import com.example.meatwaybackend.model.ad.Specialmeat;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,13 +24,25 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SpecialmeatService {
+    private final static int DEFAULT_PAGE = 0;
+    private final static int DEFAULT_SIZE = 10;
+    private final static String DEFAULT_SORT = "id";
+
     private final SpecialmeatRepository specialmeatRepository;
     private final AdMapper adMapper;
     private final UserRepository userRepository;
 
-    public ShortAdsResponse findAll(int page, int size, String sort, SpecialmeatAdsRequest request) {
+    public ShortAdsResponse findAll(Integer page, Integer size, String sort, SpecialmeatAdsRequest request) {
         Specification<Specialmeat> spec = getSpecialmeatSpecification(request);
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+        if (sort == null || sort.isBlank()) {
+            sort = DEFAULT_SORT;
+        }
+
+        Pageable pageable = PageRequest.of(
+                Optional.ofNullable(page).orElse(DEFAULT_PAGE),
+                Optional.ofNullable(size).orElse(DEFAULT_SIZE),
+                Sort.by(sort)
+        );
         Page<Specialmeat> pageResult = specialmeatRepository.findAll(spec, pageable);
 
         return new ShortAdsResponse(
@@ -40,6 +53,10 @@ public class SpecialmeatService {
 
     private static Specification<Specialmeat> getSpecialmeatSpecification(SpecialmeatAdsRequest request) {
         Specification<Specialmeat> spec = Specification.where(null);
+
+        if (request == null) {
+            return spec;
+        }
 
         if (request.isRetail() != null) {
             spec = spec.and((root, query, cb) -> cb.equal(root.get("isRetail"), request.isRetail()));

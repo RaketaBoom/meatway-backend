@@ -45,10 +45,10 @@ public class SpecialmeatController {
             tags = {CONTROLLER}
     )
     public ShortAdsResponse findAll(
-            @RequestParam int page,
-            @RequestParam int size,
-            @RequestParam String sort,
-            @RequestBody SpecialmeatAdsRequest request
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size,
+            @RequestParam(required = false) String sort,
+            @RequestBody(required = false) SpecialmeatAdsRequest request
     ) {
         return specialmeatService.findAll(page, size, sort, request);
     }

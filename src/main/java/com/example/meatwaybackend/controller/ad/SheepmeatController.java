@@ -45,10 +45,10 @@ public class SheepmeatController {
             tags = {SHEEPMEAT_CONTROLLER}
     )
     public ShortAdsResponse findAll(
-            @RequestParam int page,
-            @RequestParam int size,
-            @RequestParam String sort,
-            @RequestBody SheepmeatAdsRequest request
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size,
+            @RequestParam(required = false) String sort,
+            @RequestBody(required = false) SheepmeatAdsRequest request
     ) {
         return sheepmeatService.findAll(page, size, sort, request);
     }
