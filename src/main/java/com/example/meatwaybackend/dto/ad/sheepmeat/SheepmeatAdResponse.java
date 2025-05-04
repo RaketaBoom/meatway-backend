@@ -1,7 +1,9 @@
 package com.example.meatwaybackend.dto.ad.sheepmeat;
 
+import com.example.meatwaybackend.dto.FileDto;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public record SheepmeatAdResponse(
         Long id,
@@ -21,6 +23,7 @@ public record SheepmeatAdResponse(
         boolean isHalal,
         boolean hasMedicalCertificate,
         boolean isActive,
-        Date creationDate
+        Date creationDate,
+        List<FileDto> files
 ) {
 }

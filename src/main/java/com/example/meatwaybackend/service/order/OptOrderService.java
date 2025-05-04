@@ -70,7 +70,9 @@ public class OptOrderService {
         return orderMapper.OptOrderToOptOrderCreateResponse(optOrder);
     }
 
-    public OptOrderCreateResponse confirmOrder(long id) {
+    public OptOrderCreateResponse confirmOrder(long id, String email) {
+        //todo реализоавть подтверждение для продавцов
+
         OptOrderEditRequest request = new OptOrderEditRequest(
                 null,
                 null,
@@ -81,7 +83,9 @@ public class OptOrderService {
         return patchOrder(id, request);
     }
 
-    public OptOrderCreateResponse unconfirmOrder(long id) {
+    public OptOrderCreateResponse unconfirmOrder(long id, String email) {
+        //todo реализовать отмену для продавцов и покупателей
+
         OptOrderEditRequest request = new OptOrderEditRequest(
                 null,
                 null,

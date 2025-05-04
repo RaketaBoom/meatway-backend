@@ -6,11 +6,14 @@ import com.example.meatwaybackend.dto.order.opt.OptOrderCreateResponse;
 import com.example.meatwaybackend.dto.order.opt.OptOrderResponse;
 import com.example.meatwaybackend.dto.order.opt.OptOrdersResponse;
 import com.example.meatwaybackend.service.order.OptOrderService;
+import com.example.meatwaybackend.utils.JWTUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -33,6 +36,7 @@ public class OptOrderController {
     public static final String API_ORDER = API_PREFIX + "/orders/opt";
 
     private final OptOrderService optOrderService;
+    private final JWTUtils jwtUtils;
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -80,8 +84,8 @@ public class OptOrderController {
             summary = "Подтвердить оптовый заказ",
             tags = {OPT_ORDER_CONTROLLER}
     )
-    public OptOrderCreateResponse confirmOrder(@PathVariable long id) {
-        return optOrderService.confirmOrder(id);
+    public OptOrderCreateResponse confirmOrder(@PathVariable long id, @AuthenticationPrincipal Jwt jwt) {
+        return optOrderService.confirmOrder(id, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @PatchMapping("/unconfirm/{id}")
@@ -90,8 +94,8 @@ public class OptOrderController {
             summary = "Отменить оптовый заказ",
             tags = {OPT_ORDER_CONTROLLER}
     )
-    public OptOrderCreateResponse unconfirmOrder(@PathVariable long id) {
-        return optOrderService.unconfirmOrder(id);
+    public OptOrderCreateResponse unconfirmOrder(@PathVariable long id, @AuthenticationPrincipal Jwt jwt) {
+        return optOrderService.unconfirmOrder(id, jwtUtils.extractUsername(jwt.getTokenValue()));
     }
 
     @PatchMapping("/activate/{id}")

@@ -126,7 +126,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ2MzA0NDM3LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2Mjg2NDM3fQ.TTDsDZSoMw8NOMuhdCaiIsc8-i9bQM2Kzjgy-2LHnZCpUXrqCSWn4tGNzdtRM6atUPphatg9bKIndzEpgXSO_W4JJ48HVyi8ok3f4PkPEB17zGp7YNwpOYNoQjb6-quuAo7tRbzkg3r9EJiAP3UmnBglAslD3Z2I3o-vuhwB3ei9irSaD7L-jXz6jvUw4-G6cjY9VwyozGmomEw2ofSXoLWRX9znKcETo903KQUhCd8NkAzaYWWek2So9Yv4B1qmOLWkiFjXGRl9l0a1sqqEjaoPBNR9tR0YWePWuaylL0V-4kTXfRchJ7H3mqQD3yCyYwB_nd4b2dMe4xd4AmqbQw",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ2Mzc2OTAzLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2MzU4OTAzfQ.lN4xVSTIr-gj2xdLI0JFZnlnI3YGYFy0YPOWa2E0I7JjGclpA8IcxLnJx7SSpyCJ-4gsgOILIbOf3gJKR3TJhUCjatdnQ4disArADZZ4bp-LaSF8NP7rnPj_On6Us8hf7lLAy7gXa2A4qoYvrbqh7a1MLAj0frCaHlGGfKtSk_YkI5PYCAtmmkv9BJsrhxM6so3k5XJ50POZMZBwn7KKq_8qyi74e5ICsZBeiUxtExQTUVhUtWlE0YOmvkVPBq1DjT-EynttD00Xli5JPf3JaEUDjd5HAX_opJvDdbLPldA9aFF_FYerlmIKBsykzoAyT8p7wddEW2ZmzfTFj11_hA",
 									"type": "string"
 								}
 							]
@@ -185,7 +185,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"artem@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"confirmPassword\": \"12345678\"\r\n}",
+							"raw": "{\r\n    \"email\": \"myasoyed@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"confirmPassword\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -220,7 +220,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"artem@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"raw": "{\r\n    \"email\": \"myasoyed@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -284,7 +284,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"token\":\"eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ1NjU2NTY2LCJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImlhdCI6MTc0NDQ0Njk2Nn0.Zgh7CqbDSXLfNC2AI4KkWNvkuS1QjkaKMQ8odXBepv4e1Ur9Kv6NbG8otrnXs7-MowwPl6VrV_9zvNh6mjp6L93pkGmHWQ0wJDrsRo0ks7IUplyJBMIXA39i24NXPMm2z0lJvOgjAt_RKjiTv6i6Hdsqbe1R8UIjkWcK7hCdl7cJGfs7Fe2WV_hfm20ZkEMmONl5YQ7yvVxifkiru7-w6_iaaA2wNMr8QKWcI-lHopAgkwjRIRhJlm5RGUcKt--Jb67GH6z6jy4oFi6bzA9QnPiJ80xRw4Hdwqj7vPTkdDR7D2dEStRrHS6KHqSHkc9tRYa1F0ny86TrbU6VFqnj3A\"\r\n}",
+							"raw": "{\r\n    \"token\":\"eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ3NTY4NTAzLCJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImlhdCI6MTc0NjM1ODkwM30.oz4KCucSI0qYujyo-izlfN-xVmZ2H2KjY5FAPHmfxzO2TQneJdmucqvBETq0lDCi8XJV7lpa8s5EZwTaWmBKybnS7V5bgUkwWktywo6CPoB0TfLIkYj7AVDnYQGeL8nD1t_pk1glqRMxw53vAaXwJje_TW994XxjaxGWWOz0N2n-OmwpFfaPS9hGIB1jvFURIX2eDPzNIW9eMiHVjy2oJu0RWYyY8KVSDfw5sgtT6oEHKiiX-DilyohTswxSoywRpJ8n3GISqNYXbIQsdu-Mw2ul6ck7iVH6cDIDNFdSewC5IeZpzwo1f_gPUdge0VJd7p2UwQ04CV5KF6TDMWDsQw\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1158,7 +1158,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoicmFzdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ1MTAyNDI2LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ1MDg0NDI2fQ.tmqbQXAfU2SwwxqaoakM30Mz2oMAWEmzikbAUhd3L_2flaZ1NUsyQGYJKhtvOGZWZnKBePzm6Kr7rZChGR4AZyTdM33n_5g4FuLx6JnqfNE-FSyeDbHjq4Swgq9wRTPpvT4D9DKOHRD_1RixwJP0zoEuhTz47cJI5wHHrwS4bhQM_R0I_CveaRz9YCm82d2he8mndczGicPLft4CNI3cairdmgms7GerX3CSJzPhWAJd01ihv5IVxlfISwFe6VD1Oo8URAxKYBwXvp23k_lMMBmxxk1TG4RLsf_taUsJmcZtKcWA8uL4XrAI9Dx_NHEMap8QWg9TOLyl-WUUr4NtbA",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ2Mzc3NDIxLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2MzU5NDIxfQ.n9IE9q4I-gTLjzuAmxUTpeLTBvg8FPD-xgqWsEeMCYsruPjvoGLMBpsCsvDWU9_YLwiInj5dh4NgKYmH_3-3TGBZxecUHbRor8FU_8OkWMbRHXnOekzEc42W8nvcaUOr-1sFXgEF1BjQ6uOm2PmEfz7K0zaxVUMTiUYFBDq9HG_5ffMJmB3jgGEMkfE7YLcbgMGdvInQ1edatPMd3tGIfqD19R1TemSuakZFzMxYRlRrqOrQbmyqTjJSiQMLF6NUEmTIxMNhKFe7VvrPKRz-FRbt9dYL-DaWF9K2ZFhXH6grSIGwLmnmVhQ3kMZ6XJ_kv5TBaeOEXvvTkNqPX8OUUA",
 									"type": "string"
 								}
 							]
@@ -1178,7 +1178,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"bik\",\r\n    \"isHalal\": true,\r\n    \"isMramor\": false\r\n}",
+							"raw": "{\r\n    \"title\": \"bik\",\r\n    \"isHalal\": true,\r\n    \"isMramor\": false,\r\n    \"files\": [\r\n        {\r\n            \"path\": \"slivAlsu.png\"\r\n        },\r\n        {\r\n            \"path\": \"nudsii.png\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1239,7 +1239,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ1MTAyNDc4LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ1MDg0NDc4fQ.HRYbXhN2PRt8oPtd276AK0G0kJHmYiVKgbjTAwgfm83mym3CaHcq-hUmXJVf0TnqRVmZ_zwLP50OtdJeypxTECrNlZvYSFw0ubG1uKi6sKeppNpy1OHfPINSq-rOSHq8JXqWxULTuyYUQaCbVOFxIWk1f-S87wSlFyu7BsLl_Y_ETeUx0-gwMJpldQyosDA9mQZ_RiDg_dDUNOlmzl1c7RkMWJhSx1pxQcwTsEmUh97W2pNmSwfB9H93uinu2Eny44I1SnWPrXh0l4Unx3Igw1sEYNf-A0qz36puSKy8V3K-Vu6baXty9I_2Rny2OqvyhPBqDjOQYjtzYW8_leQFFg",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc295ZWRAZ21haWwuY29tIiwiZXhwIjoxNzQ2Mzc4MDA2LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2MzYwMDA2fQ.q65sjxZwUF3JO_JcsYvo7k5DKDPse5yNOHvear9_jYj7KY9CzQjh5vCpobqQk6iWcCKnB1qdI3KACmL-l2eM3aZJDAKeufdvoaFsN4FpX9goCztgLq4SQhyMpMIfC8FBk0YaQ6n0picIzUognDv_WRf_Ff-zOHgX8xjI_4VERUus5KKmjV97nWbd9laU8uQGMEDikL8aCoCzoMjr9TyeYgYRPAX6ntyv8HGJf93ZCqXh6d5H9swWC2D8LovES7_VdIvTJqz_iczZjF5fhNezu_HwuZjuHeA8Uuf6dcwn5DIA_O_REz4QeZVb2ZNN7bq-acO41PMk-SB2kRtYZry5dg",
 									"type": "string"
 								}
 							]
@@ -1267,7 +1267,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/ads/beefs/1",
+							"raw": "{{base_url}}/api/v1/ads/beefs/2",
 							"host": [
 								"{{base_url}}"
 							],
@@ -1276,7 +1276,7 @@
 								"v1",
 								"ads",
 								"beefs",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -1307,22 +1307,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "New Request",
-					"request": {
-						"method": "POST",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "New Request",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
 				}
 			]
 		},
@@ -1341,13 +1325,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/specialmeats/{{ad_specialmeat_id}}",
+							"raw": "{{base_url}}/api/v1/ads/specialmeats/{{ad_specialmeat_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"specialmeats",
 								"{{ad_specialmeat_id}}"
 							]
@@ -1381,13 +1366,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/specialmeats/{{ad_specialmeat_id}}",
+							"raw": "{{base_url}}/api/v1/ads/specialmeats/{{ad_specialmeat_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"specialmeats",
 								"{{ad_specialmeat_id}}"
 							]
@@ -1401,13 +1387,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v1/specialmeats/{{ad_specialmeat_id}}",
+							"raw": "{{base_url}}/api/v1/ads/specialmeats/{{ad_specialmeat_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"specialmeats",
 								"{{ad_specialmeat_id}}"
 							]
@@ -1441,13 +1428,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/specialmeats/{{ad_specialmeat_id}}",
+							"raw": "{{base_url}}/api/v1/ads/specialmeats/{{ad_specialmeat_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"specialmeats",
 								"{{ad_specialmeat_id}}"
 							]
@@ -1467,13 +1455,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/specialmeats",
+							"raw": "{{base_url}}/api/v1/ads/specialmeats",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"specialmeats"
 							]
 						}
@@ -1497,13 +1486,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/sheepmeats/{{ad_sheepmeat_id}}",
+							"raw": "{{base_url}}/api/v1/ads/sheepmeats/{{ad_sheepmeat_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"sheepmeats",
 								"{{ad_sheepmeat_id}}"
 							]
@@ -1537,13 +1527,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/sheepmeats/{{ad_sheepmeat_id}}",
+							"raw": "{{base_url}}/api/v1/ads/sheepmeats/{{ad_sheepmeat_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"sheepmeats",
 								"{{ad_sheepmeat_id}}"
 							]
@@ -1557,13 +1548,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v1/sheepmeats/{{ad_sheepmeat_id}}",
+							"raw": "{{base_url}}/api/v1/ads/sheepmeats/{{ad_sheepmeat_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"sheepmeats",
 								"{{ad_sheepmeat_id}}"
 							]
@@ -1597,13 +1589,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/sheepmeats/{{ad_sheepmeat_id}}",
+							"raw": "{{base_url}}/api/v1/ads/sheepmeats/{{ad_sheepmeat_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"sheepmeats",
 								"{{ad_sheepmeat_id}}"
 							]
@@ -1623,13 +1616,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/sheepmeats",
+							"raw": "{{base_url}}/api/v1/ads/sheepmeats",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"sheepmeats"
 							]
 						}
@@ -1653,13 +1647,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/birds/{{ad_bird_id}}",
+							"raw": "{{base_url}}/api/v1/ads/birds/{{ad_bird_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"birds",
 								"{{ad_bird_id}}"
 							]
@@ -1693,13 +1688,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/birds/{{ad_bird_id}}",
+							"raw": "{{base_url}}/api/v1/ads/birds/{{ad_bird_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"birds",
 								"{{ad_bird_id}}"
 							]
@@ -1713,13 +1709,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v1/birds/{{ad_bird_id}}",
+							"raw": "{{base_url}}/api/v1/ads/birds/{{ad_bird_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"birds",
 								"{{ad_bird_id}}"
 							]
@@ -1753,13 +1750,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/birds/{{ad_bird_id}}",
+							"raw": "{{base_url}}/api/v1/ads/birds/{{ad_bird_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"birds",
 								"{{ad_bird_id}}"
 							]
@@ -1779,13 +1777,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/birds",
+							"raw": "{{base_url}}/api/v1/ads/birds",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v1",
+								"ads",
 								"birds"
 							]
 						}

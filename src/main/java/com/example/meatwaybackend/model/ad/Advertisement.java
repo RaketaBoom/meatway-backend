@@ -65,6 +65,6 @@ public class Advertisement {
     @OneToMany(mappedBy = "advertisement")
     private List<OptOrder> optOrders;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<File> files;
 }
