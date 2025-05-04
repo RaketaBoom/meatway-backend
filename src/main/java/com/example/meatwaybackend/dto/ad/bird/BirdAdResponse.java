@@ -1,6 +1,7 @@
 package com.example.meatwaybackend.dto.ad.bird;
 
 import com.example.meatwaybackend.dto.FileDto;
+import com.example.meatwaybackend.dto.user.UserProfileResponse;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,7 @@ public record BirdAdResponse(
         boolean hasMedicalCertificate,
         boolean isActive,
         Date creationDate,
-        List<FileDto> files
+        List<FileDto> files,
+        UserProfileResponse sellerUser
 ) {
 }

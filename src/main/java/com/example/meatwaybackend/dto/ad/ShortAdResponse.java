@@ -1,6 +1,7 @@
 package com.example.meatwaybackend.dto.ad;
 
 import com.example.meatwaybackend.dto.FileDto;
+import com.example.meatwaybackend.dto.user.UserProfileResponse;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +28,7 @@ public record ShortAdResponse(
         boolean isPremium,
         boolean hasMedicalCertificate,
         String birdType,
-        List<FileDto> files
+        List<FileDto> files,
+        UserProfileResponse sellerUser
 ) {
 }
