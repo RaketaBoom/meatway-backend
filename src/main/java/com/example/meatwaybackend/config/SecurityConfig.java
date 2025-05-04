@@ -49,6 +49,7 @@ public class SecurityConfig {
                                 "/webjars/**",
 
                                 "/api/v1/auth/**",
+                                "/api/v1/test/**",
                                 "/api/v1/register",
                                 "/api/v1/actuator/**"
                         ).permitAll()

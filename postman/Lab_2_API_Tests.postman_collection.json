@@ -1792,6 +1792,31 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "test",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/test/loaddata",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"test",
+								"loaddata"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
