@@ -2,9 +2,7 @@ package com.example.meatwaybackend.service;
 
 import com.example.meatwaybackend.dao.UserRepository;
 import com.example.meatwaybackend.dto.register.UserDTO;
-import com.example.meatwaybackend.dto.user.CreatedUserResponse;
 import com.example.meatwaybackend.dto.user.UpdatePasswordRequest;
-import com.example.meatwaybackend.dto.user.UserCreateRequest;
 import com.example.meatwaybackend.dto.user.UserEditRequest;
 import com.example.meatwaybackend.dto.user.UserProfileResponse;
 import com.example.meatwaybackend.dto.user.UserProfilesResponse;
@@ -53,11 +51,10 @@ public class UserService implements UserDetailsManager {
         return userMapper.userToUserProfileResponse(user);
     }
 
-    public CreatedUserResponse createUser(UserCreateRequest userCreateRequest) {
-        //TODO обернуть в try catch вернуть saveUserException с 500 ошибкой
-        User user = userRepository.save(userMapper.userCreateRequestToUser(userCreateRequest));
 
-        return userMapper.userToCreatedUserResponse(user);
+    public UserProfileResponse findByEmail(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException(User.class, 100));
+        return userMapper.userToUserProfileResponse(user);
     }
 
     public UserProfileResponse patchUser(String email, UserEditRequest updateRequest) {

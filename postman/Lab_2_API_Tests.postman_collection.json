@@ -305,6 +305,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "MyProfile info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ2MzczMTE3LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2MzU1MTE3fQ.g61udJl-3OEnEJkGEzvXXO3uOenHJerJNYyL_4-4VByjwf5SlETavJrjr90OmYoUZZjFd3CH0fC2Htwc7eR6_UeXpYq28vaESWKkQ7ghQu59CgDYEUEt5Qy8t3qCWYmh1gaJ7fLkXifXotR2wl-8yOYiXZtuhgWdRA-EF077mVnn1vrsnZ9EWL9abXYzCGtoFL2kpYztciu8O4y3ucMhYier6rzULwQdW4v-UrF3RJC--NxP7BTSPSA4yhkJ4xCFqwJ2ntu7PJ8rhhKM4Z3sVWHEZ8Taj0aBIXPALnZetSe-hNspCqk6OKSmzKBCuNwqqD1tYiCy92-fFG0NGRpPPw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/myprofile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"myprofile"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
