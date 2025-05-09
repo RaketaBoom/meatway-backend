@@ -1,7 +1,6 @@
 package com.example.meatwaybackend.service.ad;
 
 import com.example.meatwaybackend.dao.UserRepository;
-import com.example.meatwaybackend.dao.ad.AdvertisementRepository;
 import com.example.meatwaybackend.dao.ad.SheepmeatRepository;
 import com.example.meatwaybackend.dto.ad.ShortAdsResponse;
 import com.example.meatwaybackend.dto.ad.sheepmeat.SheepmeatAdResponse;
@@ -11,7 +10,6 @@ import com.example.meatwaybackend.handler.exception.InternalServerErrorException
 import com.example.meatwaybackend.handler.exception.auth.ForbiddenAccessException;
 import com.example.meatwaybackend.handler.exception.user.NotFoundException;
 import com.example.meatwaybackend.mapper.AdMapper;
-import com.example.meatwaybackend.model.ad.Beef;
 import com.example.meatwaybackend.model.ad.Sheepmeat;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -120,6 +118,7 @@ public class SheepmeatService {
         Sheepmeat sheepmeat = sheepmeatRepository.findById(id).orElseThrow(() -> new NotFoundException(Sheepmeat.class, id));
         validateSheepmeatAdOwner(email, sheepmeat);
         adMapper.updateSheepmeatFromSheepmeatAdSaveRequest(sheepmeat, request);
+        sheepmeatRepository.save(sheepmeat);
 
         return adMapper.toSheepmeatAdResponse(sheepmeat);
     }

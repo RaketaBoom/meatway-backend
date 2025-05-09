@@ -122,6 +122,7 @@ public class BeefService {
         Beef beef = beefRepository.findById(id).orElseThrow(() -> new NotFoundException(Beef.class, id));
         validateBeefAdOwner(email, beef);
         adMapper.updateBeefFromBeefAdSaveRequest(beef, request);
+        beefRepository.save(beef);
 
         return adMapper.toBeefAdResponse(beef);
     }

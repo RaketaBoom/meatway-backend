@@ -5,7 +5,6 @@ import com.example.meatwaybackend.dto.SaveRequestFileDto;
 import com.example.meatwaybackend.dto.ad.beef.BeefAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.pork.PorkAdSaveRequest;
 import com.example.meatwaybackend.dto.register.UserCreateDTO;
-import com.example.meatwaybackend.model.ad.Sheepmeat;
 import com.example.meatwaybackend.service.RegistrationService;
 import com.example.meatwaybackend.service.ad.BeefService;
 import com.example.meatwaybackend.service.ad.BirdService;
@@ -21,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,10 +38,10 @@ public class AdTestController {
 
     @PostMapping("/loaddata")
     @ResponseStatus(HttpStatus.CREATED)
-    public String loaddata(){
-        UserCreateDTO userPavel = new UserCreateDTO("pavel@mail.ru", "12345678", "12345678");
-        UserCreateDTO userMyasnik = new UserCreateDTO("myasnik@mail.ru", "12345678", "12345678");
-        UserCreateDTO userMclovin = new UserCreateDTO("mclovin@mail.ru", "12345678", "12345678");
+    public String loaddata() {
+        UserCreateDTO userPavel = new UserCreateDTO("pavel@mail.ru", "11111111", "12345678");
+        UserCreateDTO userMyasnik = new UserCreateDTO("myasnik@mail.ru", "11111111", "12345678");
+        UserCreateDTO userMclovin = new UserCreateDTO("mclovin@mail.ru", "11111111", "12345678");
 
         registrationService.create(userPavel);
         registrationService.create(userMyasnik);

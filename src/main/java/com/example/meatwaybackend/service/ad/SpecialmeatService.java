@@ -1,7 +1,6 @@
 package com.example.meatwaybackend.service.ad;
 
 import com.example.meatwaybackend.dao.UserRepository;
-import com.example.meatwaybackend.dao.ad.AdvertisementRepository;
 import com.example.meatwaybackend.dao.ad.SpecialmeatRepository;
 import com.example.meatwaybackend.dto.ad.ShortAdsResponse;
 import com.example.meatwaybackend.dto.ad.specialmeat.SpecialmeatAdResponse;
@@ -119,6 +118,8 @@ public class SpecialmeatService {
         Specialmeat specialmeat = specialmeatRepository.findById(id).orElseThrow(() -> new NotFoundException(Specialmeat.class, id));
         validateSpecialmeatAdOwner(email, specialmeat);
         adMapper.updateSpecialmeatFromSpecialmeatAdSaveRequest(specialmeat, request);
+        specialmeatRepository.save(specialmeat);
+
         return adMapper.toSpecialmeatAdResponse(specialmeat);
     }
 

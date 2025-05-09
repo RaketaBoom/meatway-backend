@@ -118,6 +118,7 @@ public class BirdService {
         Bird bird = birdRepository.findById(id).orElseThrow(() -> new NotFoundException(Bird.class, id));
         validateBirdAdOwner(email, bird);
         adMapper.updateBirdFromBirdAdSaveRequest(bird, request);
+        birdRepository.save(bird);
 
         return adMapper.toBirdAdResponse(bird);
     }

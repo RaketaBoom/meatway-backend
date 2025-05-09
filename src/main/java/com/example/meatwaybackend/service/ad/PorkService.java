@@ -41,7 +41,8 @@ public class PorkService {
                 Optional.ofNullable(page).orElse(DEFAULT_PAGE),
                 Optional.ofNullable(size).orElse(DEFAULT_SIZE),
                 Sort.by(sort)
-        );;
+        );
+        ;
         Page<Pork> pageResult = porkRepository.findAll(spec, pageable);
 
         return new ShortAdsResponse(
@@ -118,6 +119,7 @@ public class PorkService {
         Pork pork = porkRepository.findById(id).orElseThrow(() -> new NotFoundException(Pork.class, id));
         validatePorkAdOwner(email, pork);
         adMapper.updatePorkFromPorkAdSaveRequest(pork, request);
+        porkRepository.save(pork);
 
         return adMapper.toPorkAdResponse(pork);
     }
