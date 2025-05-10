@@ -12,5 +12,5 @@ import lombok.Setter;
 public class Specialmeat extends Advertisement {
     private String animalType;
     private String feedingType;
-    private Boolean halal;
+    private Boolean isHalal;
 }

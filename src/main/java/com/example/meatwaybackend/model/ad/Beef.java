@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Beef extends Advertisement {
-    private Boolean halal;
+    private Boolean isHalal;
     private Boolean isMramor;
     private String feedingType;
     private String cuttingType;

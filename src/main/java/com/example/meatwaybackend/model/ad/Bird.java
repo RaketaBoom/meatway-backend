@@ -11,6 +11,4 @@ import lombok.Setter;
 @Setter
 public class Bird extends Advertisement {
     private String birdType;
-
-    private String breed;
 }
