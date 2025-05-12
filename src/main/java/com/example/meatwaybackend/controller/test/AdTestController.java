@@ -56,19 +56,19 @@ public class AdTestController {
     private void loadPorksFor(UserCreateDTO user) {
         // 1. Полный вариант (премиум свинина)
         PorkAdSaveRequest premiumPork = new PorkAdSaveRequest(
-                "Свинина мраморная",
+                "Свинина хрюша",
                 "Отборная свинина с равномерной жировой прослойкой",
                 new BigDecimal("890.99"),
                 "Дюрок",
                 12,
                 110,
-                8,
+                4,
                 "Белгородская область",
                 false,
                 true,
-                new Date(),
                 new Date(System.currentTimeMillis() + 86400000L * 14),
-                new Date(System.currentTimeMillis() - 86400000L * 2),
+                null,
+                null,
                 true,
                 List.of(
                         new SaveRequestFileDto("/uploads/pork1.jpg"),
@@ -84,7 +84,7 @@ public class AdTestController {
                 "Ландрас",
                 10,
                 50,
-                1, // 1 партия
+                1,
                 "Тюмень",
                 true,
                 false,
@@ -98,16 +98,16 @@ public class AdTestController {
 // 3. Минимальный вариант (розница)
         PorkAdSaveRequest minimalRetail = new PorkAdSaveRequest(
                 "Свиная шея",
-                null,
+                "Шейка свинная",
                 new BigDecimal("650.50"),
                 null,
-                null,
-                null,
+                8,
+                10,
                 1,
                 "Москва",
-                false,
                 true,
-                new Date(),
+                false,
+                null,
                 null,
                 null,
                 false,
@@ -122,7 +122,7 @@ public class AdTestController {
     private void loadBeefsFor(UserCreateDTO user) {
         BeefAdSaveRequest beef1 = new BeefAdSaveRequest(
                 "Премиальная говядина Black Angus",
-                "Свежая мраморная говядина высшего качества, сухой созревания 21 день",
+                "Свежая мраморная говядина высшего качества",
                 new BigDecimal("1250.99"),
                 "Black Angus",
                 24,
@@ -131,8 +131,8 @@ public class AdTestController {
                 "Краснодарский край",
                 false,
                 true,
-                null,  // через 7 дней
-                null, // через 30 дней
+                null,
+                null,
                 new Date(System.currentTimeMillis() + 86400000L * 7),
                 true,
                 true,
@@ -145,17 +145,17 @@ public class AdTestController {
 
         BeefAdSaveRequest beef2 = new BeefAdSaveRequest(
                 "Говядина фермерская",
-                null,  // описание не обязательно
+                "Растил буренку на сене",
                 new BigDecimal("850.50"),
                 null,  // порода не указана
-                null,  // возраст не указан
-                null,  // вес не указан
+                15,  // возраст не указан
+                190,  // вес не указан
                 1,     // минимальное количество
                 "Ленинградская область",
                 false,
                 false,
-                null,
-                null,
+                new Date(System.currentTimeMillis() + 86400000L * 2),
+                new Date(System.currentTimeMillis() + 86400000L * 14),
                 null,
                 false,
                 false,
