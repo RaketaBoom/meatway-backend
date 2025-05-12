@@ -220,7 +220,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"myasoyed@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"raw": "{\r\n    \"email\": \"myasnik@mail.ru\",\r\n    \"password\": \"11111111\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1117,14 +1117,7 @@
 					"name": "GET Beef Ad by Id",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoicmFzdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ0NDY2MjA0LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ0NDQ4MjA0fQ.Oe1Nu4FboWdWqDPFqkLNz1cbOpN__7Up5T3UazyzDUBOYxJd1Zdh5vcgRNMf2DYek0OlbbH4m9VHmQmaSG2RVaPe_ZWFS5z9LFt892dlcG4VlGXF7piBzYgqbAU_J5ZnL-l_5YJ8x06i6fQry6CCleKVjAf27czgU9ARp9zeq_6S02hRM5ye1XuiEMm4p4jW8QcMmwHTaQHwFAuLJMopRkp7kW4h_knJoUHl0Tpcpa1SM7ZHRrhfkqJ97nhd9EmBGSHOs3QTbiRLkJGctk4M1uFgAtsQ8Co7O1JDU-YZZ9BgKCnLqho1UgfNLz-jjLtN6Sh4sJqEJfaR5QNj-RMDTw",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [
@@ -1135,7 +1128,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/ads/beefs/1",
+							"raw": "{{base_url}}/api/v1/ads/beefs/4",
 							"host": [
 								"{{base_url}}"
 							],
@@ -1144,7 +1137,7 @@
 								"v1",
 								"ads",
 								"beefs",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -1158,7 +1151,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoiYXJ0ZW1AZ21haWwuY29tIiwiZXhwIjoxNzQ2Mzc3NDIxLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2MzU5NDIxfQ.n9IE9q4I-gTLjzuAmxUTpeLTBvg8FPD-xgqWsEeMCYsruPjvoGLMBpsCsvDWU9_YLwiInj5dh4NgKYmH_3-3TGBZxecUHbRor8FU_8OkWMbRHXnOekzEc42W8nvcaUOr-1sFXgEF1BjQ6uOm2PmEfz7K0zaxVUMTiUYFBDq9HG_5ffMJmB3jgGEMkfE7YLcbgMGdvInQ1edatPMd3tGIfqD19R1TemSuakZFzMxYRlRrqOrQbmyqTjJSiQMLF6NUEmTIxMNhKFe7VvrPKRz-FRbt9dYL-DaWF9K2ZFhXH6grSIGwLmnmVhQ3kMZ6XJ_kv5TBaeOEXvvTkNqPX8OUUA",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc25pa0BtYWlsLnJ1IiwiZXhwIjoxNzQ3MDg2MzgzLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ3MDY4MzgzfQ.mM-RMACAJKPHP9_DoTXq3W67QdR4T7DQpjPFrJhJtrxmLDzGtNl8AgKi_2wZhoyv_Qq7_Ac3IIwzgLrnYOPxxni-O4z3zonddcR4iEojWZUkVeDsvS3OJWY-yfC6rgHeIJy3kyX-Avd7tvOKzuwOHQaP1kyOOMdxvcVb_JzcvB_B3_1nHG5PnaLx2XN6kHxBHNWZFzgT6aK-BRbGlPWnpB5OIothEuuFg7Z_EvAr_sVRa8xiXEi8dyk1fzPwEdf4OUlX1WP3ZVbp4Kwf8q_Cowv23FJLsK2vbozudOrWPe4D16eZmD7z4555PCZZIDB8JP8IOI-bmXVTaN4oj5rktw",
 									"type": "string"
 								}
 							]
@@ -1208,7 +1201,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoicmFzdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ1MTAyNDI2LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ1MDg0NDI2fQ.tmqbQXAfU2SwwxqaoakM30Mz2oMAWEmzikbAUhd3L_2flaZ1NUsyQGYJKhtvOGZWZnKBePzm6Kr7rZChGR4AZyTdM33n_5g4FuLx6JnqfNE-FSyeDbHjq4Swgq9wRTPpvT4D9DKOHRD_1RixwJP0zoEuhTz47cJI5wHHrwS4bhQM_R0I_CveaRz9YCm82d2he8mndczGicPLft4CNI3cairdmgms7GerX3CSJzPhWAJd01ihv5IVxlfISwFe6VD1Oo8URAxKYBwXvp23k_lMMBmxxk1TG4RLsf_taUsJmcZtKcWA8uL4XrAI9Dx_NHEMap8QWg9TOLyl-WUUr4NtbA",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc25pa0BtYWlsLnJ1IiwiZXhwIjoxNzQ2ODEyMjQwLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2Nzk0MjQwfQ.E3rtbZtIbzua17ERi000NIe6Ch1VX4kBS4bifoklglhi67s9JgBix9gBzEZV_awDk2e7otDRguN9Ra-EZgZ77xJ9YzPphAQVEZ_IinR2pNZIA8CXF9_fD_faf0llXULiPobVnECBbfka2RmWqzfkM66udTcXzWzgfjI6KbcynMPbnjMD26lnPj796TB7tu4grBFfooasc2_fyG6r7CHwkdITJnBLoLmir4uZxZ4n1-5fZqCiSGjooRrfI3PNBxvOBg6inxz01Wnm9pssvNvEz5hp-uMuX6eNw6MRf1h8oqWBF8sTfTy4OHYr_umFzIbaE-hLjfLkhbN000PmlOnNAQ",
 									"type": "string"
 								}
 							]
@@ -1239,7 +1232,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc295ZWRAZ21haWwuY29tIiwiZXhwIjoxNzQ2Mzc4MDA2LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2MzYwMDA2fQ.q65sjxZwUF3JO_JcsYvo7k5DKDPse5yNOHvear9_jYj7KY9CzQjh5vCpobqQk6iWcCKnB1qdI3KACmL-l2eM3aZJDAKeufdvoaFsN4FpX9goCztgLq4SQhyMpMIfC8FBk0YaQ6n0picIzUognDv_WRf_Ff-zOHgX8xjI_4VERUus5KKmjV97nWbd9laU8uQGMEDikL8aCoCzoMjr9TyeYgYRPAX6ntyv8HGJf93ZCqXh6d5H9swWC2D8LovES7_VdIvTJqz_iczZjF5fhNezu_HwuZjuHeA8Uuf6dcwn5DIA_O_REz4QeZVb2ZNN7bq-acO41PMk-SB2kRtYZry5dg",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc25pa0BtYWlsLnJ1IiwiZXhwIjoxNzQ2ODEyMjQwLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2Nzk0MjQwfQ.E3rtbZtIbzua17ERi000NIe6Ch1VX4kBS4bifoklglhi67s9JgBix9gBzEZV_awDk2e7otDRguN9Ra-EZgZ77xJ9YzPphAQVEZ_IinR2pNZIA8CXF9_fD_faf0llXULiPobVnECBbfka2RmWqzfkM66udTcXzWzgfjI6KbcynMPbnjMD26lnPj796TB7tu4grBFfooasc2_fyG6r7CHwkdITJnBLoLmir4uZxZ4n1-5fZqCiSGjooRrfI3PNBxvOBg6inxz01Wnm9pssvNvEz5hp-uMuX6eNw6MRf1h8oqWBF8sTfTy4OHYr_umFzIbaE-hLjfLkhbN000PmlOnNAQ",
 									"type": "string"
 								}
 							]
@@ -1259,7 +1252,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"title\": \"jnin\"\r\n}",
+							"raw": "{\r\n  \"title\": \"jnin\",\r\n  \"files\":[\r\n    {\r\n        \"path\": \"alqash.png\"\r\n    },\r\n    {\r\n        \"path\": \"alqash2.png\"\r\n    }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1267,7 +1260,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/ads/beefs/2",
+							"raw": "{{base_url}}/api/v1/ads/beefs/4",
 							"host": [
 								"{{base_url}}"
 							],
@@ -1276,7 +1269,7 @@
 								"v1",
 								"ads",
 								"beefs",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -1285,6 +1278,16 @@
 				{
 					"name": "GET Beef Ads",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc295ZWRAZ21haWwuY29tIiwiZXhwIjoxNzQ2ODEyMDExLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2Nzk0MDExfQ.ePNxq1kv3pKREyhbfVTeuP5H9z35IXmlGQ_7us7xnOLVsIZWyxcmgSGsYjmiQ0EXpTvMT0F2dytxTcaCusomtojQ0s2pFoFejYDtxextP0C8G0R2qSZaZMBYwxzwchPTQVV4ED7bTabkzou92RLvUq9OrxB8pI8wSYpudgOYOzuksWflH5-zRc3xpWx2--iRcsFS5TfR6OOVdPD2MMkJpsNk4mOeMGR9hifTMBR8-GaVVHNM-Lbyi0aGPYdE9MgUZnYOhPoePjHhigxvfyWx6hk2-n1bAASzGiCcu1mP0lzMvyKd8rVQ9Gpo69jjwM5riHifa-azRh14I9SHwGCUrw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -1647,7 +1650,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/ads/birds/{{ad_bird_id}}",
+							"raw": "{{base_url}}/api/v1/ads/birds/8",
 							"host": [
 								"{{base_url}}"
 							],
@@ -1656,7 +1659,7 @@
 								"v1",
 								"ads",
 								"birds",
-								"{{ad_bird_id}}"
+								"8"
 							]
 						}
 					},
@@ -1665,6 +1668,16 @@
 				{
 					"name": "POST Create Bird Ad",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc25pa0BtYWlsLnJ1IiwiZXhwIjoxNzQ3MDg2MzgzLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ3MDY4MzgzfQ.mM-RMACAJKPHP9_DoTXq3W67QdR4T7DQpjPFrJhJtrxmLDzGtNl8AgKi_2wZhoyv_Qq7_Ac3IIwzgLrnYOPxxni-O4z3zonddcR4iEojWZUkVeDsvS3OJWY-yfC6rgHeIJy3kyX-Avd7tvOKzuwOHQaP1kyOOMdxvcVb_JzcvB_B3_1nHG5PnaLx2XN6kHxBHNWZFzgT6aK-BRbGlPWnpB5OIothEuuFg7Z_EvAr_sVRa8xiXEi8dyk1fzPwEdf4OUlX1WP3ZVbp4Kwf8q_Cowv23FJLsK2vbozudOrWPe4D16eZmD7z4555PCZZIDB8JP8IOI-bmXVTaN4oj5rktw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -1680,7 +1693,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"bird_type\": \"aaa\",\r\n    \"halal\": true\r\n}",
+							"raw": "{\r\n    \"birdType\": \"aaa\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1688,7 +1701,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/ads/birds/{{ad_bird_id}}",
+							"raw": "{{base_url}}/api/v1/ads/birds",
 							"host": [
 								"{{base_url}}"
 							],
@@ -1696,8 +1709,7 @@
 								"api",
 								"v1",
 								"ads",
-								"birds",
-								"{{ad_bird_id}}"
+								"birds"
 							]
 						}
 					},
