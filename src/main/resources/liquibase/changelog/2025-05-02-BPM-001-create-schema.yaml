@@ -81,7 +81,7 @@ databaseChangeLog:
                   name: seller_user_id
                   type: bigint
               - column:
-                  name: halal
+                  name: is_halal
                   type: boolean
               - column:
                   name: has_medical_certificate

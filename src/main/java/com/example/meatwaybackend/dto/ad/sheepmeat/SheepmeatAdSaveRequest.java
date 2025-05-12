@@ -14,13 +14,13 @@ public record SheepmeatAdSaveRequest(
         Integer weight,
         Integer quantity,
         String location,
-        boolean isFrozen,
-        boolean isRetail,
+        Boolean isFrozen,
+        Boolean isRetail,
         Date dateBegin,
         Date dateEnd,
         Date killDate,
-        boolean isHalal,
-        boolean hasMedicalCertificate,
+        Boolean isHalal,
+        Boolean hasMedicalCertificate,
         List<SaveRequestFileDto> files
 ) {
 }

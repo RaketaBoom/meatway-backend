@@ -39,9 +39,9 @@ public class AdTestController {
     @PostMapping("/loaddata")
     @ResponseStatus(HttpStatus.CREATED)
     public String loaddata() {
-        UserCreateDTO userPavel = new UserCreateDTO("pavel@mail.ru", "11111111", "12345678");
-        UserCreateDTO userMyasnik = new UserCreateDTO("myasnik@mail.ru", "11111111", "12345678");
-        UserCreateDTO userMclovin = new UserCreateDTO("mclovin@mail.ru", "11111111", "12345678");
+        UserCreateDTO userPavel = new UserCreateDTO("pavel@mail.ru", "11111111", "11111111");
+        UserCreateDTO userMyasnik = new UserCreateDTO("myasnik@mail.ru", "11111111", "11111111");
+        UserCreateDTO userMclovin = new UserCreateDTO("mclovin@mail.ru", "11111111", "11111111");
 
         registrationService.create(userPavel);
         registrationService.create(userMyasnik);

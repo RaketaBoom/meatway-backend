@@ -16,7 +16,7 @@ public record SpecialmeatAdsRequest(
         Integer monthsAgeTo,
         Date dateBegin,
         Date dateEnd,
-        boolean isHalal,
+        Boolean isHalal,
         String animalType
 ) {
 }

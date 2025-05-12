@@ -63,7 +63,7 @@ public class BirdController {
         return birdService.findById(id);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(
             summary = "Создать объявление c птицей",

@@ -16,6 +16,6 @@ public record SheepmeatAdsRequest(
         Integer monthsAgeTo,
         Date dateBegin,
         Date dateEnd,
-        boolean isHalal
-){
-};
+        Boolean isHalal
+) {
+}
