@@ -8,6 +8,7 @@ import java.util.List;
 
 public record SpecialmeatAdResponse(
         Long id,
+        String meatType,
         String title,
         String description,
         BigDecimal price,

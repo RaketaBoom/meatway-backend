@@ -24,6 +24,9 @@ public class Advertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "ad_type", insertable = false, updatable = false)
+    private String meatType;
+
     private String title;
 
     private String description;

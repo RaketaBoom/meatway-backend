@@ -8,6 +8,7 @@ import java.util.List;
 
 public record ShortAdResponse(
         Long id,
+        String meatType,
         String title,
         BigDecimal price,
         String animalType,
