@@ -46,6 +46,8 @@ public class AdTestController {
         UserCreateDTO userMyasnik = new UserCreateDTO("myasnik@mail.ru", "11111111", "11111111");
         UserCreateDTO userMclovin = new UserCreateDTO("mclovin@mail.ru", "11111111", "11111111");
 
+
+
         registrationService.create(userPavel);
         registrationService.create(userMyasnik);
         registrationService.create(userMclovin);
@@ -63,6 +65,7 @@ public class AdTestController {
     private void loadBeefAds(UserCreateDTO user) {
         // Говядина 1
         BeefAdSaveRequest beef1 = new BeefAdSaveRequest(
+                null,
                 "Говядина высшего сорта, фермерская",
                 "Свежая говядина от проверенного производителя. Мраморная текстура, без консервантов.",
                 new BigDecimal("780"),
@@ -87,6 +90,7 @@ public class AdTestController {
 
         // Говядина 2
         BeefAdSaveRequest beef2 = new BeefAdSaveRequest(
+                null,
                 "Замороженная говядина на кости",
                 "Мясные блоки на кости, идеально для шашлыков и бульонов.",
                 new BigDecimal("520"),
@@ -116,6 +120,7 @@ public class AdTestController {
     private void loadPorkAds(UserCreateDTO user) {
         // Свинина 1
         PorkAdSaveRequest pork1 = new PorkAdSaveRequest(
+                null,
                 "Свинина фермерская, свежая",
                 "Фермерская свинина без гормонов, экологически чистое мясо.",
                 new BigDecimal("580"),
@@ -138,6 +143,7 @@ public class AdTestController {
 
         // Свинина 2
         PorkAdSaveRequest pork2 = new PorkAdSaveRequest(
+                null,
                 "Замороженное мясо свинины оптом",
                 "Крупный опт. Замороженные блоки свинины для перепродажи.",
                 new BigDecimal("480"),
@@ -162,6 +168,7 @@ public class AdTestController {
     private void loadSheepmeatAds(UserCreateDTO user) {
         // Баранина 1
         SheepmeatAdSaveRequest sheepmeat1 = new SheepmeatAdSaveRequest(
+                null,
                 "Баранина свежая, молодого ягнёнка",
                 "Свежая баранина, мясо молодого ягнёнка, без запаха, нежное.",
                 new BigDecimal("850"),
@@ -187,6 +194,7 @@ public class AdTestController {
 
         // Баранина 2
         SheepmeatAdSaveRequest sheepmeat2 = new SheepmeatAdSaveRequest(
+                null,
                 "Замороженная оленина",
                 "Замороженное мясо ягнят, отличное качество, сертифицировано.",
                 new BigDecimal("750"),
@@ -217,6 +225,7 @@ public class AdTestController {
     private void loadBirdAds(UserCreateDTO user) {
         // Птица 1
         BirdAdSaveRequest bird1 = new BirdAdSaveRequest(
+                null,
                 "Цыпленок бройлер свежий",
                 "Свежее мясо цыпленка бройлера, без химии, домашнее выращивание.",
                 new BigDecimal("280"),
@@ -240,6 +249,7 @@ public class AdTestController {
 
         // Птица 2
         BirdAdSaveRequest bird2 = new BirdAdSaveRequest(
+                null,
                 "Индейка замороженная, охлаждённая",
                 "Охлаждённое мясо индейки, подходит для праздника и диетического питания.",
                 new BigDecimal("350"),
@@ -268,6 +278,7 @@ public class AdTestController {
     private void loadSpecialmeatAds(UserCreateDTO user) {
         // Спец мясо 1
         SpecialmeatAdSaveRequest specialmeat1 = new SpecialmeatAdSaveRequest(
+                null,
                 "Лосятина свежезамороженная, охотничья",
                 "Мясо молодого лося, добыто в экологически чистом районе. Подходит для запекания и гриля.",
                 new BigDecimal("1500"),
@@ -291,6 +302,7 @@ public class AdTestController {
 
         // Спец мясо 2
         SpecialmeatAdSaveRequest specialmeat2 = new SpecialmeatAdSaveRequest(
+                null,
                 "Филе лося, порционное, вакуум",
                 "Порционные куски филе лося, упакованы в вакуум, отличное качество.",
                 new BigDecimal("1800"),

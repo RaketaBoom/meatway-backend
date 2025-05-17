@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public record PorkAdSaveRequest(
+        String meatType,// убрать
         String title,
         String description,
         BigDecimal price,
