@@ -1128,7 +1128,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/v1/ads/beefs/4",
+							"raw": "{{base_url}}/api/v1/ads/beefs/1",
 							"host": [
 								"{{base_url}}"
 							],
@@ -1137,7 +1137,7 @@
 								"v1",
 								"ads",
 								"beefs",
-								"4"
+								"1"
 							]
 						}
 					},
@@ -1151,7 +1151,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc25pa0BtYWlsLnJ1IiwiZXhwIjoxNzQ3MDg2MzgzLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ3MDY4MzgzfQ.mM-RMACAJKPHP9_DoTXq3W67QdR4T7DQpjPFrJhJtrxmLDzGtNl8AgKi_2wZhoyv_Qq7_Ac3IIwzgLrnYOPxxni-O4z3zonddcR4iEojWZUkVeDsvS3OJWY-yfC6rgHeIJy3kyX-Avd7tvOKzuwOHQaP1kyOOMdxvcVb_JzcvB_B3_1nHG5PnaLx2XN6kHxBHNWZFzgT6aK-BRbGlPWnpB5OIothEuuFg7Z_EvAr_sVRa8xiXEi8dyk1fzPwEdf4OUlX1WP3ZVbp4Kwf8q_Cowv23FJLsK2vbozudOrWPe4D16eZmD7z4555PCZZIDB8JP8IOI-bmXVTaN4oj5rktw",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc25pa0BtYWlsLnJ1IiwiZXhwIjoxNzQ3NDcxNDE5LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ3NDUzNDE5fQ.oS_ETF4a9jOzH52nyW-4myOZkkW97qWhoAJIMIP5Gcg5MoPdN_ym_cMr4wY5IG1f8UfED1CMCROrAl1Zjhzm8HXXIsFN7SpkuCZVUOCW2MLv8lk8FUmosNK6UGVvZIA2NHjhRQBNcF-nA9E9-q8NyQevtlVCyh-Dm6FH-SCfkMopv8sIMZs4anITAYacMkf3idWiGWpxosB_QKJvv3z9SlyaoFfL-scpBq81-vWTPcZff-jBvu9VWRmk4l0xmlLDn6bcXtZ6u-V6ubdOk3pTwTAeNVhsG4as0gd48bPU8AivdGPyN8sfWxGZgEJvsUYMa1XvMOpmGIkL8-450dcOuw",
 									"type": "string"
 								}
 							]
@@ -1279,14 +1279,7 @@
 					"name": "GET Beef Ads",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc295ZWRAZ21haWwuY29tIiwiZXhwIjoxNzQ2ODEyMDExLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ2Nzk0MDExfQ.ePNxq1kv3pKREyhbfVTeuP5H9z35IXmlGQ_7us7xnOLVsIZWyxcmgSGsYjmiQ0EXpTvMT0F2dytxTcaCusomtojQ0s2pFoFejYDtxextP0C8G0R2qSZaZMBYwxzwchPTQVV4ED7bTabkzou92RLvUq9OrxB8pI8wSYpudgOYOzuksWflH5-zRc3xpWx2--iRcsFS5TfR6OOVdPD2MMkJpsNk4mOeMGR9hifTMBR8-GaVVHNM-Lbyi0aGPYdE9MgUZnYOhPoePjHhigxvfyWx6hk2-n1bAASzGiCcu1mP0lzMvyKd8rVQ9Gpo69jjwM5riHifa-azRh14I9SHwGCUrw",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [
@@ -1346,6 +1339,16 @@
 				{
 					"name": "POST Create Specialmeat Ad",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc25pa0BtYWlsLnJ1IiwiZXhwIjoxNzQ3NDgxNDE4LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ3NDYzNDE4fQ.t7crq_7J3ax84Uaat0mcsg1xwwzQpbvnPo9SDOeBAV-SO4SFFlOAsIWKwPrbj2avxmo_-oYuZGKyLBX8H562nv6byH1VStqGiRzg2rs_LYZLHCuB0nL_uYLlgdoHlB2Q-kcje6nT21sL7eiBKApMY2jQErYayGi3Jko6pkRBQW8Gp67KOBqQuRFsqTHV7i468pfdQHsU2sTc2d_RQRntl4us2dUKEZeAcES1UGOY0KLAwplsSTOBt43aJkSN4DPaifcK_EEHzjtw4M9XBz_LG76fHZ3TJ7-P3TfZ-Uou697BTVOKGCFpDzUmL2x_2oHedhuonDivBRIfJiM9Ncnn4w",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -1361,7 +1364,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"animal_type\": \"camel\",\r\n    \"halal\": true\r\n}",
+							"raw": "{\r\n    \"title\": \"Баранина свежая, молодого ягнёнка\",\r\n    \"description\": \"Свежая баранина, мясо молодого ягнёнка, без запаха, нежное.\",\r\n    \"price\": 850,\r\n    \"hasMedicalCertificate\": true,\r\n    \"weight\": 1.5,\r\n    \"location\": \"Челябинск\",\r\n    \"isFrozen\": false,\r\n    \"isRetail\": true,\r\n    \"quantity\": 30,\r\n    \"breed\": \"Эдильбаевский\",\r\n    \"monthsAge\": 6,\r\n    \"isHalal\": true,\r\n    \"feedingType\": \"Пастбищный откорм\",\r\n    \"cuttingType\": \"Лопаточная часть\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1369,7 +1372,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/ads/specialmeats/{{ad_specialmeat_id}}",
+							"raw": "{{base_url}}/api/v1/ads/specialmeats",
 							"host": [
 								"{{base_url}}"
 							],
@@ -1377,8 +1380,7 @@
 								"api",
 								"v1",
 								"ads",
-								"specialmeats",
-								"{{ad_specialmeat_id}}"
+								"specialmeats"
 							]
 						}
 					},
@@ -1507,6 +1509,16 @@
 				{
 					"name": "POST Create Sheepmeat Ad",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtZWF0d2F5LnJ1Iiwic3ViIjoibXlhc25pa0BtYWlsLnJ1IiwiZXhwIjoxNzQ3NDgxNDE4LCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzQ3NDYzNDE4fQ.t7crq_7J3ax84Uaat0mcsg1xwwzQpbvnPo9SDOeBAV-SO4SFFlOAsIWKwPrbj2avxmo_-oYuZGKyLBX8H562nv6byH1VStqGiRzg2rs_LYZLHCuB0nL_uYLlgdoHlB2Q-kcje6nT21sL7eiBKApMY2jQErYayGi3Jko6pkRBQW8Gp67KOBqQuRFsqTHV7i468pfdQHsU2sTc2d_RQRntl4us2dUKEZeAcES1UGOY0KLAwplsSTOBt43aJkSN4DPaifcK_EEHzjtw4M9XBz_LG76fHZ3TJ7-P3TfZ-Uou697BTVOKGCFpDzUmL2x_2oHedhuonDivBRIfJiM9Ncnn4w",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -1522,7 +1534,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"halal\": true\r\n}",
+							"raw": "{\r\n    \"title\": \"Баранина свежая, молодого ягнёнка\",\r\n    \"description\": \"Свежая баранина, мясо молодого ягнёнка, без запаха, нежное.\",\r\n    \"price\": 850,\r\n    \"hasMedicalCertificate\": true,\r\n    \"weight\": 1,\r\n    \"location\": \"Челябинск\",\r\n    \"isFrozen\": false,\r\n    \"isRetail\": true,\r\n    \"quantity\": 30,\r\n    \"breed\": \"Эдильбаевский\",\r\n    \"monthsAge\": 6,\r\n    \"isHalal\": true,\r\n    \"feedingType\": \"Пастбищный откорм\",\r\n    \"cuttingType\": \"Лопаточная часть\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1530,7 +1542,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/ads/sheepmeats/{{ad_sheepmeat_id}}",
+							"raw": "{{base_url}}/api/v1/ads/sheepmeats",
 							"host": [
 								"{{base_url}}"
 							],
@@ -1538,8 +1550,7 @@
 								"api",
 								"v1",
 								"ads",
-								"sheepmeats",
-								"{{ad_sheepmeat_id}}"
+								"sheepmeats"
 							]
 						}
 					},
