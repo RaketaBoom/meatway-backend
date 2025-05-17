@@ -82,6 +82,8 @@ public class AdTestController {
                 false,
                 true,
                 true,
+                null,
+                null,
                 List.of(
                         new SaveRequestFileDto("test-ad-beef-1-1photo.jpg"),
                         new SaveRequestFileDto("test-ad-beef-2-1photo.jpg")
@@ -107,6 +109,8 @@ public class AdTestController {
                 true,
                 false,
                 false,
+                null,
+                null,
                 List.of(
                         new SaveRequestFileDto("test-ad-beef-2-2photo.jpg"),
                         new SaveRequestFileDto("test-ad-beef-2-3photo.jpg")
@@ -135,6 +139,8 @@ public class AdTestController {
                 null,
                 null,
                 true,
+                null,
+                null,
                 List.of(
                         new SaveRequestFileDto("test-ad-pork-1-1photo.jpg"),
                         new SaveRequestFileDto("test-ad-pork-2-1photo.jpg")
@@ -158,6 +164,8 @@ public class AdTestController {
                 null,
                 null,
                 true,
+                null,
+                null,
                 List.of()
         );
 
@@ -294,6 +302,8 @@ public class AdTestController {
                 null,
                 false,
                 true,
+                null,
+                null,
                 List.of(
                         new SaveRequestFileDto("test-ad-specialmeat-1-1photo.jpg"),
                         new SaveRequestFileDto("test-ad-specialmeat-1-2photo.jpg")
@@ -318,6 +328,8 @@ public class AdTestController {
                 null,
                 false,
                 true,
+                null,
+                null,
                 List.of(
                         new SaveRequestFileDto("test-ad-specialmeat-2-1photo.jpg"),
                         new SaveRequestFileDto("test-ad-specialmeat-2-2photo.jpg")
