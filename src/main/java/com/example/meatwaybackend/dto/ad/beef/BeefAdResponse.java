@@ -27,6 +27,8 @@ public record BeefAdResponse(
         boolean hasMedicalCertificate,
         boolean isActive,
         Date creationDate,
+        String cuttingType,
+        String feedingType,
         List<FileDto> files,
         UserProfileResponse sellerUser
 ) {

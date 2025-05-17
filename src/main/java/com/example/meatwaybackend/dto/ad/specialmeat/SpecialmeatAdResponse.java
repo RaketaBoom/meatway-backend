@@ -26,6 +26,8 @@ public record SpecialmeatAdResponse(
         Boolean hasMedicalCertificate,
         Boolean isActive,
         Date creationDate,
+        String feedingType,
+        String animalType,
         List<FileDto> files,
         UserProfileResponse sellerUser
 ) {

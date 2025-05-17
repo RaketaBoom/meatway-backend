@@ -26,6 +26,8 @@ public record PorkAdResponse(
         Boolean isActive,
         Date creationDate,
         List<FileDto> files,
+        String fatContent,
+        String processingType,
         UserProfileResponse sellerUser
 ) {
 }

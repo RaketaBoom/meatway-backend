@@ -27,6 +27,8 @@ public record SheepmeatAdResponse(
         Boolean isActive,
         Date creationDate,
         List<FileDto> files,
+        String cuttingType,
+        String feedingType,
         UserProfileResponse sellerUser
 ) {
 }
