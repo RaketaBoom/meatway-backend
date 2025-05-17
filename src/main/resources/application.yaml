@@ -21,3 +21,23 @@ springdoc:
 rsa:
   private-key: classpath:certs/private.pem
   public-key: classpath:certs/public.pem
+
+management:
+  endpoint:
+    prometheus:
+      access: read_only
+
+  endpoints:
+    web:
+      exposure:
+        include:
+          - prometheus
+          - health
+      base-path: /api/v1/actuator  # базовый путь для Actuator (при смене - поменять также и в конфиге nginx)
+
+  observations:
+    key-values.application: app # тэг-название сервиса (для графана), заренеймить
+  metrics:
+    tags.application: app # тэг-название сервиса (для графана), заренеймить
+    enable:
+      flyway: true # для мониторинга состояния миграций через Actuator

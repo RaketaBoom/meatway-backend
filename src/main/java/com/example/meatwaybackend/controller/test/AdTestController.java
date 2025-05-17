@@ -3,7 +3,10 @@ package com.example.meatwaybackend.controller.test;
 import com.example.meatwaybackend.controller.order.OptOrderController;
 import com.example.meatwaybackend.dto.SaveRequestFileDto;
 import com.example.meatwaybackend.dto.ad.beef.BeefAdSaveRequest;
+import com.example.meatwaybackend.dto.ad.bird.BirdAdSaveRequest;
 import com.example.meatwaybackend.dto.ad.pork.PorkAdSaveRequest;
+import com.example.meatwaybackend.dto.ad.sheepmeat.SheepmeatAdSaveRequest;
+import com.example.meatwaybackend.dto.ad.specialmeat.SpecialmeatAdSaveRequest;
 import com.example.meatwaybackend.dto.register.UserCreateDTO;
 import com.example.meatwaybackend.service.RegistrationService;
 import com.example.meatwaybackend.service.ad.BeefService;
@@ -13,7 +16,6 @@ import com.example.meatwaybackend.service.ad.SheepmeatService;
 import com.example.meatwaybackend.service.ad.SpecialmeatService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +41,7 @@ public class AdTestController {
     @PostMapping("/loaddata")
     @ResponseStatus(HttpStatus.CREATED)
     public String loaddata() {
+        // Создаем тестовых пользователей
         UserCreateDTO userPavel = new UserCreateDTO("pavel@mail.ru", "11111111", "11111111");
         UserCreateDTO userMyasnik = new UserCreateDTO("myasnik@mail.ru", "11111111", "11111111");
         UserCreateDTO userMclovin = new UserCreateDTO("mclovin@mail.ru", "11111111", "11111111");
@@ -47,146 +50,269 @@ public class AdTestController {
         registrationService.create(userMyasnik);
         registrationService.create(userMclovin);
 
-        loadBeefsFor(userMyasnik);
-        loadPorksFor(userMyasnik);
+        // Загружаем тестовые объявления
+        loadBeefAds(userMyasnik);
+        loadPorkAds(userMyasnik);
+        loadSheepmeatAds(userMyasnik);
+        loadBirdAds(userMyasnik);
+        loadSpecialmeatAds(userMyasnik);
 
         return "success";
     }
 
-    private void loadPorksFor(UserCreateDTO user) {
-        // 1. Полный вариант (премиум свинина)
-        PorkAdSaveRequest premiumPork = new PorkAdSaveRequest(
-                "Свинина хрюша",
-                "Отборная свинина с равномерной жировой прослойкой",
-                new BigDecimal("890.99"),
-                "Дюрок",
-                12,
-                110,
-                4,
-                "Белгородская область",
-                false,
-                true,
-                new Date(System.currentTimeMillis() + 86400000L * 14),
-                null,
-                null,
-                true,
-                List.of(
-                        new SaveRequestFileDto("/uploads/pork1.jpg"),
-                        new SaveRequestFileDto("/uploads/certificate.pdf")
-                )
-        );
-
-// 2. Замороженная оптовая партия
-        PorkAdSaveRequest frozenWholesale = new PorkAdSaveRequest(
-                "Замороженная свинина оптом",
-                "Партия 50 кг, вакуумная упаковка",
-                new BigDecimal("450.00"),
-                "Ландрас",
-                10,
-                50,
-                1,
-                "Тюмень",
-                true,
-                false,
-                new Date(),
-                new Date(System.currentTimeMillis() + 86400000L * 180),
-                new Date(System.currentTimeMillis() - 86400000L * 30),
-                true,
-                List.of(new SaveRequestFileDto("/uploads/frozen_pork.jpg"))
-        );
-
-// 3. Минимальный вариант (розница)
-        PorkAdSaveRequest minimalRetail = new PorkAdSaveRequest(
-                "Свиная шея",
-                "Шейка свинная",
-                new BigDecimal("650.50"),
-                null,
-                8,
-                10,
-                1,
-                "Москва",
-                true,
-                false,
-                null,
-                null,
-                null,
-                false,
-                List.of()
-        );
-
-        porkService.createPorkAd(premiumPork, user.email());
-        porkService.createPorkAd(frozenWholesale, user.email());
-        porkService.createPorkAd(minimalRetail, user.email());
-    }
-
-    private void loadBeefsFor(UserCreateDTO user) {
+    private void loadBeefAds(UserCreateDTO user) {
+        // Говядина 1
         BeefAdSaveRequest beef1 = new BeefAdSaveRequest(
-                "Премиальная говядина Black Angus",
-                "Свежая мраморная говядина высшего качества",
-                new BigDecimal("1250.99"),
-                "Black Angus",
+                "Говядина высшего сорта, фермерская",
+                "Свежая говядина от проверенного производителя. Мраморная текстура, без консервантов.",
+                new BigDecimal("780"),
+                "Абердин-ангус",
                 24,
-                200,
-                15,
-                "Краснодарский край",
+                1200, // 1.2 кг в граммах
+                50,
+                "Москва",
                 false,
                 true,
                 null,
                 null,
-                new Date(System.currentTimeMillis() + 86400000L * 7),
-                true,
+                null,
+                false,
                 true,
                 true,
                 List.of(
-                        new SaveRequestFileDto("/uploads/angus1.jpg"),
-                        new SaveRequestFileDto("/uploads/angus2.jpg")
+                        new SaveRequestFileDto("test-ad-beef-1-1photo.jpg"),
+                        new SaveRequestFileDto("test-ad-beef-2-1photo.jpg")
                 )
         );
 
+        // Говядина 2
         BeefAdSaveRequest beef2 = new BeefAdSaveRequest(
-                "Говядина фермерская",
-                "Растил буренку на сене",
-                new BigDecimal("850.50"),
-                null,  // порода не указана
-                15,  // возраст не указан
-                190,  // вес не указан
-                1,     // минимальное количество
-                "Ленинградская область",
-                false,
-                false,
-                new Date(System.currentTimeMillis() + 86400000L * 2),
-                new Date(System.currentTimeMillis() + 86400000L * 14),
-                null,
-                false,
-                false,
-                false,
-                List.of()    // нет файлов
-        );
-        BeefAdSaveRequest beef3 = new BeefAdSaveRequest(
-                "Премиальная говядина Black Angus",
-                "Свежая мраморная говядина высшего качества, сухой созревания 21 день",
-                new BigDecimal("1250.99"),
-                "Black Angus",
-                24,
+                "Замороженная говядина на кости",
+                "Мясные блоки на кости, идеально для шашлыков и бульонов.",
+                new BigDecimal("520"),
+                "Симментальская",
+                30,
+                2500, // 2.5 кг в граммах
                 200,
-                15,
-                "Краснодарский край",
+                "Казань",
+                true,
                 false,
-                false,
-                new Date(System.currentTimeMillis() + 86400000L * 7),  // через 7 дней
-                new Date(System.currentTimeMillis() + 86400000L * 30), // через 30 дней
+                null,
+                null,
                 null,
                 true,
-                true,
-                true,
+                false,
+                false,
                 List.of(
-                        new SaveRequestFileDto("/uploads/angus1.jpg"),
-                        new SaveRequestFileDto("/uploads/angus2.jpg")
+                        new SaveRequestFileDto("test-ad-beef-2-2photo.jpg"),
+                        new SaveRequestFileDto("test-ad-beef-2-3photo.jpg")
                 )
         );
 
         beefService.createBeefAd(beef1, user.email());
         beefService.createBeefAd(beef2, user.email());
-        beefService.createBeefAd(beef3, user.email());
+    }
+
+    private void loadPorkAds(UserCreateDTO user) {
+        // Свинина 1
+        PorkAdSaveRequest pork1 = new PorkAdSaveRequest(
+                "Свинина фермерская, свежая",
+                "Фермерская свинина без гормонов, экологически чистое мясо.",
+                new BigDecimal("580"),
+                "Ландрас",
+                8,
+                2100, // 2.1 кг в граммах
+                80,
+                "Самара",
+                false,
+                true,
+                null,
+                null,
+                null,
+                true,
+                List.of(
+                        new SaveRequestFileDto("test-ad-pork-1-1photo.jpg"),
+                        new SaveRequestFileDto("test-ad-pork-2-1photo.jpg")
+                )
+        );
+
+        // Свинина 2
+        PorkAdSaveRequest pork2 = new PorkAdSaveRequest(
+                "Замороженное мясо свинины оптом",
+                "Крупный опт. Замороженные блоки свинины для перепродажи.",
+                new BigDecimal("480"),
+                null,
+                null,
+                5000, // 5.0 кг в граммах
+                1,
+                "Краснодар",
+                true,
+                false,
+                null,
+                null,
+                null,
+                true,
+                List.of()
+        );
+
+        porkService.createPorkAd(pork1, user.email());
+        porkService.createPorkAd(pork2, user.email());
+    }
+
+    private void loadSheepmeatAds(UserCreateDTO user) {
+        // Баранина 1
+        SheepmeatAdSaveRequest sheepmeat1 = new SheepmeatAdSaveRequest(
+                "Баранина свежая, молодого ягнёнка",
+                "Свежая баранина, мясо молодого ягнёнка, без запаха, нежное.",
+                new BigDecimal("850"),
+                "Эдильбаевский",
+                6,
+                1500, // 1.5 кг в граммах
+                30,
+                "Челябинск",
+                false,
+                true,
+                null,
+                null,
+                null,
+                true,
+                true,
+                null,
+                null,
+                List.of(
+                        new SaveRequestFileDto("test-ad-sheepmeat-1-1photo.jpg"),
+                        new SaveRequestFileDto("test-ad-sheepmeat-2-1photo.jpg")
+                )
+        );
+
+        // Баранина 2
+        SheepmeatAdSaveRequest sheepmeat2 = new SheepmeatAdSaveRequest(
+                "Замороженная оленина",
+                "Замороженное мясо ягнят, отличное качество, сертифицировано.",
+                new BigDecimal("750"),
+                "Северный ягнёнок",
+                8,
+                3000, // 3.0 кг в граммах
+                200,
+                "Якутск",
+                true,
+                false,
+                null,
+                null,
+                null,
+                true,
+                true,
+                null,
+                null,
+                List.of(
+                        new SaveRequestFileDto("test-ad-sheepmeat-2-2photo.jpg"),
+                        new SaveRequestFileDto("test-ad-sheepmeat-2-3photo.jpg")
+                )
+        );
+
+        sheepmeatService.createSheepmeatAd(sheepmeat1, user.email());
+        sheepmeatService.createSheepmeatAd(sheepmeat2, user.email());
+    }
+
+    private void loadBirdAds(UserCreateDTO user) {
+        // Птица 1
+        BirdAdSaveRequest bird1 = new BirdAdSaveRequest(
+                "Цыпленок бройлер свежий",
+                "Свежее мясо цыпленка бройлера, без химии, домашнее выращивание.",
+                new BigDecimal("280"),
+                "РОБ РОСС 308",
+                2,
+                1800, // 1.8 кг в граммах
+                100,
+                "Нижний Новгород",
+                false,
+                true,
+                null,
+                null,
+                null,
+                "Бройлер",
+                true,
+                List.of(
+                        new SaveRequestFileDto("test-ad-bird-1-1photo.jpg"),
+                        new SaveRequestFileDto("test-ad-bird-2-1photo.jpg")
+                )
+        );
+
+        // Птица 2
+        BirdAdSaveRequest bird2 = new BirdAdSaveRequest(
+                "Индейка замороженная, охлаждённая",
+                "Охлаждённое мясо индейки, подходит для праздника и диетического питания.",
+                new BigDecimal("350"),
+                "Биг-6",
+                5,
+                3200, // 3.2 кг в граммах
+                150,
+                "Ростов-на-Дону",
+                true,
+                false,
+                null,
+                null,
+                null,
+                "Индейка",
+                true,
+                List.of(
+                        new SaveRequestFileDto("test-ad-bird-2-2photo.jpg"),
+                        new SaveRequestFileDto("test-ad-bird-2-3photo.jpg")
+                )
+        );
+
+        birdService.createBirdAd(bird1, user.email());
+        birdService.createBirdAd(bird2, user.email());
+    }
+
+    private void loadSpecialmeatAds(UserCreateDTO user) {
+        // Спец мясо 1
+        SpecialmeatAdSaveRequest specialmeat1 = new SpecialmeatAdSaveRequest(
+                "Лосятина свежезамороженная, охотничья",
+                "Мясо молодого лося, добыто в экологически чистом районе. Подходит для запекания и гриля.",
+                new BigDecimal("1500"),
+                null,
+                null,
+                2300, // 2.3 кг в граммах
+                100,
+                "Иркутская область",
+                true,
+                false,
+                null,
+                null,
+                null,
+                false,
+                true,
+                List.of(
+                        new SaveRequestFileDto("test-ad-specialmeat-1-1photo.jpg"),
+                        new SaveRequestFileDto("test-ad-specialmeat-1-2photo.jpg")
+                )
+        );
+
+        // Спец мясо 2
+        SpecialmeatAdSaveRequest specialmeat2 = new SpecialmeatAdSaveRequest(
+                "Филе лося, порционное, вакуум",
+                "Порционные куски филе лося, упакованы в вакуум, отличное качество.",
+                new BigDecimal("1800"),
+                null,
+                null,
+                1000, // 1.0 кг в граммах
+                50,
+                "Якутия",
+                true,
+                true,
+                null,
+                null,
+                null,
+                false,
+                true,
+                List.of(
+                        new SaveRequestFileDto("test-ad-specialmeat-2-1photo.jpg"),
+                        new SaveRequestFileDto("test-ad-specialmeat-2-2photo.jpg")
+                )
+        );
+
+        specialmeatService.createSpecialmeatAd(specialmeat1, user.email());
+        specialmeatService.createSpecialmeatAd(specialmeat2, user.email());
     }
 }

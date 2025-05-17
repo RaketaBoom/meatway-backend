@@ -21,6 +21,8 @@ public record SheepmeatAdSaveRequest(
         Date killDate,
         Boolean isHalal,
         Boolean hasMedicalCertificate,
+        String cuttingType,
+        String feedingType,
         List<SaveRequestFileDto> files
 ) {
 }
