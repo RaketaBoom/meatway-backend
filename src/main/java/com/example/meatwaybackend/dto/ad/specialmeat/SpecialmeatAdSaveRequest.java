@@ -22,6 +22,8 @@ public record SpecialmeatAdSaveRequest(
         Date killDate,
         Boolean isHalal,
         Boolean hasMedicalCertificate,
+        String feedingType,
+        String animalType,
         List<SaveRequestFileDto> files
 ) {
 }

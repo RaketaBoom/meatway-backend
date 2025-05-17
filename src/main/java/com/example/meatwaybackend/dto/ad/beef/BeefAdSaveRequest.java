@@ -23,6 +23,8 @@ public record BeefAdSaveRequest(
         boolean isHalal,
         boolean isMramor,
         boolean hasMedicalCertificate,
+        String cuttingType,
+        String feedingType,
         List<SaveRequestFileDto> files
 ) {
 }

@@ -21,6 +21,8 @@ public record PorkAdSaveRequest(
         Date dateEnd,
         Date killDate,
         Boolean hasMedicalCertificate,
+        String fatContent,
+        String processingType,
         List<SaveRequestFileDto> files
 ) {
 }
